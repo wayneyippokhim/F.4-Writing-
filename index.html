@@ -1,1041 +1,241 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>English Writing Hub</title>
     
-    <!-- 確保加入主畫面時顯示的名字為 Kansai2026 -->
-    <title>Kansai2026</title>
-    <meta name="apple-mobile-web-app-title" content="Kansai2026">
-    <meta name="application-name" content="Kansai2026">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    
-    <!-- React & Babel -->
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- FontAwesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
     <style>
+        /* Base iOS-like Styling */
+        :root {
+            --primary-color: #007aff; /* Apple Blue */
+            --bg-color: #f2f2f7;
+            --text-color: #333333;
+            --nav-bg: rgba(255, 255, 255, 0.9);
+            --inactive-color: #8e8e93;
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', Arial, 'PingFang TC', sans-serif;
             margin: 0;
-            padding: 0;
-            color: #4a4a4a; 
-            background-color: #fdfafb;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            /* Adds space at the bottom so content isn't hidden by the navbar */
+            padding-bottom: 90px; 
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* 背景設定 */
-        .bg-image {
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        /* Content Sections */
+        .tab-content {
+            display: none; /* Hidden by default */
+            padding: 20px;
+            animation: fadeIn 0.3s;
+        }
+
+        .tab-content.active {
+            display: block; /* Shows the active tab */
+        }
+
+        /* Card Layout for iPad */
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .card h2 {
+            margin-top: 0;
+            color: var(--primary-color);
+            font-size: 1.25rem;
+        }
+
+        /* Bottom Navigation Bar */
+        nav {
             position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1920&auto=format&fit=crop');
-            background-size: cover;
-            background-position: center;
-            z-index: -2;
-        }
-        
-        .bg-overlay {
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(255, 255, 255, 0.25);
-            backdrop-filter: blur(3px);
-            -webkit-backdrop-filter: blur(3px);
-            z-index: -1;
+            bottom: 0;
+            width: 100%;
+            background-color: var(--nav-bg);
+            backdrop-filter: blur(10px); /* iOS glass effect */
+            -webkit-backdrop-filter: blur(10px);
+            border-top: 1px solid #e5e5ea;
+            display: flex;
+            justify-content: space-around;
+            /* Safe area padding for newer iPads/iPhones */
+            padding-bottom: env(safe-area-inset-bottom);
+            z-index: 100;
         }
 
-        /* 卡片透明度 */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.55); /* 稍微增加不透明度以提升閱讀性 */
-            backdrop-filter: saturate(180%) blur(20px);
-            -webkit-backdrop-filter: saturate(180%) blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            box-shadow: 0 8px 32px rgba(120, 194, 196, 0.15); 
-        }
-        
-        /* 導覽列透明度與安全區域設定 */
-        .glass-nav {
-            background: rgba(255, 255, 255, 0.85); /* 導航列更不透明一點 */
-            backdrop-filter: saturate(200%) blur(24px);
-            -webkit-backdrop-filter: saturate(200%) blur(24px);
-            border-top: 1px solid rgba(255, 255, 255, 0.7);
-            box-shadow: 0 -4px 30px rgba(120, 194, 196, 0.1);
-        }
-        
-        /* 內部小區塊透明度 */
-        .glass-inner {
-            background: rgba(255, 255, 255, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+        .nav-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px 0;
+            width: 25%;
+            color: var(--inactive-color);
+            text-decoration: none;
+            cursor: pointer;
+            transition: color 0.2s;
         }
 
-        .scrollbar-hide::-webkit-scrollbar { display: none; }
-        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
-        .compact-card:active { transform: scale(0.97); }
-        .line-clamp-2 {
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
+        .nav-btn.active {
+            color: var(--primary-color);
         }
 
-        /* 行程頁面動態主題 CSS 變數 */
-        .timeline-line { border-color: var(--theme-border); }
-        .timeline-dot {
-            border-color: var(--theme-border);
-            color: var(--theme-text);
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
-            transition: all 0.3s ease;
+        .nav-btn i {
+            font-size: 28px;
+            margin-bottom: 4px;
         }
-        .group:hover .timeline-dot {
-            background-color: var(--theme-main);
-            border-color: var(--theme-main);
-            color: var(--theme-btn-text);
-            transform: scale(1.1);
+
+        .nav-btn span {
+            font-size: 11px;
+            font-weight: 500;
         }
-        
-        /* 展開動畫效果 */
-        .collapse-content {
-            display: grid;
-            grid-template-rows: 0fr;
-            transition: grid-template-rows 0.3s ease-in-out;
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-        .collapse-content.open {
-            grid-template-rows: 1fr;
-        }
-        .collapse-inner {
-            overflow: hidden;
-        }
-        
-        /* iPhone Safe Area 變數 */
-        :root {
-            --sat: env(safe-area-inset-top);
-            --sab: env(safe-area-inset-bottom);
-        }
-        .pt-safe-top { padding-top: max(16px, var(--sat)); } /* 確保至少有 padding */
-        .pb-safe-bottom { padding-bottom: var(--sab); }
-        
-        /* 動畫 */
-        .fade-in { animation: fadeIn 0.3s ease-in-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
-    <div class="bg-image"></div>
-    <div class="bg-overlay"></div>
-    <div id="root"></div>
 
-    <script type="text/babel">
-        const { useState, useEffect } = React;
+    <header>English Writing Hub</header>
 
-        // --- 1. 資料設定 ---
-        const COLORS = {
-            main:   { hex: '#78C2C4', light: 'rgba(120, 194, 196, 0.25)', border: 'rgba(120, 194, 196, 0.6)', text: '#458b8d', btnText: '#FFFFFF' },
-            pink:   { hex: '#FEDFE1', light: 'rgba(254, 223, 225, 0.6)',  border: 'rgba(254, 223, 225, 0.9)', text: '#d16b7a', btnText: '#9e4655' },
-            yellow: { hex: '#FAD689', light: 'rgba(250, 214, 137, 0.25)', border: 'rgba(250, 214, 137, 0.7)', text: '#c79822', btnText: '#8a6408' },
-            green:  { hex: '#A8D8B9', light: 'rgba(168, 216, 185, 0.25)', border: 'rgba(168, 216, 185, 0.6)', text: '#64a17d', btnText: '#3b6e51' }
-        };
+    <main id="genres" class="tab-content active">
+        <div class="card">
+            <h2>Narrative Writing</h2>
+            <p>Tell a story! Focus on character development, setting, and plot. Remember to use descriptive language to show, not tell.</p>
+        </div>
+        <div class="card">
+            <h2>Persuasive Writing</h2>
+            <p>Convince your reader. State your opinion clearly, provide logical arguments, and back them up with solid evidence.</p>
+        </div>
+        <div class="card">
+            <h2>Expository Writing</h2>
+            <p>Explain or inform. Keep your writing clear, factual, and organized with clear topic sentences.</p>
+        </div>
+    </main>
 
-        const REGION_COLORS = {
-            '神戶': COLORS.main,
-            '大阪': COLORS.pink,
-            '奈良': COLORS.yellow,
-            '和歌山': COLORS.green
-        };
+    <main id="patterns" class="tab-content">
+        <div class="card">
+            <h2>Simple Sentences (SV / SVO)</h2>
+            <p><strong>Subject + Verb:</strong> The dog barked.</p>
+            <p><strong>Subject + Verb + Object:</strong> The student wrote an essay.</p>
+        </div>
+        <div class="card">
+            <h2>Compound Sentences (FANBOYS)</h2>
+            <p>Join two independent clauses with a comma and a conjunction (For, And, Nor, But, Or, Yet, So).</p>
+            <p><em>Example:</em> I wanted to study, <strong>but</strong> I was too tired.</p>
+        </div>
+        <div class="card">
+            <h2>Complex Sentences</h2>
+            <p>Join an independent clause with a dependent clause using words like <em>although, because, since,</em> or <em>if</em>.</p>
+            <p><em>Example:</em> <strong>Because</strong> it was raining, we stayed indoors.</p>
+        </div>
+    </main>
 
-        const DAY_REGION_MAP = {
-            1: '神戶', 2: '神戶', 3: '神戶', 
-            4: '大阪', 5: '大阪',           
-            6: '奈良',                    
-            7: '和歌山', 8: '和歌山'         
-        };
+    <main id="mistakes" class="tab-content">
+        <div class="card">
+            <h2>Subject-Verb Agreement</h2>
+            <p>Singular subjects need singular verbs. Plural subjects need plural verbs.</p>
+            <p>❌ <em>The group of students are studying.</em></p>
+            <p>✅ <em>The group of students is studying.</em> (Group is singular)</p>
+        </div>
+        <div class="card">
+            <h2>Run-on Sentences</h2>
+            <p>Two independent sentences squished together without proper punctuation.</p>
+            <p>❌ <em>I love writing it is my favorite subject.</em></p>
+            <p>✅ <em>I love writing. It is my favorite subject.</em></p>
+        </div>
+    </main>
 
-        const HOTELS = [
-            { name: "神戶美利堅公園東方大酒店", engName: "Kobe Meriken Park Oriental Hotel", address: "神戶市中央區波止場町5-6", checkIn: "02/16(一)", checkOut: "02/18(三)", nights: 2, roomType: "東景標準大床房", tag: "神戶港夜景", icon: "ship", color: COLORS.main },
-            { name: "月光園遊月山莊", engName: "Gekkoen Yuugetsu Sanso", address: "神戶市北區有馬町318", checkIn: "02/18(三)", checkOut: "02/19(四)", nights: 1, roomType: "日式房 (帶露天風呂, 禁煙)", tag: "一泊二食", icon: "hot-tub-person", color: COLORS.yellow }, 
-            { name: "東急stay大阪本町酒店", engName: "Tokyu Stay Osaka Hommachi", address: "大阪市中央區久太郎町 2-4-24", checkIn: "02/19(四)", checkOut: "02/22(日)", nights: 3, roomType: "經濟型雙人床房 (帶洗衣機)", tag: "交通便利", icon: "city", color: COLORS.pink },
-            { name: "和歌山大和ROYNET酒店", engName: "Daiwa Roynet Hotel Wakayama", address: "和歌山市七番丁 26-1", checkIn: "02/22(日)", checkOut: "02/23(一)", nights: 1, roomType: "標準雙床房 (禁煙)", tag: "和歌山城旁", icon: "landmark", color: COLORS.green }
-        ];
+    <main id="tools" class="tab-content">
+        <div class="card">
+            <h2>Word Counter</h2>
+            <textarea id="word-input" style="width: 100%; height: 100px; border-radius: 8px; border: 1px solid #ccc; padding: 10px; box-sizing: border-box; font-family: inherit;" placeholder="Type or paste your text here..."></textarea>
+            <p style="font-weight: bold; color: var(--primary-color);">Word Count: <span id="word-count">0</span></p>
+        </div>
+        <div class="card">
+            <h2>Helpful Links</h2>
+            <ul>
+                <li><a href="https://www.thesaurus.com/" target="_blank">Thesaurus (Find Synonyms)</a></li>
+                <li><a href="https://dictionary.cambridge.org/" target="_blank">Cambridge Dictionary</a></li>
+            </ul>
+        </div>
+    </main>
 
-        // 交通券攻略資料
-        const PASS_INFO = [
-            {
-                name: "交通支付策略 (最佳方案)",
-                type: "分析結果",
-                price: "最省錢",
-                days: "全行程",
-                desc: "經過計算，您的行程跨越多家不同鐵路公司，單一票券無法回本，直接刷 IC 卡最省錢。",
-                details: [
-                    "結論：全程使用 IC 卡 (ICOCA) 即可。",
-                    "優點：彈性最高，不用擔心票券適用範圍。",
-                    "Day 7 高野山：利用天下茶屋站寄放行李，大幅節省折返時間。"
-                ],
-                color: "bg-indigo-100 text-indigo-700",
-                icon: "calculator"
-            },
-            {
-                name: "IC 卡 (ICOCA / Suica)",
-                type: "儲值卡",
-                price: "¥2000 (含押金)",
-                days: "全行程必備",
-                desc: "關西地區所有私鐵、JR、地鐵、巴士及便利商店。",
-                details: [
-                    "Day 1-3: 神戶/有馬移動",
-                    "Day 4-6: 大阪/奈良移動",
-                    "Day 7: 南海電鐵 (高野山/和歌山)",
-                    "Day 8: 機場交通"
-                ],
-                color: "bg-gray-100 text-gray-600",
-                icon: "credit-card"
-            }
-        ];
+    <nav>
+        <a class="nav-btn active" onclick="switchTab('genres', this)">
+            <i class="material-icons">menu_book</i>
+            <span>Genres</span>
+        </a>
+        <a class="nav-btn" onclick="switchTab('patterns', this)">
+            <i class="material-icons">format_shapes</i>
+            <span>Patterns</span>
+        </a>
+        <a class="nav-btn" onclick="switchTab('mistakes', this)">
+            <i class="material-icons">rule</i>
+            <span>Mistakes</span>
+        </a>
+        <a class="nav-btn" onclick="switchTab('tools', this)">
+            <i class="material-icons">build</i>
+            <span>Tools</span>
+        </a>
+    </nav>
 
-        const RESTAURANTS = [
-            { id: 10, name: "燃えよ麺助", region: "大阪", rating: 4.5, type: "拉麵", desc: "必吃紀州鴨そば！微甜醬油湯底配上二度燒蔥，香氣逼人。", icon: "bowl-rice", address: "大阪市福島區福島5-12-21", hours: "11:00-15:00, 18:00-21:00", closed: "週二" },
-            { id: 11, name: "鶴屋 (Tsuruya)", region: "大阪", rating: 4.4, type: "壽喜燒", desc: "主打國產和牛，一人一鍋形式，自在享用頂級鍋物。", icon: "fire", address: "大阪市中央區日本橋1-5-4", hours: "11:00-23:00", closed: "不定休" },
-            { id: 12, name: "大阪・はり重 (Hari Ju)", region: "大阪", rating: 4.5, type: "壽喜燒", desc: "百年歷史名店，嚴選雌黑毛和牛與秘製醬汁，道頓堀本店。", icon: "utensils", address: "大阪市中央区道頓堀1-9-17", hours: "11:30-22:30", closed: "週二" },
-            { id: 13, name: "MORITA屋 (Moritaya)", region: "大阪", rating: 4.4, type: "壽喜燒", desc: "京都老鋪分店，擁有自家牧場高品質牛肉供應鏈，LUCUA店可賞夜景。", icon: "cow", address: "大阪市北區梅田3-1-3 LUCUA 10F", hours: "11:00-23:00", closed: "不定休" },
-            { id: 15, name: "相生芳 Aioifuku", region: "大阪", rating: 4.6, type: "懷石料理", desc: "隱身於水都大阪繁華市區中的百年料亭，擁有開闊精緻的大名庭園。", icon: "house-chimney", address: "大阪市中央區高麗橋", hours: "11:30-15:00, 17:00-22:00", closed: "週日" },
-            { id: 3, name: "割烹 岩木", region: "大阪", rating: 4.7, type: "懷石料理", desc: "北新地米其林一星，使用頂級天然海鮮，性價比極高。", icon: "fish", address: "大阪市北區堂島1-5-35", hours: "18:00-23:00", closed: "週日" },
-            { id: 4, name: "燒肉 忍鬨 (Ninkiyo)", region: "大阪", rating: 4.8, type: "燒肉", desc: "必點厚切蔥鹽牛舌！大阪人氣爆棚的排隊燒肉店。", icon: "fire", address: "大阪市中央區東心斎橋1-6-32", hours: "17:00-01:00", closed: "不定休" },
-            { id: 5, name: "人類みな麺類", region: "大阪", rating: 4.4, type: "拉麵", desc: "大阪排名第一的醬油拉麵，叉燒厚實軟嫩，湯頭甘甜。", icon: "bowl-food", address: "大阪市淀川區西中島1-12-15", hours: "10:00-03:00", closed: "無" },
-            { id: 16, name: "菊水樓 Kikusuiro", region: "奈良", rating: 4.6, type: "懷石料理", desc: "位於奈良公園入口，接待過日本皇室，融合寺廟雄偉與庭園細膩。", icon: "leaf", address: "奈良市高畑町1130", hours: "11:00-15:00, 17:00-21:00", closed: "週二" },
-            { id: 6, name: "まぐろ小屋", region: "奈良", rating: 4.5, type: "鮪魚丼", desc: "專賣鮪魚料理的小店，中腹肉丼飯油脂豐富，老饕必訪。", icon: "fish-fins", address: "奈良市花芝町6", hours: "11:00-16:00 (售完即止)", closed: "週日" },
-            { id: 7, name: "玄 (Gen)", region: "奈良", rating: 4.6, type: "蕎麥麵", desc: "米其林推薦的蕎麥麵名店，百分之百純蕎麥製作，需預約。", icon: "wheat-awn", address: "奈良市福智院町23-2", hours: "11:30-13:30", closed: "週一" },
-            { id: 17, name: "Hotel de Yoshino", region: "和歌山", rating: 4.7, type: "頂級法餐", desc: "位於和歌山市中心高層，平視古城天守閣，由日本法餐界傳奇主廚坐鎮。", icon: "wine-glass", address: "和歌山市手平2-1-2 Big-Ai 12F", hours: "11:30-14:00, 17:30-21:00", closed: "週三" },
-            { id: 8, name: "井出商店", region: "和歌山", rating: 4.1, type: "拉麵", desc: "和歌山拉麵代名詞，濃郁豚骨醬油湯頭，全日本票選冠軍。", icon: "bowl-rice", address: "和歌山市田中町4-84", hours: "11:30-23:30", closed: "週四" },
-            { id: 9, name: "Villa Aida", region: "和歌山", rating: 4.6, type: "義法料理", desc: "坐落田園間的傳奇餐廳，使用自家種植蔬菜，號稱日本第一農家餐廳。", icon: "carrot", address: "和歌山縣岩出市川尻71-5", hours: "12:30/18:00 (預約制)", closed: "不定休" }
-        ];
+    <script>
+        // Function to switch between tabs
+        function switchTab(tabId, clickedBtn) {
+            // 1. Hide all content sections
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
 
-        const FLIGHTS = {
-            outbound: { title: "去程", date: "02/16 (一)", airline: "樂桃航空 Peach", flightNo: "MM064", dep: { time: "12:30", port: "HKG", term: "T1", city: "香港" }, arr: { time: "17:10", port: "KIX", term: "T2", city: "大阪(關西)" }, duration: "3h 40m", color: COLORS.main },
-            inbound: { title: "回程", date: "02/23 (一)", airline: "樂桃航空 Peach", flightNo: "MM069", dep: { time: "23:00", port: "KIX", term: "T2", city: "大阪(關西)" }, arr: { time: "02:00", port: "HKG", term: "T1", city: "香港 (+1天)" }, duration: "4h 00m", color: COLORS.pink }
-        };
+            // 2. Remove 'active' class from all nav buttons
+            const buttons = document.querySelectorAll('.nav-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
 
-        const ITINERARY = [
-            { 
-                day: 1, date: "02/16(一)", title: "神戶到著", weather: "8°C", weatherIcon: "cloud-sun", 
-                timeline: [
-                    { type: 'activity', time: '17:10', title: '關西機場 T2', icon: 'plane', detail: '準備前往神戶市區' },
-                    { type: 'transport', time: '約 70 分鐘', title: '關西機場 ➔ 神戶三宮站', icon: 'train', isLong: true, ticket: 'IC 卡', routes: [
-                        "【方案 A (高速船 - 推薦)】關西機場 T1 (12號櫃檯) / T2 (接駁車) ➔ 高速船碼頭",
-                        "搭乘：Bay Shuttle 高速船 (往神戶機場)",
-                        "下車：神戶機場棧橋 ➔ 步行至神戶機場站",
-                        "搭乘：Port Liner 港灣人工島線 (往三宮)",
-                        "下車：三宮站",
-                        "【方案 B (JR)】關西機場站",
-                        "搭乘：JR 關空快速 (往天王寺/大阪)",
-                        "下車：大阪站 (轉乘)",
-                        "搭乘：JR 神戶線 新快速 (往姬路/西明石)",
-                        "下車：三宮站 (東口出口)"
-                    ] },
-                    { type: 'hotel', time: '19:30', title: '神戶美利堅公園東方大酒店', icon: 'bed', detail: 'Check-in' },
-                    { type: 'transport', time: '約 15 分鐘', title: '神戶三宮站 ➔ 神戶美利堅公園東方大酒店', icon: 'bus', ticket: 'IC 卡', routes: [
-                        "【方案 A】三宮站 Mint Kobe 1樓巴士總站 (8號月台)",
-                        "搭乘：飯店免費接駁巴士 (週末假日班次較多)",
-                        "下車：神戶美利堅公園東方大酒店",
-                        "【方案 B】步行 / 計程車",
-                        "路線：沿 Flower Road 往南直行至港邊 (約 20 分)",
-                    ]},
-                    { type: 'activity', time: '20:30', title: '美利堅公園', icon: 'person-running', detail: '活動：神戶港灣夜跑 (美利堅公園至臨海樂園，享受 5-10km 的浪漫海風夜跑)' }
-                ]
-            },
-            { 
-                day: 2, date: "02/17(二)", title: "神戶文創＆浪漫夜景", weather: "10°C", weatherIcon: "sun",
-                timeline: [
-                    { type: 'transport', time: '約 35 分鐘', title: '神戶美利堅公園東方大酒店 ➔ 兵庫縣立美術館', icon: 'train-tram', ticket: 'IC 卡', routes: [
-                        "上車：飯店接駁巴士 ➔ 三宮站",
-                        "進站：阪神 神戶三宮站",
-                        "搭乘：阪神本線 普通 (往大阪梅田)",
-                        "下車：岩屋站 (Iwaya)",
-                        "出口：南口 ➔ 步行約 10 分鐘"
-                    ] },
-                    { type: 'activity', time: '10:00', title: '兵庫縣立美術館', icon: 'palette', detail: '安藤忠雄操刀設計，欣賞極簡清水模建築與海景，與巨大「青蘋果」合影' },
-                    { type: 'transport', time: '15 分鐘', title: '兵庫縣立美術館 ➔ 神戶舊居留地', icon: 'train-tram', ticket: 'IC 卡', routes: [
-                        "上車：岩屋站",
-                        "搭乘：阪神本線 (往神戶三宮/元町)",
-                        "下車：元町站 (Motomachi)",
-                        "出口：東改札口 ➔ 步行至舊居留地"
-                    ] },
-                    { type: 'food', time: '12:30', title: '神戶舊居留地', icon: 'utensils', detail: '午餐：感受歐風歷史建築群與質感咖啡廳' },
-                    { type: 'transport', time: '5 分鐘', title: '神戶舊居留地 ➔ 神戸 栄町通', icon: 'person-walking', routes: ["舊居留地 ➔ 步行約 5-10 分鐘 ➔ 榮町通"] },
-                    { type: 'shop', time: '14:30', title: '神戸 栄町通', icon: 'pen-nib', detail: '逛街：尋寶隱藏在舊大樓裡的獨立文具店、藝術質感小物與家飾' },
-                    { type: 'transport', time: '15 分鐘', title: '神戸 栄町通 ➔ 神戶牛排 Ishida. 本店', icon: 'person-walking', routes: ["榮町通 ➔ 步行至三宮站北側 (北長狹通/生田路區域)"] },
-                    { 
-                        type: 'food', time: '17:00', title: '神戶牛排 Ishida. 本店', icon: 'fire-burner', 
-                        reservation: {
-                            plan: "＜晚餐＞【網路預約限定優質雙人套餐】18,000日圓（含稅20,790日圓）",
-                            number: "預約號：AU9K3QQFFW",
-                            contact: "Chloe Ko",
-                            phone: "+85260304198",
-                            email: "chloeko0108@gmail.com"
-                        }
-                    },
-                    { type: 'transport', time: '約 40 分鐘', title: '神戶三宮站 ➔ 摩耶山 掬星台', icon: 'bus', isLong: true, ticket: 'IC 卡', routes: [
-                        "上車：三宮站前巴士站 (Mint Kobe 下方)",
-                        "搭乘：神戶市巴士 18 系統 (往摩耶纜車下)",
-                        "下車：摩耶纜車下站",
-                        "轉乘：摩耶 Viewline (纜車 + 索道) ➔ 星之站"
-                    ] },
-                    { type: 'activity', time: '19:00', title: '掬星台', icon: 'star', detail: '特別景點：日本三大夜景，極度浪漫' },
-                    { type: 'transport', time: '45 分鐘', title: '掬星台 ➔ 神戶美利堅公園東方大酒店', icon: 'bus', isLong: true, ticket: 'IC 卡', routes: [
-                        "上車：星之站 (索道 + 纜車) 下山",
-                        "轉乘：神戶市巴士 18 系統 (往三宮)",
-                        "下車：三宮站",
-                        "轉乘：飯店接駁巴士 ➔ 飯店"
-                    ] }
-                ]
-            },
-            { 
-                day: 3, date: "02/18(三)", title: "遊月山莊溫泉夜", weather: "7°C", weatherIcon: "cloud", 
-                timeline: [
-                    { type: 'hotel', time: '10:00', title: '神戶美利堅公園東方大酒店', icon: 'bed', detail: 'Check-out' },
-                    { type: 'transport', time: '約 60 分鐘', title: '神戶三宮站 ➔ 有馬溫泉站', icon: 'train-subway', isLong: true, ticket: 'IC 卡', routes: [
-                        "【方案 A (巴士 - 最直達)】",
-                        "上車：三宮巴士總站 (Mint Kobe 1F)",
-                        "搭乘：阪急/JR 高速巴士 (往有馬溫泉)",
-                        "下車：有馬溫泉站",
-                        "【方案 B (地下鐵+電鐵)】",
-                        "上車：神戶市營地下鐵 三宮站",
-                        "搭乘：神戶市營地下鐵 (往谷上)",
-                        "轉乘：谷上站 (同月台) ➔ 神戶電鐵有馬線 (往三田/有馬)",
-                        "轉乘：有馬口站 ➔ 有馬溫泉線",
-                        "下車：有馬溫泉站"
-                    ] },
-                    { type: 'transport', time: '11:30', title: '有馬溫泉', icon: 'map', detail: '行程：溫泉街老舖巡禮、品嚐炭酸煎餅' },
-                    { type: 'transport', time: '5 分鐘', title: '有馬溫泉站 ➔ 月光園遊月山莊', icon: 'van-shuttle', routes: ["抵達巴士站/車站後，聯繫旅館接駁車或步行約 10 分鐘"] },
-                    { type: 'hotel', time: '15:00', title: '月光園遊月山莊', icon: 'bed', detail: 'Check-in: 享受房內專屬露天風呂，寫意放鬆' },
-                    { type: 'food', time: '18:00', title: '月光園遊月山莊', icon: 'utensils', detail: '晚餐：旅館內享用傳統職人料理' }
-                ]
-            },
-            { 
-                day: 4, date: "02/19(四)", title: "大阪中崎町＆天王寺", weather: "9°C", weatherIcon: "cloud-sun", 
-                timeline: [
-                    { type: 'hotel', time: '11:00', title: '月光園遊月山莊', icon: 'bus', detail: 'Check-out / 離開有馬溫泉，結束溫泉之旅，前往大阪' },
-                    { type: 'transport', time: '約 60 分鐘', title: '有馬溫泉站 ➔ 大阪梅田站', icon: 'bus', isLong: true, ticket: 'IC 卡', routes: [
-                        "上車：有馬溫泉巴士站 (太閣橋附近)",
-                        "搭乘：阪急高速巴士 (往大阪梅田)",
-                        "下車：阪急三番街巴士總站 (大阪梅田)"
-                    ] },
-                    { type: 'transport', time: '約 15 分鐘', title: '大阪梅田站 ➔ 本町站 (放行李)', icon: 'train-subway', ticket: 'IC 卡', routes: [
-                        "進站：梅田站 (M16)",
-                        "搭乘：大阪地下鐵 御堂筋線 (往天王寺/中百舌鳥)",
-                        "下車：本町站 (M18)",
-                        "出口：13號或11號出口 (最接近東急 Stay)"
-                    ] },
-                    { type: 'hotel', time: '13:00', title: '東急stay大阪本町酒店', icon: 'bed', detail: '寄放行李' },
-                    { type: 'transport', time: '15 分鐘', title: '本町站 ➔ 中崎町站', icon: 'train-subway', ticket: 'IC 卡', routes: [
-                        "進站：本町站 (M18)",
-                        "搭乘：大阪地下鐵 御堂筋線 (往新大阪/千里中央)",
-                        "下車：梅田站 (M16)",
-                        "轉乘：步行至 東梅田站 (T20)",
-                        "搭乘：大阪地下鐵 谷町線 (往都島/大日)",
-                        "下車：中崎町站 (T19)",
-                        "出口：2號或4號出口"
-                    ] },
-                    { type: 'activity', time: '14:00', title: '中崎町', icon: 'spa', detail: '體驗：散策與調香體驗 (探訪復古巷弄，在香氛工坊調製專屬兩人的紀念香水或線香)' },
-                    { type: 'transport', time: '20 分鐘', title: '中崎町站 ➔ 天王寺站', icon: 'train-subway', isLong: true, ticket: 'IC 卡', routes: [
-                        "進站：中崎町站 (T19)",
-                        "搭乘：大阪地下鐵 谷町線 (往天王寺/八尾南)",
-                        "下車：天王寺站 (T27)",
-                        "出口：地下連通道直結 Q's Mall"
-                    ] },
-                    { type: 'shop', time: '16:00', title: 'Sports Depo 天王寺店', icon: 'shirt', detail: '位於 Q\'s Mall，商品齊全的運動用品專賣店' },
-                    { type: 'activity', time: '18:30', title: 'Harukas 300', icon: 'building', detail: '特別景點：阿倍野 HARUKAS 300 展望台，步行過天橋至近鐵百貨搭乘電梯，俯瞰大阪絕美夜景' },
-                    { type: 'transport', time: '15 分鐘', title: '天王寺站 ➔ 東急stay大阪本町酒店', icon: 'train-subway', isLong: true, ticket: 'IC 卡', routes: [
-                        "進站：天王寺站 (M23)",
-                        "搭乘：大阪地下鐵 御堂筋線 (往新大阪/千里中央)",
-                        "下車：本町站 (M18)",
-                        "出口：13號出口"
-                    ] }
-                ]
-            },
-            { 
-                day: 5, date: "02/20(五)", title: "大阪中之島閒遊", weather: "11°C", weatherIcon: "sun",
-                timeline: [
-                    { type: 'transport', time: '約 15 分鐘', title: '東急stay大阪本町酒店 ➔ 肥後橋站 (中之島)', icon: 'train-subway', ticket: 'IC 卡', routes: [
-                        "進站：本町站 (Y13)",
-                        "搭乘：大阪地下鐵 四橋線 (往西梅田)",
-                        "下車：肥後橋站 (Y12)",
-                        "出口：3號出口 ➔ 步行至中之島"
-                    ] }, 
-                    { type: 'activity', time: '10:00', title: '中之島公園', icon: 'water', detail: '活動：散步 (美術館、童書森林與紅磚公會堂，寫意早晨)' },
-                    { type: 'transport', time: '15 分鐘', title: '肥後橋站 ➔ 四橋站 (南堀江)', icon: 'train-subway', ticket: 'IC 卡', routes: [
-                        "進站：肥後橋站 (Y12)",
-                        "搭乘：大阪地下鐵 四橋線 (往住之江公園)",
-                        "下車：四橋站 (Y14)",
-                        "出口：6號出口 ➔ 步行至 Orange Street"
-                    ] },
-                    { type: 'shop', time: '13:30', title: 'Orange Street', icon: 'tent', detail: '逛街：南堀江，匯集 Patagonia 等戶外山系服飾、潮流運動配件與設計家品' },
-                    { type: 'transport', time: '15 分鐘', title: '四橋站 ➔ 西梅田站', icon: 'train-subway', ticket: 'IC 卡', routes: [
-                        "進站：四橋站 (Y14)",
-                        "搭乘：大阪地下鐵 四橋線 (往西梅田)",
-                        "下車：西梅田站 (Y11)",
-                        "出口：往茶屋町方向 (經地下街步行約 10-15 分)"
-                    ] },
-                    { type: 'shop', time: '15:30', title: '梅田 Loft', icon: 'bag-shopping', detail: '集中採購：美術用品' },
-                    { type: 'shop', time: '16:30', title: 'SteP SPORTS Run City Osaka', icon: 'shoe-prints', detail: '位於茶屋町，LOFT對面，跑者聖地，專業跑鞋' },
-                    { type: 'transport', time: '15 分鐘', title: '梅田茶屋町 ➔ 梅田藍天大廈', icon: 'person-walking', routes: ["茶屋町 ➔ 穿越梅田地下街 (跟隨 Sky Building 指標) ➔ 藍天大廈"] },
-                    { type: 'activity', time: '18:00', title: '空中庭園展望台', icon: 'sun', detail: '地點：梅田藍天大廈，看夕陽漸層至夜景' },
-                    { type: 'transport', time: '15 分鐘', title: '梅田藍天大廈 ➔ 東急stay大阪本町酒店', icon: 'train-subway', ticket: 'IC 卡', routes: [
-                        "進站：梅田站 (M16)",
-                        "搭乘：大阪地下鐵 御堂筋線 (往天王寺/中百舌鳥)",
-                        "下車：本町站 (M18)"
-                    ] }
-                ]
-            },
-            { 
-                day: 6, date: "02/21(六)", title: "奈良小鹿與菓子", weather: "12°C", weatherIcon: "sun",
-                timeline: [
-                    { type: 'activity', time: '09:00', title: '前往奈良', icon: 'train', detail: '從大阪出發，準備前往奈良古都' },
-                    { type: 'transport', time: '約 50 分鐘', title: '東急stay大阪本町酒店 ➔ 近鐵奈良站', icon: 'train', isLong: true, ticket: 'IC 卡', routes: [
-                        "進站：本町站 (M18)",
-                        "搭乘：大阪地下鐵 御堂筋線 (往天王寺/中百舌鳥)",
-                        "下車：難波站 (M20)",
-                        "轉乘：近鐵大阪難波站",
-                        "搭乘：近鐵奈良線 快速急行 (往近鐵奈良)",
-                        "下車：近鐵奈良站",
-                        "出口：東改札口"
-                    ] },
-                    { type: 'activity', time: '10:00', title: '東大寺', icon: 'paw', detail: '活動：東大寺與奈良公園 (世界遺產大佛殿巡禮、晨間與小鹿互動)' },
-                    { type: 'transport', time: '10 分鐘', title: '東大寺 ➔ 奈良 若草山', icon: 'person-walking', routes: ["穿越奈良公園，往二月堂方向，緩步上坡即可抵達若草山"] },
-                    { type: 'activity', time: '13:30', title: '奈良 若草山', icon: 'person-hiking', detail: '體驗：絕景行山 (漫步登上開闊的草地山坡，與小鹿相伴，俯瞰奈良古都全景)' },
-                    { type: 'transport', time: '15 分鐘', title: '奈良 若草山 ➔ 鹿猿狐包袱小路', icon: 'person-walking', routes: ["下山往近鐵奈良站/奈良町方向"] },
-                    { type: 'shop', time: '15:30', title: '鹿猿狐包袱小路', icon: 'gift', detail: '逛街：中川政七旗艦店 (日本工藝生活家品)' },
-                    { type: 'transport', time: '10 分鐘', title: '鹿猿狐包袱小路 ➔ 奈良町', icon: 'person-walking', routes: ["沿著町家老街步行至茶道體驗處"] },
-                    { type: 'activity', time: '17:00', title: '奈良町', icon: 'bowl-food', detail: '體驗：茶道與和菓子 (在百年町家內參與傳統茶道，親手製作和菓子)' },
-                    { type: 'transport', time: '約 50 分鐘', title: '近鐵奈良站 ➔ 東急stay大阪本町酒店', icon: 'train-subway', isLong: true, ticket: 'IC 卡', routes: [
-                        "進站：近鐵奈良站",
-                        "搭乘：近鐵奈良線 快速急行 (往大阪難波/尼崎/神戶三宮)",
-                        "下車：大阪難波站",
-                        "轉乘：大阪地下鐵 難波站 (M20)",
-                        "搭乘：御堂筋線 (往新大阪/千里中央)",
-                        "下車：本町站 (M18)",
-                        "出口：13號出口 (返回飯店)"
-                    ] }
-                ]
-            },
-            { 
-                day: 7, date: "02/22(日)", title: "和歌山聖地奧之院", weather: "13°C", weatherIcon: "cloud-sun", 
-                timeline: [
-                    { type: 'hotel', time: '09:00', title: '東急stay大阪本町酒店', icon: 'bed', detail: 'Check-out & 準備行李' },
-                    { type: 'transport', time: '約 15 分鐘', title: '本町站 ➔ 天下茶屋站 (寄放行李)', icon: 'train-subway', ticket: 'IC 卡', routes: [
-                        "上車：本町站 (K15 堺筋線) - (需由御堂筋線月台步行至堺筋線月台，或先搭御堂筋線至動物園前轉乘)",
-                        "建議路線：本町站 (M18) 搭乘御堂筋線 (往天王寺) ➔ 動物園前站 (M22) 轉乘 堺筋線 (K19) ➔ 天下茶屋 (K20)",
-                        "下車：天下茶屋站",
-                        "動作：出閘後，於南海電鐵改札口附近尋找置物櫃寄放大型行李"
-                    ] },
-                    { type: 'transport', time: '約 90 分鐘', title: '天下茶屋站 ➔ 高野山站', icon: 'train', isLong: true, ticket: 'IC 卡', routes: [
-                        "進站：南海 天下茶屋站",
-                        "搭乘：南海高野線 特急Koya / 快速急行 (往極樂橋)",
-                        "下車：極樂橋站",
-                        "轉乘：高野山纜車 (5分鐘) ➔ 高野山站",
-                        "轉乘：南海林間巴士 ➔ 奧之院口"
-                    ] },
-                    { type: 'activity', time: '14:30', title: '奧之院', icon: 'torii-gate', detail: '參拜：高野山 (日本佛教聖地，漫步於千年杉木林參道，感受莊嚴肅穆的氛圍)' },
-                    { type: 'transport', time: '約 100 分鐘', title: '高野山 ➔ 天下茶屋 (領行李)', icon: 'train', isLong: true, ticket: 'IC 卡', routes: [
-                        "上車：奧之院前巴士站",
-                        "搭乘：南海林間巴士 ➔ 高野山站",
-                        "轉乘：纜車 ➔ 極樂橋站",
-                        "搭乘：南海高野線 (往難波)",
-                        "下車：天下茶屋站",
-                        "動作：領取寄放的行李"
-                    ] },
-                    { type: 'transport', time: '約 60 分鐘', title: '天下茶屋站 ➔ 和歌山市站', icon: 'train', isLong: true, ticket: 'IC 卡', routes: [
-                        "進站：南海 天下茶屋站 (同站體)",
-                        "搭乘：南海本線 特急 Southern (往和歌山市)",
-                        "下車：和歌山市站",
-                        "轉乘：巴士/計程車前往飯店 (Daiwa Roynet)"
-                    ] },
-                    { type: 'hotel', time: '18:00', title: '和歌山大和ROYNET酒店', icon: 'bed', detail: 'Check-in' },
-                    { type: 'food', time: '18:30', title: '井出商店', icon: 'utensils', detail: '晚餐：步行前往品嚐全日本知名的正宗和歌山拉麵 (豚骨醬油)' }
-                ]
-            },
-            { 
-                day: 8, date: "02/23(一)", title: "回家摸喵喵", weather: "14°C", weatherIcon: "sun", 
-                timeline: [
-                    { type: 'hotel', time: '09:00', title: '和歌山大和ROYNET酒店', icon: 'bed', detail: 'Check-out' },
-                    { type: 'transport', time: '約 15 分鐘', title: '和歌山大和ROYNET酒店 ➔ JR 和歌山站', icon: 'bus', routes: [
-                        "上車：公園前巴士站 (飯店附近)",
-                        "搭乘：和歌山巴士 (往 JR 和歌山站)",
-                        "下車：JR 和歌山站"
-                    ] },
-                    { type: 'transport', time: '約 30 分鐘', title: 'JR 和歌山站 ➔ 貴志站', icon: 'train-tram', isLong: true, ticket: 'IC 卡 / 1日券', routes: [
-                        "進站：JR 和歌山站 (9號月台)",
-                        "搭乘：和歌山電鐵 貴志川線",
-                        "下車：貴志站 (終點站)"
-                    ] },
-                    { type: 'activity', time: '10:00', title: '貴志站', icon: 'cat', detail: '活動：探訪貓咪站長 (參觀車站與貓咪站長 二代玉/四代玉，逛車站商店)' },
-                    { type: 'transport', time: '30 分鐘', title: '貴志站 ➔ JR 和歌山站', icon: 'train-tram', isLong: true, ticket: 'IC 卡 / 1日券', routes: [
-                        "進站：貴志站",
-                        "搭乘：和歌山電鐵 貴志川線 (往和歌山)",
-                        "下車：JR 和歌山站"
-                    ] },
-                    { type: 'transport', time: '30 分鐘', title: 'JR 和歌山站 ➔ 雜賀崎遊園', icon: 'bus', isLong: true, ticket: 'IC 卡', routes: [
-                        "上車：JR 和歌山站巴士總站",
-                        "搭乘：和歌山巴士 (往雜賀崎方向)",
-                        "下車：雜賀崎遊園 (註：此為公車站名，下車步行至漁港)"
-                    ] },
-                    { type: 'activity', time: '13:30', title: '雜賀崎漁港', icon: 'camera', detail: '景點：有「日本阿瑪菲」之稱的浪漫復古海岸' },
-                    { type: 'transport', time: '5 分鐘', title: '雜賀崎漁港 ➔ 雜賀崎', icon: 'person-walking', routes: ["沿著海岸線前往海景咖啡廳"] },
-                    { type: 'cafe', time: '15:00', title: '雜賀崎', icon: 'mug-hot', detail: '海邊絕景咖啡廳 (享受旅行最後的看海放空時光)' },
-                    { type: 'transport', time: '約 60 分鐘', title: '雜賀崎 ➔ 臨空城站', icon: 'train', isLong: true, ticket: 'IC 卡', routes: [
-                        "上車：雜賀崎遊園",
-                        "搭乘：和歌山巴士 (往南海和歌山市站)",
-                        "轉乘：南海電鐵 和歌山市站",
-                        "搭乘：南海本線 (往難波/關西機場)",
-                        "下車：臨空城站 (Rinku Town)"
-                    ] },
-                    { type: 'shop', time: '16:30', title: '臨空城 Outlet', icon: 'bag-shopping', detail: '最後血拼：集中掃貨各大運動品牌的跑步、網球鞋與服飾' },
-                    { type: 'transport', time: '10 分鐘', title: '臨空城站 ➔ 關西機場站', icon: 'train', ticket: 'IC 卡', routes: [
-                        "進站：臨空城站",
-                        "搭乘：JR 或 南海電鐵 (往關西機場)",
-                        "下車：關西機場站"
-                    ] },
-                    { type: 'activity', time: '20:30', title: '關西國際機場 第二航廈', icon: 'plane-departure', detail: '前往 T2 (樂桃航空) 辦理報到、免稅店最後採購物產與伴手禮' },
-                    { type: 'transport', time: '23:00', title: '搭乘 MM069 航班', icon: 'plane', detail: '帶著滿滿回憶返回，於 02/24 凌晨抵達' }
-                ]
-            }
-        ];
+            // 3. Show the selected content
+            document.getElementById(tabId).classList.add('active');
 
-        // SAVED_SPOTS updated with hours, closed days and new shops
-        const SAVED_SPOTS = [
-            { id: 1, name: "神戸 栄町通 (Sakaemachi)", category: "Shop", icon: "pen-nib", region: "神戶", tags: ["文具", "選物"], note: "隱藏舊大樓的特色小店", day: "Day 2", address: "神戶市中央區榮町通", hours: "11:00-19:00", closed: "不定休" },
-            { id: 18, name: "Sports Depo 天王寺店", category: "Shop", icon: "shirt", region: "大阪", tags: ["運動", "購物"], note: "商品齊全的運動用品專賣店", day: "Day 4", address: "大阪市阿倍野區 Q's Mall", hours: "10:00-22:00", closed: "無" },
-            { id: 3, name: "南堀江 Orange Street", category: "Shop", icon: "tent", region: "大阪", tags: ["山系服飾", "家品"], note: "網羅戶外品牌與質感傢俱", day: "Day 5", address: "大阪市西區南堀江", hours: "11:00-20:00", closed: "無" },
-            { id: 4, name: "梅田 LOFT", category: "Shop", icon: "paintbrush", region: "大阪", tags: ["美術"], note: "一站買齊所有繪畫與設計工具", day: "Day 5", address: "大阪市北區茶屋町", hours: "11:00-21:00", closed: "無" },
-            { id: 10, name: "臨空城 Outlets", category: "Shop", icon: "shoe-prints", region: "大阪", tags: ["血拼"], note: "登機前採購，匯集運動服飾", day: "Day 8", address: "大阪府泉佐野市", hours: "10:00-20:00", closed: "年1次 (2月)" },
-            { id: 12, name: "相生芳 Aioifuku", category: "Food", icon: "house-chimney", region: "大阪", tags: ["懷石料理"], note: "隱身市區的百年料亭，展現靜謐", day: "待排程", address: "大阪市中央區高麗橋", hours: "11:30-22:00", closed: "週日" },
-            { id: 5, name: "奈良 若草山", category: "Experience", icon: "person-hiking", region: "奈良", tags: ["行山"], note: "浪漫草地山坡，與鹿共賞全景", day: "Day 6", address: "奈良市雜司町", hours: "全天開放", closed: "無" },
-            { id: 6, name: "中川政七商店", category: "Shop", icon: "gift", region: "奈良", tags: ["家品"], note: "絕美複合空間，生活道具必逛", day: "Day 6", address: "奈良市元林院町", hours: "10:00-19:00", closed: "無" },
-            { id: 13, name: "菊水樓 Kikusuiro", category: "Food", icon: "leaf", region: "奈良", tags: ["歷史建築"], note: "接待皇室名門，挑高落地窗直面綠意", day: "待排程", address: "奈良市高畑町", hours: "11:00-21:00", closed: "週二" },
-            { id: 19, name: "SteP SPORTS Run City Osaka", category: "Shop", icon: "shoe-prints", region: "大阪", tags: ["跑鞋", "專業"], note: "跑者聖地，專業慢跑鞋與裝備挑選", day: "Day 5", address: "大阪市北區茶屋町", hours: "11:00-20:00", closed: "無" },
-            { id: 15, name: "高野山 奧之院", category: "Experience", icon: "torii-gate", region: "和歌山", tags: ["世界遺產", "朝聖"], note: "日本佛教聖地，漫步於參道杉木林", day: "Day 7", address: "和歌山縣伊都郡", hours: "全天開放", closed: "無" },
-            { id: 7, name: "紀州漆器 蒔繪", category: "Experience", icon: "paintbrush", region: "和歌山", tags: ["手作"], note: "體驗優雅的金粉彩繪工藝", day: "Day 7", address: "和歌山縣", hours: "09:00-17:00", closed: "週三" },
-            { id: 8, name: "和歌山城", category: "Sight", icon: "landmark", region: "和歌山", tags: ["歷史"], note: "日本百大名城，夕陽時分散步", day: "Day 7", address: "和歌山市一番丁", hours: "09:00-17:30", closed: "12/29-31" },
-            { id: 9, name: "雜賀崎漁港", category: "Sight", icon: "camera", region: "和歌山", tags: ["海景"], note: "日本阿瑪菲，依山傍海的漁村", day: "Day 8", address: "和歌山市雜賀崎", hours: "全天開放", closed: "無" },
-            { id: 14, name: "Hotel de Yoshino", category: "Food", icon: "wine-glass", region: "和歌山", tags: ["頂級法餐"], note: "平視和歌山城天守閣，傳奇主廚坐鎮", day: "待排程", address: "和歌山市手平", hours: "11:30-21:00", closed: "週三" }
-        ];
-
-        // --- 2. 元件定義 ---
-        
-        // Helper function for Google Maps directions
-        const openDirections = (e, title, icon) => {
-            e.stopPropagation();
-            const parts = title.split('➔').map(s => s.trim());
-            if (parts.length >= 2) {
-                const origin = encodeURIComponent(parts[0]);
-                const dest = encodeURIComponent(parts[1]);
-                let mode = 'transit'; 
-                if (icon === 'person-walking') mode = 'walking';
-                if (icon === 'car') mode = 'driving';
-                window.open(`https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${dest}&travelmode=${mode}`, '_blank');
-            } else {
-                 const query = encodeURIComponent(title);
-                 window.open(`https://www.google.com/maps/search/?api=1&query=${query}`, '_blank');
-            }
-        };
-
-        // Helper function for Google Maps search
-        const openMap = (e, query) => {
-            e.stopPropagation();
-            const q = encodeURIComponent(query);
-            window.open(`https://www.google.com/maps/search/?api=1&query=${q}`, '_blank');
-        };
-
-        // Helper function for Google Web search
-        const openGoogleSearch = (e, query) => {
-            e.stopPropagation();
-            const q = encodeURIComponent(query);
-            window.open(`https://www.google.com/search?q=${q}`, '_blank');
-        };
-
-        // TimelineItemCard
-        const TimelineItemCard = ({ item, theme }) => {
-            const [isOpen, setIsOpen] = useState(false);
-            const hasRes = !!item.reservation;
-            const hasRoutes = item.routes && item.routes.length > 0;
-            const isTransport = item.type === 'transport';
-            const isExpandable = hasRes || hasRoutes;
+            // 4. Highlight the clicked button
+            clickedBtn.classList.add('active');
             
-            // Helper to get pass style
-            const getPassStyle = (ticket) => {
-                if (ticket.includes('IC 卡')) return 'bg-gray-100 text-gray-500 border-gray-200';
-                if (ticket.includes('1日券')) return 'bg-orange-100 text-orange-600 border-orange-200';
-                return 'bg-blue-100 text-blue-600 border-blue-200';
-            };
-
-            if (isTransport) {
-                return (
-                    <div className="relative mt-4 mb-2">
-                        <div className="absolute -left-[43px] top-3.5 w-[24px] h-[24px] rounded-full flex items-center justify-center bg-[#fdfafb] border-2 z-10 transition-colors" style={{ borderColor: theme.border }}>
-                            <i className={`fa-solid fa-${item.icon || 'arrow-right'} text-[10px]`} style={{ color: theme.text }}></i>
-                        </div>
-                        <div className="glass-inner rounded-[16px] p-2.5 cursor-pointer hover:bg-white/60 transition-colors shadow-sm" onClick={() => isExpandable && setIsOpen(!isOpen)}>
-                            <div className="flex justify-between items-center px-1">
-                                <div className="flex flex-col gap-1">
-                                    <div className="flex items-center gap-2">
-                                        <span className={`text-[11px] font-bold px-2 py-0.5 rounded-md ${item.isLong ? 'bg-[#FEDFE1] text-[#d16b7a]' : 'bg-black/5 text-slate-500'}`}>{item.time}</span>
-                                        <span className="text-[13px] font-bold text-slate-700">{item.title}</span>
-                                    </div>
-                                    {item.ticket && (
-                                        <span className={`text-[10px] w-fit px-1.5 py-0.5 rounded border font-bold ${getPassStyle(item.ticket)}`}>
-                                            <i className="fa-solid fa-ticket mr-1"></i>{item.ticket}
-                                        </span>
-                                    )}
-                                </div>
-                                <div className="flex items-center gap-3">
-                                    <button onClick={(e) => openDirections(e, item.title, item.icon)} className="text-slate-400 hover:text-[#78C2C4] transition-colors">
-                                        <i className="fa-solid fa-route text-sm"></i>
-                                    </button>
-                                    {isExpandable && <i className={`fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}></i>}
-                                </div>
-                            </div>
-                            {isExpandable && (
-                                <div className={`collapse-content ${isOpen ? 'open' : ''}`}>
-                                    <div className="collapse-inner">
-                                        <div className="mt-2.5 pt-2 border-t border-black/5 px-1 space-y-1.5">
-                                            {item.routes && item.routes.map((route, i) => (
-                                                <div key={i} className="flex gap-1.5 items-start">
-                                                    <i className="fa-solid fa-turn-up rotate-90 text-[10px] mt-[3px] opacity-40" style={{ color: theme.text }}></i>
-                                                    <p className="text-xs text-slate-600 font-medium leading-relaxed">{route}</p>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    </div>
-                                </div>
-                            )}
-                        </div>
-                    </div>
-                );
-            }
-
-            return (
-                <div className="relative group mt-4 mb-2">
-                    <div className="absolute -left-[53px] w-10 h-10 rounded-full flex items-center justify-center shadow-sm border-[2px] timeline-dot">
-                        <i className={`fa-solid fa-${item.icon} text-[15px]`}></i>
-                    </div>
-                    <div className={`glass-inner rounded-[24px] p-4 transition-colors group-hover:bg-white/60 ${isExpandable ? 'cursor-pointer' : ''}`} onClick={() => isExpandable && setIsOpen(!isOpen)}>
-                        <div className="flex items-center justify-between">
-                            <div className="flex items-center gap-3 mb-1.5">
-                                <span className="text-slate-600 font-bold text-sm">{item.time}</span>
-                                <span className="text-slate-800 font-bold text-base">{item.title}</span>
-                            </div>
-                            <div className="flex items-center gap-3">
-                                <button onClick={(e) => openMap(e, item.title)} className="text-slate-400 hover:text-[#78C2C4] transition-colors">
-                                    <i className="fa-solid fa-location-dot text-sm"></i>
-                                </button>
-                                {isExpandable && <i className={`fa-solid fa-chevron-down text-slate-400 text-xs transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}></i>}
-                            </div>
-                        </div>
-                        {item.detail && <p className="text-[15px] text-slate-600 font-medium leading-relaxed">{item.detail}</p>}
-                        {hasRes && (
-                            <div className={`collapse-content ${isOpen ? 'open' : ''}`}>
-                                <div className="collapse-inner">
-                                    <div className="mt-3 pt-3 border-t border-black/5 text-[13px] text-slate-600 space-y-1.5">
-                                        <div className="font-bold text-slate-700 bg-slate-100 px-2 py-0.5 rounded w-fit mb-2">預約確認資訊</div>
-                                        <p className="font-bold text-[#d16b7a]">{item.reservation.plan}</p>
-                                        <p className="font-mono bg-white/50 px-2 py-1 rounded border border-slate-200 inline-block text-slate-700">{item.reservation.number}</p>
-                                        <div className="space-y-0.5 text-slate-500">
-                                            <p><i className="fa-regular fa-user w-4"></i> {item.reservation.contact}</p>
-                                            <p><i className="fa-solid fa-phone w-4"></i> {item.reservation.phone}</p>
-                                            <p><i className="fa-regular fa-envelope w-4"></i> {item.reservation.email}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        )}
-                    </div>
-                </div>
-            );
+            // Scroll to top when switching tabs
+            window.scrollTo(0, 0);
         }
 
-        // RestaurantCard
-        const RestaurantCard = ({ item }) => {
-            const theme = REGION_COLORS[item.region] || COLORS.main;
-            return (
-                <div className="glass-card rounded-[24px] p-4 cursor-pointer transition-all hover:bg-white/60">
-                    <div className="flex gap-4 items-center">
-                        <div onClick={(e) => openGoogleSearch(e, item.name)} className="w-16 h-16 rounded-2xl flex items-center justify-center text-2xl flex-shrink-0 border cursor-pointer hover:scale-105 transition-transform" style={{ backgroundColor: theme.light, color: theme.text, borderColor: theme.border }}>
-                            <i className={`fa-solid fa-${item.icon}`}></i>
-                        </div>
-                        <div className="flex-1 min-w-0">
-                            <div className="flex justify-between items-center mb-1">
-                                <h3 className="font-bold text-slate-800 text-lg truncate pr-2" onClick={(e) => openMap(e, item.name)}>{item.name}</h3>
-                                <div className="flex items-center gap-1 bg-yellow-50 px-2 py-0.5 rounded-md border border-yellow-200 flex-shrink-0">
-                                    <i className="fa-solid fa-star text-yellow-500 text-xs"></i>
-                                    <span className="text-xs font-bold text-slate-700">{item.rating}</span>
-                                </div>
-                            </div>
-                            <div className="flex items-center gap-2 mb-1.5">
-                                <span className="text-[10px] px-2 py-0.5 rounded border font-bold" style={{ backgroundColor: theme.light, color: theme.text, borderColor: theme.border }}>
-                                    {item.region}
-                                </span>
-                                <span className="text-xs text-slate-500">{item.type}</span>
-                            </div>
-                        </div>
-                    </div>
-                    <p className="mt-3 text-sm text-slate-600 line-clamp-2">{item.desc}</p>
-                    <div className="mt-3 pt-3 border-t border-gray-100 flex flex-col gap-1 text-xs text-gray-400">
-                        <div className="flex items-center justify-between">
-                            <span><i className="fa-regular fa-clock mr-1"></i>{(item.hours || '').split(',')[0]}</span>
-                            <span className="text-red-400"><i className="fa-solid fa-ban mr-1"></i>{item.closed}</span>
-                        </div>
-                        <div className="flex items-center gap-1 cursor-pointer hover:text-blue-500 transition-colors" onClick={(e) => openMap(e, item.address)}>
-                            <i className="fa-solid fa-location-dot text-slate-300"></i> <span className="underline decoration-dotted">{item.address}</span>
-                        </div>
-                    </div>
-                </div>
-            );
-        };
+        // Live Word Counter Logic for the Tools tab
+        const wordInput = document.getElementById('word-input');
+        const wordCountDisplay = document.getElementById('word-count');
 
-        // --- 3. 主要視圖元件 ---
-
-        // (1) 行程檢視 (保持不變)
-        const ItineraryView = () => {
-            const [selectedDay, setSelectedDay] = useState(1);
-            const currentPlan = ITINERARY.find(d => d.day === selectedDay);
-            const theme = REGION_COLORS[DAY_REGION_MAP[selectedDay]] || COLORS.main;
-
-            return (
-                <div className="pb-24 fade-in">
-                    {/* 日期選擇器 */}
-                    <div className="sticky top-0 z-40 bg-[#fdfafb]/95 backdrop-blur-md pt-safe-top pb-2 px-2 overflow-x-auto whitespace-nowrap scrollbar-hide border-b border-gray-100">
-                        {ITINERARY.map((item) => {
-                            const dayTheme = REGION_COLORS[DAY_REGION_MAP[item.day]] || COLORS.main;
-                            const isSelected = selectedDay === item.day;
-                            return (
-                                <button
-                                    key={item.day}
-                                    onClick={() => setSelectedDay(item.day)}
-                                    className={`inline-flex flex-col items-center justify-center w-16 h-16 mx-1 rounded-2xl transition-all duration-300 border ${
-                                        isSelected 
-                                        ? 'text-white shadow-lg scale-105' 
-                                        : 'bg-white text-gray-400 border-gray-200'
-                                    }`}
-                                    style={isSelected ? { backgroundColor: dayTheme.hex, borderColor: dayTheme.border } : {}}
-                                >
-                                    <span className="text-xs font-bold leading-tight">{item.date.split('(')[0]}</span>
-                                    <span className="text-xs font-light opacity-80 mb-0.5">({item.date.split('(')[1]}</span>
-                                    <span className="text-[10px] font-medium opacity-70 uppercase">Day {item.day}</span>
-                                </button>
-                            );
-                        })}
-                    </div>
-
-                    <div className="px-5 mt-6">
-                        <div className="flex justify-between items-end mb-6">
-                            <div>
-                                <h1 className="text-2xl font-bold text-slate-800">{currentPlan.title}</h1>
-                            </div>
-                            <div className="text-2xl" style={{color: theme.text}}>
-                                <i className={`fa-solid fa-${currentPlan.weatherIcon} mr-2`}></i>
-                                <span className="text-lg font-bold">{currentPlan.weather}</span>
-                            </div>
-                        </div>
-
-                        <div className="relative pl-4 border-l-2 border-dashed border-gray-200 ml-2 timeline-line" style={{'--theme-border': theme.border, '--theme-text': theme.text, '--theme-main': theme.hex, '--theme-btn-text': theme.btnText}}>
-                            {currentPlan.timeline.map((item, idx) => (
-                                <TimelineItemCard key={idx} item={item} theme={theme} />
-                            ))}
-                        </div>
-                    </div>
-                </div>
-            );
-        };
-
-        // (2) 收藏/探索檢視 (增加顯示營業時間和定休日)
-        const ExploreView = () => {
-            const [filter, setFilter] = useState('all');
-            return (
-                <div className="px-5 pt-8 pb-24 fade-in">
-                    <div className="flex gap-2 mb-6 overflow-x-auto scrollbar-hide">
-                        {['all:全部', 'Food:餐廳', 'Shop:購物', 'Experience:體驗'].map(f => {
-                            const [key, label] = f.split(':');
-                            return (
-                                <button key={key} onClick={() => setFilter(key)}
-                                    className={`px-4 py-2 rounded-full text-sm font-bold whitespace-nowrap transition-colors ${filter === key ? 'bg-slate-800 text-white' : 'bg-white text-slate-500 border border-gray-200'}`}>
-                                    {label}
-                                </button>
-                            );
-                        })}
-                    </div>
-
-                    <div className="space-y-4">
-                        {(filter === 'all' || filter === 'Food') && RESTAURANTS.map(r => (
-                            <RestaurantCard key={`r-${r.id}`} item={r} />
-                        ))}
-                        
-                        {SAVED_SPOTS.filter(s => s.category !== 'Food' && (filter === 'all' || filter === s.category)).map(spot => {
-                            const theme = REGION_COLORS[spot.region] || COLORS.main;
-                            return (
-                                <div key={`s-${spot.id}`} className="glass-card p-4 rounded-2xl flex items-center gap-4">
-                                    <div onClick={(e) => openGoogleSearch(e, spot.name)} className="w-12 h-12 rounded-xl flex items-center justify-center border cursor-pointer hover:scale-105 transition-transform" style={{ backgroundColor: theme.light, color: theme.text, borderColor: theme.border }}>
-                                        <i className={`fa-solid fa-${spot.icon}`}></i>
-                                    </div>
-                                    <div className="flex-1">
-                                        <h4 className="font-bold text-slate-700" onClick={(e) => openMap(e, spot.name)}>{spot.name}</h4>
-                                        <div className="flex items-center gap-2 mt-1 mb-1">
-                                            <span className="text-[10px] border px-2 py-0.5 rounded font-bold" style={{ backgroundColor: theme.light, color: theme.text, borderColor: theme.border }}>
-                                                {spot.region}
-                                            </span>
-                                            <span className="text-[10px] border border-slate-200 text-slate-400 px-2 py-0.5 rounded">{spot.day}</span>
-                                        </div>
-                                        <div className="text-xs text-gray-500 space-y-1">
-                                            <div className="flex items-center justify-between">
-                                                <span><i className="fa-regular fa-clock mr-1 text-slate-300"></i>{spot.hours}</span>
-                                                <span className="text-red-400"><i className="fa-solid fa-ban mr-1"></i>{spot.closed}</span>
-                                            </div>
-                                            <div className="flex items-center gap-1"><i className="fa-solid fa-location-dot text-slate-300"></i> {spot.address}</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            );
-                        })}
-                    </div>
-                </div>
-            );
-        };
-
-        // (3) 工具檢視 (更新：移除祭典，預設筆記為空，加入鐵路卡)
-        const ToolsView = () => {
-            const [toolMode, setToolMode] = useState('notes'); // notes, rail
-            
-            // Default to empty array if no saved notes
-            const [notes, setNotes] = useState(() => {
-                try {
-                    const item = localStorage.getItem('trip_notes');
-                    return item ? JSON.parse(item) : [];
-                } catch (e) {
-                    return [];
-                }
-            });
-            const [newNoteTitle, setNewNoteTitle] = useState('');
-            const [newNoteContent, setNewNoteContent] = useState('');
-
-            useEffect(() => {
-                try {
-                    localStorage.setItem('trip_notes', JSON.stringify(notes));
-                } catch (e) {
-                    console.error("Storage error", e);
-                }
-            }, [notes]);
-
-            const addNote = () => {
-                if (!newNoteTitle) return;
-                setNotes([...notes, { id: Date.now(), title: newNoteTitle, content: newNoteContent }]);
-                setNewNoteTitle('');
-                setNewNoteContent('');
-            };
-
-            const deleteNote = (id) => {
-                setNotes(notes.filter(n => n.id !== id));
-            };
-
-            const themeColor = COLORS.main.hex;
-
-            return (
-                <div className="px-5 pt-8 pb-24 fade-in">
-                    <div className="flex glass-inner rounded-xl p-1 mb-6">
-                        {['notes:記事', 'rail:鐵路'].map(m => {
-                            const [key, label] = m.split(':');
-                            return (
-                                <button key={key} onClick={() => setToolMode(key)} 
-                                    className={`flex-1 py-2 rounded-lg text-sm font-bold transition-all ${toolMode === key ? 'text-white shadow-md' : 'text-slate-400'}`}
-                                    style={toolMode === key ? { backgroundColor: themeColor } : {}}>
-                                    {label}
-                                </button>
-                            )
-                        })}
-                    </div>
-
-                    {toolMode === 'notes' && (
-                        <div className="space-y-4">
-                            <div className="glass-card p-4 rounded-2xl">
-                                <input value={newNoteTitle} onChange={e=>setNewNoteTitle(e.target.value)} placeholder="標題..." className="w-full bg-white/50 p-2 rounded-lg mb-2 text-sm font-bold outline-none"/>
-                                <textarea value={newNoteContent} onChange={e=>setNewNoteContent(e.target.value)} placeholder="內容..." className="w-full bg-white/50 p-2 rounded-lg text-sm h-16 outline-none resize-none mb-2"></textarea>
-                                <button onClick={addNote} className="w-full py-2 rounded-lg text-white font-bold text-sm shadow-md" style={{backgroundColor: themeColor}}>
-                                    <i className="fa-solid fa-plus mr-1"></i> 新增記事
-                                </button>
-                            </div>
-                            {notes.length === 0 && (
-                                <div className="text-center text-gray-400 py-4 text-sm">
-                                    暫無記事，請新增內容
-                                </div>
-                            )}
-                            {notes.map(n => (
-                                <div key={n.id} className="glass-card p-4 rounded-2xl relative">
-                                    <button onClick={()=>deleteNote(n.id)} className="absolute top-3 right-3 text-slate-300 hover:text-red-400 p-2">
-                                        <i className="fa-solid fa-xmark"></i>
-                                    </button>
-                                    <h3 className="font-bold text-slate-700 mb-1">{n.title}</h3>
-                                    <p className="text-sm text-slate-500 whitespace-pre-wrap">{n.content}</p>
-                                </div>
-                            ))}
-                        </div>
-                    )}
-
-                    {toolMode === 'rail' && (
-                        <div className="space-y-6">
-                            <div>
-                                <h3 className="text-sm font-bold text-gray-400 mb-2 pl-1">交通票券攻略</h3>
-                                <div className="space-y-4">
-                                    {PASS_INFO.map((p, i) => (
-                                        <div key={i} className="glass-card p-4 rounded-2xl border-l-4" style={{borderLeftColor: p.color.split(' ')[1].replace('text-', 'border-')}}>
-                                            <div className="flex justify-between items-start mb-2">
-                                                <h4 className={`font-bold ${p.color.split(' ')[1]}`}>{p.name}</h4>
-                                                <span className="text-xs bg-white/50 px-2 py-1 rounded text-slate-500 font-medium">{p.type}</span>
-                                            </div>
-                                            <div className="text-xs text-slate-500 mb-2 font-bold">{p.price} | {p.days}</div>
-                                            <p className="text-xs text-slate-600 mb-2">{p.desc}</p>
-                                            <ul className="text-[10px] text-slate-500 list-disc list-inside space-y-1 bg-white/30 p-2 rounded-lg">
-                                                {p.details.map((d, j) => <li key={j}>{d}</li>)}
-                                            </ul>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        </div>
-                    )}
-                </div>
-            );
-        };
-
-        // (4) 資訊檢視 (Modified to include specific actions)
-        const InfoView = () => (
-            <div className="px-5 pt-8 pb-24 fade-in">
-                 <div className="mb-8">
-                    <h3 className="text-sm font-bold text-gray-400 uppercase mb-3 ml-1">航班資訊</h3>
-                    <div className="space-y-4">
-                        {[FLIGHTS.outbound, FLIGHTS.inbound].map((f, i) => (
-                            <div key={i} className="glass-card p-0 rounded-3xl overflow-hidden mb-4">
-                                {/* Color Header */}
-                                <div className="p-3 flex justify-between items-center" style={{backgroundColor: f.color.hex}}>
-                                     <span className="text-white font-bold text-sm"><i className="fa-solid fa-plane mr-2"></i>{f.title}</span>
-                                     <span className="text-white font-bold text-sm opacity-90">{f.date}</span>
-                                </div>
-                                <div className="p-5">
-                                    <div className="flex justify-between items-end mb-4">
-                                        <div className="text-left">
-                                            <div className="text-3xl font-black text-slate-700 leading-none">{f.dep.time}</div>
-                                            <div className="text-xs text-gray-400 font-bold mt-1">{f.dep.port} <span className="text-slate-600 bg-gray-200 px-1 rounded">{f.dep.term}</span></div>
-                                        </div>
-                                        <div className="flex-1 px-4 flex flex-col items-center pb-1">
-                                            <span className="text-[10px] text-gray-400 mb-1">{f.duration}</span>
-                                            <div className="w-full h-[2px] bg-gray-200 relative">
-                                                <div className="absolute right-0 -top-[3px] w-2 h-2 rounded-full bg-gray-300"></div>
-                                                <i className="fa-solid fa-plane absolute left-1/2 -top-[6px] -translate-x-1/2 text-gray-300 text-xs"></i>
-                                            </div>
-                                        </div>
-                                        <div className="text-right">
-                                            <div className="text-3xl font-black text-slate-700 leading-none">{f.arr.time}</div>
-                                            <div className="text-xs text-gray-400 font-bold mt-1">{f.arr.port} <span className="text-white px-1 rounded shadow-sm" style={{backgroundColor: f.color.text}}>{f.arr.term}</span></div>
-                                        </div>
-                                    </div>
-                                    <div className="flex items-center gap-2 bg-gray-50 p-2 rounded-xl">
-                                         <div className="w-8 h-8 rounded-full flex items-center justify-center bg-white shadow-sm text-slate-500">
-                                            <i className="fa-solid fa-ticket"></i>
-                                         </div>
-                                         <div className="flex-1">
-                                             <div className="text-xs text-gray-400">航班編號</div>
-                                             <div className="text-sm font-bold text-slate-700">{f.airline} {f.flightNo}</div>
-                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                 </div>
-
-                 <div>
-                    <h3 className="text-sm font-bold text-gray-400 uppercase mb-3 ml-1">住宿安排</h3>
-                    <div className="space-y-4">
-                        {HOTELS.map((h, i) => (
-                            <div key={i} className="glass-card p-4 rounded-2xl flex gap-4 items-start">
-                                {/* Modified Icon: Open Map with NAME (Change 2) */}
-                                <div 
-                                    onClick={(e) => openMap(e, h.name)} 
-                                    className="w-12 h-12 rounded-full flex items-center justify-center text-white shrink-0 shadow-md cursor-pointer hover:scale-105 transition-transform" 
-                                    style={{backgroundColor: h.color.hex}}
-                                >
-                                    <i className={`fa-solid fa-${h.icon}`}></i>
-                                </div>
-                                <div>
-                                    {/* Modified Name: Open Trip.com My Bookings (Change 1) */}
-                                    <h4 
-                                        onClick={(e) => { e.stopPropagation(); window.open('https://hk.trip.com/account/bookings', '_blank'); }} 
-                                        className="font-bold text-slate-700 leading-tight mb-1 cursor-pointer hover:opacity-70 transition-opacity"
-                                    >
-                                        {h.name} <i className="fa-solid fa-arrow-up-right-from-square text-[10px] text-gray-400 ml-1"></i>
-                                    </h4>
-                                    <p className="text-xs text-gray-500 mb-2">{h.checkIn.split('(')[0]} - {h.checkOut.split('(')[0]} ({h.nights}晚)</p>
-                                    <span className="text-[10px] px-2 py-0.5 rounded border" style={{borderColor: h.color.text, color: h.color.text}}>
-                                        {h.tag}
-                                    </span>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                 </div>
-            </div>
-        );
-
-        // (5) 底部導航 (保持不變)
-        const BottomNav = ({ activeTab, setActiveTab }) => {
-            const tabs = [
-                { id: 'itinerary', icon: 'calendar-days', label: '行程' },
-                { id: 'explore', icon: 'heart', label: '收藏' }, 
-                { id: 'tools', icon: 'suitcase', label: '工具' },
-                { id: 'info', icon: 'circle-info', label: '資訊' }
-            ];
-
-            return (
-                <div className="fixed bottom-0 left-0 right-0 glass-nav pb-safe-bottom z-50 rounded-t-2xl">
-                    <div className="flex justify-around items-center h-16 safe-bottom">
-                        {tabs.map(tab => (
-                            <button 
-                                key={tab.id}
-                                onClick={() => setActiveTab(tab.id)}
-                                className={`flex flex-col items-center justify-center w-full h-full transition-all duration-300 ${activeTab === tab.id ? 'text-[#78C2C4] -translate-y-1' : 'text-gray-400'}`}
-                            >
-                                <i className={`fa-solid fa-${tab.icon} text-xl mb-1`}></i>
-                                <span className="text-[10px] font-medium">{tab.label}</span>
-                            </button>
-                        ))}
-                    </div>
-                </div>
-            );
-        };
-
-        // --- 4. 主程式 App ---
-        const App = () => {
-            const [activeTab, setActiveTab] = useState('itinerary');
-
-            return (
-                <div className="max-w-md mx-auto min-h-screen relative pb-20">
-                    {/* 根據 Tab 切換顯示內容 */}
-                    {activeTab === 'itinerary' && <ItineraryView />}
-                    {activeTab === 'explore' && <ExploreView />}
-                    {activeTab === 'tools' && <ToolsView />}
-                    {activeTab === 'info' && <InfoView />}
-
-                    {/* 底部導航 */}
-                    <BottomNav activeTab={activeTab} setActiveTab={setActiveTab} />
-                </div>
-            );
-        };
-
-        const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<App />);
+        wordInput.addEventListener('input', function() {
+            // Trim whitespace and split by spaces/newlines
+            const text = this.value.trim();
+            if (text === "") {
+                wordCountDisplay.textContent = "0";
+            } else {
+                const words = text.split(/\s+/);
+                wordCountDisplay.textContent = words.length;
+            }
+        });
     </script>
+
 </body>
 </html>
