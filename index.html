@@ -10,7 +10,7 @@
     <style>
         /* Base iOS-like Styling */
         :root {
-            --primary-color: #007aff; /* Apple Blue */
+            --primary-color: #007aff;
             --bg-color: #f2f2f7;
             --text-color: #333333;
             --nav-bg: rgba(255, 255, 255, 0.9);
@@ -22,7 +22,6 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
-            /* Adds space at the bottom so content isn't hidden by the navbar */
             padding-bottom: 90px; 
             -webkit-tap-highlight-color: transparent;
         }
@@ -42,13 +41,13 @@
 
         /* Content Sections */
         .tab-content {
-            display: none; /* Hidden by default */
+            display: none; 
             padding: 20px;
             animation: fadeIn 0.3s;
         }
 
         .tab-content.active {
-            display: block; /* Shows the active tab */
+            display: block; 
         }
 
         /* Card Layout for iPad */
@@ -66,18 +65,53 @@
             font-size: 1.25rem;
         }
 
+        /* Tappable Link List Styling */
+        .tool-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .tool-list li {
+            margin-bottom: 10px;
+        }
+
+        .tool-list a {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-color);
+            padding: 12px 15px;
+            background: var(--bg-color);
+            border-radius: 10px;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+
+        .tool-list a:active {
+            background: #e5e5ea;
+        }
+
+        .tool-list img {
+            width: 28px;
+            height: 28px;
+            margin-right: 15px;
+            border-radius: 6px;
+            background: white; /* helps if the icon is transparent */
+            padding: 2px;
+        }
+
         /* Bottom Navigation Bar */
         nav {
             position: fixed;
             bottom: 0;
             width: 100%;
             background-color: var(--nav-bg);
-            backdrop-filter: blur(10px); /* iOS glass effect */
+            backdrop-filter: blur(10px); 
             -webkit-backdrop-filter: blur(10px);
             border-top: 1px solid #e5e5ea;
             display: flex;
             justify-content: space-around;
-            /* Safe area padding for newer iPads/iPhones */
             padding-bottom: env(safe-area-inset-bottom);
             z-index: 100;
         }
@@ -169,14 +203,49 @@
     <main id="tools" class="tab-content">
         <div class="card">
             <h2>Word Counter</h2>
-            <textarea id="word-input" style="width: 100%; height: 100px; border-radius: 8px; border: 1px solid #ccc; padding: 10px; box-sizing: border-box; font-family: inherit;" placeholder="Type or paste your text here..."></textarea>
+            <textarea id="word-input" style="width: 100%; height: 100px; border-radius: 8px; border: 1px solid #ccc; padding: 10px; box-sizing: border-box; font-family: inherit; font-size: 16px;" placeholder="Type or paste your text here..."></textarea>
             <p style="font-weight: bold; color: var(--primary-color);">Word Count: <span id="word-count">0</span></p>
         </div>
+        
         <div class="card">
-            <h2>Helpful Links</h2>
-            <ul>
-                <li><a href="https://www.thesaurus.com/" target="_blank">Thesaurus (Find Synonyms)</a></li>
-                <li><a href="https://dictionary.cambridge.org/" target="_blank">Cambridge Dictionary</a></li>
+            <h2>Classroom & AI Tools</h2>
+            <ul class="tool-list">
+                <li>
+                    <a href="https://classroom.google.com" target="_blank">
+                        <img src="https://www.google.com/s2/favicons?domain=classroom.google.com&sz=64" alt="Google Classroom Logo">
+                        Google Classroom
+                    </a>
+                </li>
+                <li>
+                    <a href="https://kahoot.com" target="_blank">
+                        <img src="https://www.google.com/s2/favicons?domain=kahoot.com&sz=64" alt="Kahoot Logo">
+                        Kahoot!
+                    </a>
+                </li>
+                <li>
+                    <a href="https://padlet.com" target="_blank">
+                        <img src="https://www.google.com/s2/favicons?domain=padlet.com&sz=64" alt="Padlet Logo">
+                        Padlet
+                    </a>
+                </li>
+                <li>
+                    <a href="https://poe.com" target="_blank">
+                        <img src="https://www.google.com/s2/favicons?domain=poe.com&sz=64" alt="Poe Logo">
+                        Poe
+                    </a>
+                </li>
+                <li>
+                    <a href="https://chat.deepseek.com" target="_blank">
+                        <img src="https://www.google.com/s2/favicons?domain=deepseek.com&sz=64" alt="DeepSeek Logo">
+                        DeepSeek
+                    </a>
+                </li>
+                <li>
+                    <a href="https://grok.com" target="_blank">
+                        <img src="https://www.google.com/s2/favicons?domain=grok.com&sz=64" alt="Grok Logo">
+                        Grok
+                    </a>
+                </li>
             </ul>
         </div>
     </main>
@@ -201,32 +270,23 @@
     </nav>
 
     <script>
-        // Function to switch between tabs
         function switchTab(tabId, clickedBtn) {
-            // 1. Hide all content sections
             const contents = document.querySelectorAll('.tab-content');
             contents.forEach(content => content.classList.remove('active'));
 
-            // 2. Remove 'active' class from all nav buttons
             const buttons = document.querySelectorAll('.nav-btn');
             buttons.forEach(btn => btn.classList.remove('active'));
 
-            // 3. Show the selected content
             document.getElementById(tabId).classList.add('active');
-
-            // 4. Highlight the clicked button
             clickedBtn.classList.add('active');
             
-            // Scroll to top when switching tabs
             window.scrollTo(0, 0);
         }
 
-        // Live Word Counter Logic for the Tools tab
         const wordInput = document.getElementById('word-input');
         const wordCountDisplay = document.getElementById('word-count');
 
         wordInput.addEventListener('input', function() {
-            // Trim whitespace and split by spaces/newlines
             const text = this.value.trim();
             if (text === "") {
                 wordCountDisplay.textContent = "0";
