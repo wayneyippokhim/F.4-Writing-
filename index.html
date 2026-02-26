@@ -3,19 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>English Writing Hub</title>
+    <title>Mr. Yip's Writing Class</title>
     
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <style>
-        /* Base iOS-like Styling */
+        /* Custom Color Palette & Base Styling */
         :root {
-            --primary-color: #007aff;
+            --primary-blue: #273A7F;
+            --accent-orange: #F79B68;
+            --accent-red: #E33521;
+            
             --bg-color: #f2f2f7;
             --text-color: #333333;
             --nav-bg: rgba(255, 255, 255, 0.9);
             --inactive-color: #8e8e93;
-            --sample-bg: #e5f1ff; /* Light blue for sample essay section */
+            --sample-bg: rgba(247, 155, 104, 0.12); /* A very light wash of the orange */
         }
 
         body {
@@ -28,17 +31,31 @@
             line-height: 1.5;
         }
 
+        /* Updated Header with Flexbox for the Logo */
         header {
-            background-color: var(--primary-color);
+            background-color: var(--primary-blue);
             color: white;
-            padding: 20px;
+            padding: 15px 20px;
             text-align: center;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 600;
             position: sticky;
             top: 0;
             z-index: 10;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 6px rgba(39, 58, 127, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .school-logo {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: white;
+            padding: 2px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
         }
 
         /* Content Sections */
@@ -59,15 +76,29 @@
             padding: 20px;
             margin-bottom: 20px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            border-top: 4px solid transparent;
         }
 
+        /* Styling the genre headers */
         .card h2 {
             margin-top: 0;
-            color: var(--primary-color);
+            color: var(--primary-blue);
             font-size: 1.35rem;
             border-bottom: 2px solid var(--bg-color);
             padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
+
+        .card h2 i {
+            color: var(--accent-orange);
+            font-size: 1.6rem;
+        }
+
+        /* Specific icon colors to match the tone of the writing */
+        .icon-complaint { color: var(--accent-red) !important; }
+        .icon-speech { color: var(--primary-blue) !important; }
 
         .card ul {
             padding-left: 20px;
@@ -83,26 +114,26 @@
             border-radius: 8px;
             padding: 15px;
             margin-top: 20px;
-            border-left: 4px solid var(--primary-color);
+            border-left: 4px solid var(--accent-orange);
         }
 
         details.sample-essay summary {
             font-weight: 600;
-            color: var(--primary-color);
+            color: var(--accent-red);
             cursor: pointer;
             outline: none;
             font-size: 1.1rem;
         }
 
         details.sample-essay summary::-webkit-details-marker {
-            color: var(--primary-color);
+            color: var(--accent-red);
         }
 
         .sample-content {
             margin-top: 15px;
             font-style: italic;
-            color: #555;
-            white-space: pre-wrap; /* Preserves your line breaks when you paste your essay */
+            color: #444;
+            white-space: pre-wrap; 
         }
 
         /* Tappable Link List Styling */
@@ -169,7 +200,7 @@
         }
 
         .nav-btn.active {
-            color: var(--primary-color);
+            color: var(--primary-blue);
         }
 
         .nav-btn i {
@@ -190,12 +221,15 @@
 </head>
 <body>
 
-    <header>English Writing Hub</header>
+    <header>
+        <img src="https://www.google.com/s2/favicons?domain=plkwcc.edu.hk&sz=64" alt="PLK WCC Logo" class="school-logo">
+        Mr. Yip's Writing Class
+    </header>
 
     <main id="genres" class="tab-content active">
         
-        <div class="card">
-            <h2>Feature Article</h2>
+        <div class="card" style="border-top-color: var(--accent-orange);">
+            <h2><i class="material-icons">article</i> Feature Article</h2>
             <p><strong>Topic:</strong> At the beginning of the school year, your school magazine is going to include a special feature on tips for coping with secondary school life. As the chairperson of Peer Counsellors, you have been asked to write an article for the school magazine about the following:</p>
             <ul>
                 <li>challenges commonly faced by new Form 1 students</li>
@@ -209,8 +243,8 @@
             </details>
         </div>
 
-        <div class="card">
-            <h2>Letter of Advice</h2>
+        <div class="card" style="border-top-color: var(--accent-orange);">
+            <h2><i class="material-icons">volunteer_activism</i> Letter of Advice</h2>
             <p><strong>Topic:</strong> You recently had a conversation with your friend Winnie, who is upset. She wants to drop out of school to pursue a career as a pop singer, but her parents are not letting her. Write a letter to Winnie to give advice on her situation.</p>
             <details class="sample-essay">
                 <summary>Tap to view Sample Essay</summary>
@@ -220,8 +254,8 @@
             </details>
         </div>
 
-        <div class="card">
-            <h2>Letter of Complaint</h2>
+        <div class="card" style="border-top-color: var(--accent-red);">
+            <h2><i class="material-icons icon-complaint">report_problem</i> Letter of Complaint</h2>
             <p><strong>Topic:</strong> Last week, you joined an English tutorial class with your friend because of the attractive offers listed on the leaflet. However, you experienced something unpleasant in the first session. Write a letter of complaint to the tutorial centre and comment on at least THREE of the following:</p>
             <ul>
                 <li>the facilities</li>
@@ -237,8 +271,8 @@
             </details>
         </div>
 
-        <div class="card">
-            <h2>Promotional Speech</h2>
+        <div class="card" style="border-top-color: var(--primary-blue);">
+            <h2><i class="material-icons icon-speech">campaign</i> Promotional Speech</h2>
             <p><strong>Topic:</strong> You are the Chairperson of the Student Union. You are helping your school organise the annual school fair. You have been asked to deliver a promotional speech about the event during the morning assembly.</p>
             <p>Use the poster below to help you write your announcement. In your announcement:</p>
             <ul>
@@ -247,7 +281,8 @@
                 <li>Let students know how they can help out.</li>
             </ul>
             
-            <div style="background: #f9f9f9; border: 2px dashed #ccc; padding: 20px; text-align: center; border-radius: 8px; margin: 15px 0;">
+            <div style="background: var(--bg-color); border: 2px dashed #ccc; padding: 20px; text-align: center; border-radius: 8px; margin: 15px 0;">
+                <i class="material-icons" style="font-size: 2rem; color: #aaa;">image</i><br>
                 <em>[Insert Poster Image Here later]</em>
             </div>
 
@@ -270,12 +305,12 @@
         <div class="card">
             <h2>Compound Sentences (FANBOYS)</h2>
             <p>Join two independent clauses with a comma and a conjunction (For, And, Nor, But, Or, Yet, So).</p>
-            <p><em>Example:</em> I wanted to study, <strong>but</strong> I was too tired.</p>
+            <p><em>Example:</em> I wanted to study, <strong style="color: var(--accent-red);">but</strong> I was too tired.</p>
         </div>
         <div class="card">
             <h2>Complex Sentences</h2>
             <p>Join an independent clause with a dependent clause using words like <em>although, because, since,</em> or <em>if</em>.</p>
-            <p><em>Example:</em> <strong>Because</strong> it was raining, we stayed indoors.</p>
+            <p><em>Example:</em> <strong style="color: var(--accent-red);">Because</strong> it was raining, we stayed indoors.</p>
         </div>
     </main>
 
@@ -283,24 +318,18 @@
         <div class="card">
             <h2>Subject-Verb Agreement</h2>
             <p>Singular subjects need singular verbs. Plural subjects need plural verbs.</p>
-            <p>❌ <em>The group of students are studying.</em></p>
-            <p>✅ <em>The group of students is studying.</em> (Group is singular)</p>
+            <p><span style="color: var(--accent-red);">❌</span> <em>The group of students are studying.</em></p>
+            <p><span style="color: green;">✅</span> <em>The group of students is studying.</em> (Group is singular)</p>
         </div>
         <div class="card">
             <h2>Run-on Sentences</h2>
             <p>Two independent sentences squished together without proper punctuation.</p>
-            <p>❌ <em>I love writing it is my favorite subject.</em></p>
-            <p>✅ <em>I love writing. It is my favorite subject.</em></p>
+            <p><span style="color: var(--accent-red);">❌</span> <em>I love writing it is my favorite subject.</em></p>
+            <p><span style="color: green;">✅</span> <em>I love writing. It is my favorite subject.</em></p>
         </div>
     </main>
 
     <main id="tools" class="tab-content">
-        <div class="card">
-            <h2>Word Counter</h2>
-            <textarea id="word-input" style="width: 100%; height: 100px; border-radius: 8px; border: 1px solid #ccc; padding: 10px; box-sizing: border-box; font-family: inherit; font-size: 16px;" placeholder="Type or paste your text here..."></textarea>
-            <p style="font-weight: bold; color: var(--primary-color);">Word Count: <span id="word-count">0</span></p>
-        </div>
-        
         <div class="card">
             <h2>Classroom & AI Tools</h2>
             <ul class="tool-list">
@@ -376,19 +405,6 @@
             
             window.scrollTo(0, 0);
         }
-
-        const wordInput = document.getElementById('word-input');
-        const wordCountDisplay = document.getElementById('word-count');
-
-        wordInput.addEventListener('input', function() {
-            const text = this.value.trim();
-            if (text === "") {
-                wordCountDisplay.textContent = "0";
-            } else {
-                const words = text.split(/\s+/);
-                wordCountDisplay.textContent = words.length;
-            }
-        });
     </script>
 
 </body>
