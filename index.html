@@ -18,7 +18,7 @@
             --text-color: #333333;
             --nav-bg: rgba(255, 255, 255, 0.9);
             --inactive-color: #8e8e93;
-            --sample-bg: rgba(247, 155, 104, 0.12); /* A very light wash of the orange */
+            --sample-bg: rgba(247, 155, 104, 0.12);
         }
 
         body {
@@ -79,7 +79,6 @@
             border-top: 4px solid transparent;
         }
 
-        /* Styling the genre headers */
         .card h2 {
             margin-top: 0;
             color: var(--primary-blue);
@@ -96,16 +95,47 @@
             font-size: 1.6rem;
         }
 
-        /* Specific icon colors to match the tone of the writing */
         .icon-complaint { color: var(--accent-red) !important; }
         .icon-speech { color: var(--primary-blue) !important; }
 
+        .card h3 {
+            color: var(--accent-orange);
+            font-size: 1.1rem;
+            margin-top: 15px;
+            margin-bottom: 5px;
+        }
+
         .card ul {
             padding-left: 20px;
+            margin-top: 5px;
         }
 
         .card li {
             margin-bottom: 8px;
+        }
+
+        /* Formatting for Pattern Examples */
+        .pattern-box {
+            background-color: #f9f9f9;
+            border-left: 3px solid var(--primary-blue);
+            padding: 10px 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .pattern-box p {
+            margin: 5px 0;
+        }
+        
+        .pattern-highlight {
+            font-weight: bold;
+            color: var(--primary-blue);
+        }
+
+        .pattern-example {
+            font-style: italic;
+            color: #555;
+            font-size: 0.95rem;
         }
 
         /* Sample Essay Section */
@@ -123,10 +153,6 @@
             cursor: pointer;
             outline: none;
             font-size: 1.1rem;
-        }
-
-        details.sample-essay summary::-webkit-details-marker {
-            color: var(--accent-red);
         }
 
         .sample-content {
@@ -227,7 +253,6 @@
     </header>
 
     <main id="genres" class="tab-content active">
-        
         <div class="card" style="border-top-color: var(--accent-orange);">
             <h2><i class="material-icons">article</i> Feature Article</h2>
             <p><strong>Topic:</strong> At the beginning of the school year, your school magazine is going to include a special feature on tips for coping with secondary school life. As the chairperson of Peer Counsellors, you have been asked to write an article for the school magazine about the following:</p>
@@ -293,24 +318,102 @@
                 </div>
             </details>
         </div>
-
     </main>
 
     <main id="patterns" class="tab-content">
+        
         <div class="card">
-            <h2>Simple Sentences (SV / SVO)</h2>
-            <p><strong>Subject + Verb:</strong> The dog barked.</p>
-            <p><strong>Subject + Verb + Object:</strong> The student wrote an essay.</p>
+            <h2><i class="material-icons">article</i> Feature Article Patterns</h2>
+            
+            <h3>Describing the problem</h3>
+            <div class="pattern-box">
+                <p class="pattern-highlight">You may find it difficult to … [cite: 3]</p>
+                <p class="pattern-example">E.g. You may find it difficult to keep practicing for four days a week. [cite: 4]</p>
+                <p class="pattern-example">E.g. You may find it difficult to wake up at 6:30 every morning. [cite: 5]</p>
+            </div>
+            <div class="pattern-box">
+                <p class="pattern-highlight">…(n.)… can be quite annoying, especially when …SVO… [cite: 7]</p>
+                <p class="pattern-example">E.g. Practicing for four days a week can be quite annoying, especially when you don’t like what you’re doing. [cite: 8]</p>
+                <p class="pattern-example">E.g. Waking up at 6:30 every morning can be quite annoying, especially when you had a long night. [cite: 9]</p>
+            </div>
+
+            <h3>Showing empathy</h3>
+            <div class="pattern-box">
+                <p class="pattern-highlight">It sounds like you’re going through a really tough time. [cite: 12]</p>
+                <p class="pattern-highlight">That sounds incredibly frustrating. [cite: 13]</p>
+            </div>
+
+            <h3>Giving suggestions</h3>
+            <div class="pattern-box">
+                <p class="pattern-highlight">If I were you, I would …(v.)… [cite: 15]</p>
+                <p class="pattern-example">E.g. If I were you, I would talk to my coach seriously. [cite: 16]</p>
+                <p class="pattern-example">E.g. If I were you, I would sleep earlier the night before. [cite: 17]</p>
+            </div>
+            <div class="pattern-box">
+                <p class="pattern-highlight">For dealing with the situation, it is important to …(v.)… [cite: 19]</p>
+                <p class="pattern-example">E.g. For dealing with the situation, it is important to let your coach know about your difficulty. [cite: 20]</p>
+                <p class="pattern-example">E.g. For dealing with the situation, it is important to set a timetable. [cite: 21]</p>
+            </div>
+            <div class="pattern-box">
+                <p class="pattern-highlight">One of the suggested methods, which you can try, is to …(v.)… [cite: 23]</p>
+                <p class="pattern-example">E.g. One of the suggested methods, which you can try, is to reduce the number of practices. [cite: 24]</p>
+            </div>
         </div>
+
         <div class="card">
-            <h2>Compound Sentences (FANBOYS)</h2>
-            <p>Join two independent clauses with a comma and a conjunction (For, And, Nor, But, Or, Yet, So).</p>
-            <p><em>Example:</em> I wanted to study, <strong style="color: var(--accent-red);">but</strong> I was too tired.</p>
+            <h2><i class="material-icons">volunteer_activism</i> Letter of Advice Patterns</h2>
+            
+            <h3>Pointing out a problem</h3>
+            <div class="pattern-box">
+                <p class="pattern-highlight">The main challenge you may face is that … [cite: 69]</p>
+                <p class="pattern-example">E.g. The main challenge that you may face is that the music industry is extremely competitive, and dropping out of school now means you lose a vital backup plan. [cite: 70]</p>
+            </div>
+            <div class="pattern-box">
+                <p class="pattern-highlight">It is clear that there is a drawback with … [cite: 73]</p>
+                <p class="pattern-example">E.g. It is clear that there is a drawback with leaving school early, as you wont have the diploma you need if your singing career doesn’t work well. [cite: 74]</p>
+            </div>
+
+            <h3>Giving suggestions</h3>
+            <div class="pattern-box">
+                <p class="pattern-highlight">It is highly recommended that … [cite: 78]</p>
+                <p class="pattern-example">E.g. It is highly recommended that you should search part-time jobs in the music industry to contribute to your career knowledge. [cite: 79]</p>
+            </div>
+            <div class="pattern-box">
+                <p class="pattern-highlight">A practical solution to this problem would be to … [cite: 82]</p>
+                <p class="pattern-example">E.g. A practical solution to this problem would be to ask your parents if you can spend every evening after homework performing live streams to build your audience. [cite: 83]</p>
+            </div>
         </div>
+
         <div class="card">
-            <h2>Complex Sentences</h2>
-            <p>Join an independent clause with a dependent clause using words like <em>although, because, since,</em> or <em>if</em>.</p>
-            <p><em>Example:</em> <strong style="color: var(--accent-red);">Because</strong> it was raining, we stayed indoors.</p>
+            <h2><i class="material-icons">campaign</i> Promotional Speech Patterns</h2>
+            
+            <h3>Introduction</h3>
+            <div class="pattern-box">
+                <p class="pattern-highlight">I am thrilled to announce that … [cite: 88]</p>
+                <p class="pattern-highlight">Have you ever wondered …? [cite: 90]</p>
+                <p class="pattern-highlight">The reason I’m speaking to you today is … [cite: 92]</p>
+            </div>
+
+            <h3>Introducing the activities</h3>
+            <div class="pattern-box">
+                <p class="pattern-highlight">The highlight of the school fair will undoubtedly be … [cite: 95]</p>
+                <p class="pattern-highlight">Prepared to be amazed by … [cite: 97]</p>
+                <p class="pattern-highlight">In addition to the games, you can also … [cite: 99]</p>
+            </div>
+
+            <h3>Persuasion</h3>
+            <div class="pattern-box">
+                <p class="pattern-highlight">For just a $10 ticket, you can … [cite: 102]</p>
+                <p class="pattern-highlight">We are looking for … [cite: 104]</p>
+                <p class="pattern-highlight">Let’s show our enthusiasm … [cite: 106]</p>
+            </div>
+
+            <h3>Ending the speech</h3>
+            <div class="pattern-box">
+                <p class="pattern-highlight">Don’t wait – contact … [cite: 109]</p>
+                <p class="pattern-highlight">Let’s come together to … [cite: 111]</p>
+                <p class="pattern-highlight">I look forward to … [cite: 113]</p>
+            </div>
         </div>
     </main>
 
