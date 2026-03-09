@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Mr. Yip's Writing Class</title>
+    <title>4KS Writing Notes</title>
     
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
@@ -31,7 +31,7 @@
             line-height: 1.5;
         }
 
-        /* Updated Header with Flexbox for the Logo */
+        /* Updated Header */
         header {
             background-color: var(--primary-blue);
             color: white;
@@ -69,39 +69,73 @@
             display: block; 
         }
 
-        /* Card Layout for iPad */
+        /* Card Layout & Accordion Logic */
         .card {
             background: white;
             border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
+            padding: 0; /* padding moved to header and body */
+            margin-bottom: 15px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.06);
             border-top: 4px solid transparent;
+            overflow: hidden; /* Keeps borders neat */
         }
 
-        .card h2 {
-            margin-top: 0;
+        /* Tappable Header */
+        .accordion-header {
+            margin: 0;
+            padding: 15px 20px;
             color: var(--primary-blue);
-            font-size: 1.35rem;
-            border-bottom: 2px solid var(--bg-color);
-            padding-bottom: 10px;
+            font-size: 1.25rem;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 12px;
+            cursor: pointer;
+            user-select: none;
+            background-color: white;
+            transition: background-color 0.2s;
         }
 
-        .card h2 i {
+        .accordion-header:active {
+            background-color: #f9f9f9;
+        }
+
+        /* BIG Icons for easy clicking */
+        .accordion-header i.main-icon {
             color: var(--accent-orange);
-            font-size: 1.6rem;
+            font-size: 2.8rem; /* Significantly larger */
         }
 
         .icon-complaint { color: var(--accent-red) !important; }
         .icon-speech { color: var(--primary-blue) !important; }
 
+        .expand-arrow {
+            margin-left: auto;
+            color: #aaa;
+            font-size: 1.8rem;
+            transition: transform 0.3s;
+        }
+
+        /* Foldable Body */
+        .card-body {
+            display: none; /* Hidden by default */
+            padding: 0 20px 20px 20px;
+            border-top: 1px solid #eee;
+            animation: fadeInDown 0.3s;
+        }
+
+        /* When Expanded */
+        .card.expanded .card-body {
+            display: block;
+        }
+        
+        .card.expanded .expand-arrow {
+            transform: rotate(180deg);
+        }
+
         .card h3 {
             color: var(--accent-orange);
             font-size: 1.1rem;
-            margin-top: 15px;
+            margin-top: 20px;
             margin-bottom: 5px;
         }
 
@@ -198,7 +232,7 @@
             padding: 2px;
         }
 
-        /* Bottom Navigation Bar */
+        /* Bottom Navigation Bar (Updated for 3 items) */
         nav {
             position: fixed;
             bottom: 0;
@@ -218,7 +252,7 @@
             flex-direction: column;
             align-items: center;
             padding: 10px 0;
-            width: 25%;
+            width: 33.33%; /* Updated width for 3 buttons */
             color: var(--inactive-color);
             text-decoration: none;
             cursor: pointer;
@@ -243,198 +277,254 @@
             from { opacity: 0; transform: translateY(5px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
 <body>
 
     <header>
         <img src="https://www.google.com/s2/favicons?domain=plkwcc.edu.hk&sz=64" alt="PLK WCC Logo" class="school-logo">
-        Mr. Yip's Writing Class
+        4KS Writing Notes
     </header>
 
     <main id="genres" class="tab-content active">
+        
         <div class="card" style="border-top-color: var(--accent-orange);">
-            <h2><i class="material-icons">article</i> Feature Article</h2>
-            <p><strong>Topic:</strong> At the beginning of the school year, your school magazine is going to include a special feature on tips for coping with secondary school life. As the chairperson of Peer Counsellors, you have been asked to write an article for the school magazine about the following:</p>
-            <ul>
-                <li>challenges commonly faced by new Form 1 students</li>
-                <li>advice on how they can adapt to secondary school life</li>
-            </ul>
-            <details class="sample-essay">
-                <summary>Tap to view Sample Essay</summary>
-                <div class="sample-content">
+            <div class="accordion-header" onclick="toggleCard(this)">
+                <i class="material-icons main-icon">article</i> 
+                Feature Article
+                <i class="material-icons expand-arrow">expand_more</i>
+            </div>
+            <div class="card-body">
+                <p><strong>Topic:</strong> At the beginning of the school year, your school magazine is going to include a special feature on tips for coping with secondary school life. As the chairperson of Peer Counsellors, you have been asked to write an article for the school magazine about the following:</p>
+                <ul>
+                    <li>challenges commonly faced by new Form 1 students</li>
+                    <li>advice on how they can adapt to secondary school life</li>
+                </ul>
+                <details class="sample-essay">
+                    <summary>Tap to view Sample Essay</summary>
+                    <div class="sample-content">
 [Insert your Feature Article sample essay here...]
-                </div>
-            </details>
+                    </div>
+                </details>
+            </div>
         </div>
 
         <div class="card" style="border-top-color: var(--accent-orange);">
-            <h2><i class="material-icons">volunteer_activism</i> Letter of Advice</h2>
-            <p><strong>Topic:</strong> You recently had a conversation with your friend Winnie, who is upset. She wants to drop out of school to pursue a career as a pop singer, but her parents are not letting her. Write a letter to Winnie to give advice on her situation.</p>
-            <details class="sample-essay">
-                <summary>Tap to view Sample Essay</summary>
-                <div class="sample-content">
+            <div class="accordion-header" onclick="toggleCard(this)">
+                <i class="material-icons main-icon">volunteer_activism</i> 
+                Letter of Advice
+                <i class="material-icons expand-arrow">expand_more</i>
+            </div>
+            <div class="card-body">
+                <p><strong>Topic:</strong> You recently had a conversation with your friend Winnie, who is upset. She wants to drop out of school to pursue a career as a pop singer, but her parents are not letting her. Write a letter to Winnie to give advice on her situation.</p>
+                <details class="sample-essay">
+                    <summary>Tap to view Sample Essay</summary>
+                    <div class="sample-content">
 [Insert your Letter of Advice sample essay here...]
-                </div>
-            </details>
+                    </div>
+                </details>
+            </div>
         </div>
 
         <div class="card" style="border-top-color: var(--accent-red);">
-            <h2><i class="material-icons icon-complaint">report_problem</i> Letter of Complaint</h2>
-            <p><strong>Topic:</strong> Last week, you joined an English tutorial class with your friend because of the attractive offers listed on the leaflet. However, you experienced something unpleasant in the first session. Write a letter of complaint to the tutorial centre and comment on at least THREE of the following:</p>
-            <ul>
-                <li>the facilities</li>
-                <li>the environment</li>
-                <li>the attitude and management of the staff</li>
-                <li>the claims on the leaflet</li>
-            </ul>
-            <details class="sample-essay">
-                <summary>Tap to view Sample Essay</summary>
-                <div class="sample-content">
+            <div class="accordion-header" onclick="toggleCard(this)">
+                <i class="material-icons main-icon icon-complaint">report_problem</i> 
+                Letter of Complaint
+                <i class="material-icons expand-arrow">expand_more</i>
+            </div>
+            <div class="card-body">
+                <p><strong>Topic:</strong> Last week, you joined an English tutorial class with your friend because of the attractive offers listed on the leaflet. However, you experienced something unpleasant in the first session. Write a letter of complaint to the tutorial centre and comment on at least THREE of the following:</p>
+                <ul>
+                    <li>the facilities</li>
+                    <li>the environment</li>
+                    <li>the attitude and management of the staff</li>
+                    <li>the claims on the leaflet</li>
+                </ul>
+                <details class="sample-essay">
+                    <summary>Tap to view Sample Essay</summary>
+                    <div class="sample-content">
 [Insert your Letter of Complaint sample essay here...]
-                </div>
-            </details>
+                    </div>
+                </details>
+            </div>
         </div>
 
         <div class="card" style="border-top-color: var(--primary-blue);">
-            <h2><i class="material-icons icon-speech">campaign</i> Promotional Speech</h2>
-            <p><strong>Topic:</strong> You are the Chairperson of the Student Union. You are helping your school organise the annual school fair. You have been asked to deliver a promotional speech about the event during the morning assembly.</p>
-            <p>Use the poster below to help you write your announcement. In your announcement:</p>
-            <ul>
-                <li>Introduce the event.</li>
-                <li>Describe the Alumni Football Match and some other activities that will take place.</li>
-                <li>Let students know how they can help out.</li>
-            </ul>
-            
-            <div style="background: var(--bg-color); border: 2px dashed #ccc; padding: 20px; text-align: center; border-radius: 8px; margin: 15px 0;">
-                <i class="material-icons" style="font-size: 2rem; color: #aaa;">image</i><br>
-                <em>[Insert Poster Image Here later]</em>
+            <div class="accordion-header" onclick="toggleCard(this)">
+                <i class="material-icons main-icon icon-speech">campaign</i> 
+                Promotional Speech
+                <i class="material-icons expand-arrow">expand_more</i>
             </div>
-
-            <details class="sample-essay">
-                <summary>Tap to view Sample Essay</summary>
-                <div class="sample-content">
-[Insert your Promotional Speech sample essay here...]
+            <div class="card-body">
+                <p><strong>Topic:</strong> You are the Chairperson of the Student Union. You are helping your school organise the annual school fair. You have been asked to deliver a promotional speech about the event during the morning assembly.</p>
+                <p>Use the poster below to help you write your announcement. In your announcement:</p>
+                <ul>
+                    <li>Introduce the event.</li>
+                    <li>Describe the Alumni Football Match and some other activities that will take place.</li>
+                    <li>Let students know how they can help out.</li>
+                </ul>
+                
+                <div style="background: var(--bg-color); border: 2px dashed #ccc; padding: 20px; text-align: center; border-radius: 8px; margin: 15px 0;">
+                    <i class="material-icons" style="font-size: 2rem; color: #aaa;">image</i><br>
+                    <em>[Insert Poster Image Here later]</em>
                 </div>
-            </details>
+
+                <details class="sample-essay">
+                    <summary>Tap to view Sample Essay</summary>
+                    <div class="sample-content">
+[Insert your Promotional Speech sample essay here...]
+                    </div>
+                </details>
+            </div>
         </div>
     </main>
 
     <main id="patterns" class="tab-content">
         
-        <div class="card">
-            <h2><i class="material-icons">article</i> Feature Article Patterns</h2>
+        <div class="card" style="border-top-color: var(--accent-orange);">
+            <div class="accordion-header" onclick="toggleCard(this)">
+                <i class="material-icons main-icon">article</i> 
+                <span style="font-size: 1.1rem; line-height: 1.2;">Sentence patterns used in a feature article</span>
+                <i class="material-icons expand-arrow">expand_more</i>
+            </div>
             
-            <h3>Describing the problem</h3>
-            <div class="pattern-box">
-                <p class="pattern-highlight">You may find it difficult to … [cite: 3]</p>
-                <p class="pattern-example">E.g. You may find it difficult to keep practicing for four days a week. [cite: 4]</p>
-                <p class="pattern-example">E.g. You may find it difficult to wake up at 6:30 every morning. [cite: 5]</p>
-            </div>
-            <div class="pattern-box">
-                <p class="pattern-highlight">…(n.)… can be quite annoying, especially when …SVO… [cite: 7]</p>
-                <p class="pattern-example">E.g. Practicing for four days a week can be quite annoying, especially when you don’t like what you’re doing. [cite: 8]</p>
-                <p class="pattern-example">E.g. Waking up at 6:30 every morning can be quite annoying, especially when you had a long night. [cite: 9]</p>
-            </div>
+            <div class="card-body">
+                <h3>Describing the problem</h3>
+                <div class="pattern-box">
+                    <p class="pattern-highlight">You may find it difficult to …</p>
+                    <p class="pattern-example">E.g. You may find it difficult to keep practicing for four days a week.</p>
+                    <p class="pattern-example">E.g. You may find it difficult to wake up at 6:30 every morning.</p>
+                </div>
+                <div class="pattern-box">
+                    <p class="pattern-highlight">…(n.)… can be quite annoying, especially when …SVO…</p>
+                    <p class="pattern-example">E.g. Practicing for four days a week can be quite annoying, especially when you don’t like what you’re doing.</p>
+                    <p class="pattern-example">E.g. Waking up at 6:30 every morning can be quite annoying, especially when you had a long night.</p>
+                </div>
 
-            <h3>Showing empathy</h3>
-            <div class="pattern-box">
-                <p class="pattern-highlight">It sounds like you’re going through a really tough time. [cite: 12]</p>
-                <p class="pattern-highlight">That sounds incredibly frustrating. [cite: 13]</p>
-            </div>
+                <h3>Showing empathy</h3>
+                <div class="pattern-box">
+                    <p class="pattern-highlight">It sounds like you’re going through a really tough time.</p>
+                    <p class="pattern-highlight">That sounds incredibly frustrating.</p>
+                </div>
 
-            <h3>Giving suggestions</h3>
-            <div class="pattern-box">
-                <p class="pattern-highlight">If I were you, I would …(v.)… [cite: 15]</p>
-                <p class="pattern-example">E.g. If I were you, I would talk to my coach seriously. [cite: 16]</p>
-                <p class="pattern-example">E.g. If I were you, I would sleep earlier the night before. [cite: 17]</p>
-            </div>
-            <div class="pattern-box">
-                <p class="pattern-highlight">For dealing with the situation, it is important to …(v.)… [cite: 19]</p>
-                <p class="pattern-example">E.g. For dealing with the situation, it is important to let your coach know about your difficulty. [cite: 20]</p>
-                <p class="pattern-example">E.g. For dealing with the situation, it is important to set a timetable. [cite: 21]</p>
-            </div>
-            <div class="pattern-box">
-                <p class="pattern-highlight">One of the suggested methods, which you can try, is to …(v.)… [cite: 23]</p>
-                <p class="pattern-example">E.g. One of the suggested methods, which you can try, is to reduce the number of practices. [cite: 24]</p>
+                <h3>Giving suggestions</h3>
+                <div class="pattern-box">
+                    <p class="pattern-highlight">If I were you, I would …(v.)…</p>
+                    <p class="pattern-example">E.g. If I were you, I would talk to my coach seriously.</p>
+                    <p class="pattern-example">E.g. If I were you, I would sleep earlier the night before.</p>
+                </div>
+                <div class="pattern-box">
+                    <p class="pattern-highlight">For dealing with the situation, it is important to …(v.)…</p>
+                    <p class="pattern-example">E.g. For dealing with the situation, it is important to let your coach know about your difficulty.</p>
+                    <p class="pattern-example">E.g. For dealing with the situation, it is important to set a timetable.</p>
+                </div>
+                <div class="pattern-box">
+                    <p class="pattern-highlight">One of the suggested methods, which you can try, is to …(v.)…</p>
+                    <p class="pattern-example">E.g. One of the suggested methods, which you can try, is to reduce the number of practices.</p>
+                </div>
             </div>
         </div>
 
-        <div class="card">
-            <h2><i class="material-icons">volunteer_activism</i> Letter of Advice Patterns</h2>
+        <div class="card" style="border-top-color: var(--accent-orange);">
+            <div class="accordion-header" onclick="toggleCard(this)">
+                <i class="material-icons main-icon">volunteer_activism</i> 
+                <span style="font-size: 1.1rem; line-height: 1.2;">Sentence patterns used in a letter of advice</span>
+                <i class="material-icons expand-arrow">expand_more</i>
+            </div>
             
-            <h3>Pointing out a problem</h3>
-            <div class="pattern-box">
-                <p class="pattern-highlight">The main challenge you may face is that … [cite: 69]</p>
-                <p class="pattern-example">E.g. The main challenge that you may face is that the music industry is extremely competitive, and dropping out of school now means you lose a vital backup plan. [cite: 70]</p>
-            </div>
-            <div class="pattern-box">
-                <p class="pattern-highlight">It is clear that there is a drawback with … [cite: 73]</p>
-                <p class="pattern-example">E.g. It is clear that there is a drawback with leaving school early, as you wont have the diploma you need if your singing career doesn’t work well. [cite: 74]</p>
-            </div>
+            <div class="card-body">
+                <h3>Pointing out a problem</h3>
+                <div class="pattern-box">
+                    <p class="pattern-highlight">The main challenge you may face is that …</p>
+                    <p class="pattern-example">E.g. The main challenge that you may face is that the music industry is extremely competitive, and dropping out of school now means you lose a vital backup plan.</p>
+                </div>
+                <div class="pattern-box">
+                    <p class="pattern-highlight">It is clear that there is a drawback with …</p>
+                    <p class="pattern-example">E.g. It is clear that there is a drawback with leaving school early, as you wont have the diploma you need if your singing career doesn’t work well.</p>
+                </div>
 
-            <h3>Giving suggestions</h3>
-            <div class="pattern-box">
-                <p class="pattern-highlight">It is highly recommended that … [cite: 78]</p>
-                <p class="pattern-example">E.g. It is highly recommended that you should search part-time jobs in the music industry to contribute to your career knowledge. [cite: 79]</p>
-            </div>
-            <div class="pattern-box">
-                <p class="pattern-highlight">A practical solution to this problem would be to … [cite: 82]</p>
-                <p class="pattern-example">E.g. A practical solution to this problem would be to ask your parents if you can spend every evening after homework performing live streams to build your audience. [cite: 83]</p>
+                <h3>Giving suggestions</h3>
+                <div class="pattern-box">
+                    <p class="pattern-highlight">It is highly recommended that …</p>
+                    <p class="pattern-example">E.g. It is highly recommended that you should search part-time jobs in the music industry to contribute to your career knowledge.</p>
+                </div>
+                <div class="pattern-box">
+                    <p class="pattern-highlight">A practical solution to this problem would be to …</p>
+                    <p class="pattern-example">E.g. A practical solution to this problem would be to ask your parents if you can spend every evening after homework performing live streams to build your audience.</p>
+                </div>
             </div>
         </div>
 
-        <div class="card">
-            <h2><i class="material-icons">campaign</i> Promotional Speech Patterns</h2>
+        <div class="card" style="border-top-color: var(--accent-red);">
+            <div class="accordion-header" onclick="toggleCard(this)">
+                <i class="material-icons main-icon icon-complaint">report_problem</i> 
+                <span style="font-size: 1.1rem; line-height: 1.2;">Sentence patterns used in a letter of complaint</span>
+                <i class="material-icons expand-arrow">expand_more</i>
+            </div>
             
-            <h3>Introduction</h3>
-            <div class="pattern-box">
-                <p class="pattern-highlight">I am thrilled to announce that … [cite: 88]</p>
-                <p class="pattern-highlight">Have you ever wondered …? [cite: 90]</p>
-                <p class="pattern-highlight">The reason I’m speaking to you today is … [cite: 92]</p>
-            </div>
-
-            <h3>Introducing the activities</h3>
-            <div class="pattern-box">
-                <p class="pattern-highlight">The highlight of the school fair will undoubtedly be … [cite: 95]</p>
-                <p class="pattern-highlight">Prepared to be amazed by … [cite: 97]</p>
-                <p class="pattern-highlight">In addition to the games, you can also … [cite: 99]</p>
-            </div>
-
-            <h3>Persuasion</h3>
-            <div class="pattern-box">
-                <p class="pattern-highlight">For just a $10 ticket, you can … [cite: 102]</p>
-                <p class="pattern-highlight">We are looking for … [cite: 104]</p>
-                <p class="pattern-highlight">Let’s show our enthusiasm … [cite: 106]</p>
-            </div>
-
-            <h3>Ending the speech</h3>
-            <div class="pattern-box">
-                <p class="pattern-highlight">Don’t wait – contact … [cite: 109]</p>
-                <p class="pattern-highlight">Let’s come together to … [cite: 111]</p>
-                <p class="pattern-highlight">I look forward to … [cite: 113]</p>
+            <div class="card-body">
+                <div class="pattern-box">
+                    <p class="pattern-highlight">I am writing to express my strong dissatisfaction with …</p>
+                </div>
+                <div class="pattern-box">
+                    <p class="pattern-highlight">I was extremely disappointed to discover that …</p>
+                </div>
+                <div class="pattern-box">
+                    <p class="pattern-highlight">To make matters worse, …</p>
+                </div>
+                <div class="pattern-box">
+                    <p class="pattern-highlight">I strongly suggest that your management look into this matter urgently.</p>
+                </div>
             </div>
         </div>
-    </main>
 
-    <main id="mistakes" class="tab-content">
-        <div class="card">
-            <h2>Subject-Verb Agreement</h2>
-            <p>Singular subjects need singular verbs. Plural subjects need plural verbs.</p>
-            <p><span style="color: var(--accent-red);">❌</span> <em>The group of students are studying.</em></p>
-            <p><span style="color: green;">✅</span> <em>The group of students is studying.</em> (Group is singular)</p>
-        </div>
-        <div class="card">
-            <h2>Run-on Sentences</h2>
-            <p>Two independent sentences squished together without proper punctuation.</p>
-            <p><span style="color: var(--accent-red);">❌</span> <em>I love writing it is my favorite subject.</em></p>
-            <p><span style="color: green;">✅</span> <em>I love writing. It is my favorite subject.</em></p>
+        <div class="card" style="border-top-color: var(--primary-blue);">
+            <div class="accordion-header" onclick="toggleCard(this)">
+                <i class="material-icons main-icon icon-speech">campaign</i> 
+                <span style="font-size: 1.1rem; line-height: 1.2;">Sentence patterns used in a promotional speech</span>
+                <i class="material-icons expand-arrow">expand_more</i>
+            </div>
+            
+            <div class="card-body">
+                <h3>Introduction</h3>
+                <div class="pattern-box">
+                    <p class="pattern-highlight">I am thrilled to announce that …</p>
+                    <p class="pattern-highlight">Have you ever wondered …?</p>
+                    <p class="pattern-highlight">The reason I’m speaking to you today is …</p>
+                </div>
+
+                <h3>Introducing the activities</h3>
+                <div class="pattern-box">
+                    <p class="pattern-highlight">The highlight of the school fair will undoubtedly be …</p>
+                    <p class="pattern-highlight">Prepared to be amazed by …</p>
+                    <p class="pattern-highlight">In addition to the games, you can also …</p>
+                </div>
+
+                <h3>Persuasion</h3>
+                <div class="pattern-box">
+                    <p class="pattern-highlight">For just a $10 ticket, you can …</p>
+                    <p class="pattern-highlight">We are looking for …</p>
+                    <p class="pattern-highlight">Let’s show our enthusiasm …</p>
+                </div>
+
+                <h3>Ending the speech</h3>
+                <div class="pattern-box">
+                    <p class="pattern-highlight">Don’t wait – contact …</p>
+                    <p class="pattern-highlight">Let’s come together to …</p>
+                    <p class="pattern-highlight">I look forward to …</p>
+                </div>
+            </div>
         </div>
     </main>
 
     <main id="tools" class="tab-content">
-        <div class="card">
-            <h2>Classroom & AI Tools</h2>
+        <div class="card" style="padding: 20px;">
+            <h2 style="border-bottom:none; margin-bottom: 15px;"><i class="material-icons" style="color: var(--primary-blue); font-size: 1.8rem; vertical-align: middle;">build</i> Classroom & AI Tools</h2>
             <ul class="tool-list">
                 <li>
                     <a href="https://classroom.google.com" target="_blank">
@@ -485,10 +575,6 @@
             <i class="material-icons">format_shapes</i>
             <span>Patterns</span>
         </a>
-        <a class="nav-btn" onclick="switchTab('mistakes', this)">
-            <i class="material-icons">rule</i>
-            <span>Mistakes</span>
-        </a>
         <a class="nav-btn" onclick="switchTab('tools', this)">
             <i class="material-icons">build</i>
             <span>Tools</span>
@@ -496,6 +582,7 @@
     </nav>
 
     <script>
+        // Tab switching logic
         function switchTab(tabId, clickedBtn) {
             const contents = document.querySelectorAll('.tab-content');
             contents.forEach(content => content.classList.remove('active'));
@@ -507,6 +594,14 @@
             clickedBtn.classList.add('active');
             
             window.scrollTo(0, 0);
+        }
+
+        // Accordion folding logic
+        function toggleCard(headerElement) {
+            const card = headerElement.closest('.card');
+            
+            // Toggle the 'expanded' class to show/hide the card-body
+            card.classList.toggle('expanded');
         }
     </script>
 
