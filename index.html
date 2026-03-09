@@ -73,11 +73,11 @@
         .card {
             background: white;
             border-radius: 12px;
-            padding: 0; /* padding moved to header and body */
+            padding: 0; 
             margin-bottom: 15px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.06);
             border-top: 4px solid transparent;
-            overflow: hidden; /* Keeps borders neat */
+            overflow: hidden; 
         }
 
         /* Tappable Header */
@@ -102,7 +102,7 @@
         /* BIG Icons for easy clicking */
         .accordion-header i.main-icon {
             color: var(--accent-orange);
-            font-size: 2.8rem; /* Significantly larger */
+            font-size: 2.8rem; 
         }
 
         .icon-complaint { color: var(--accent-red) !important; }
@@ -117,7 +117,7 @@
 
         /* Foldable Body */
         .card-body {
-            display: none; /* Hidden by default */
+            display: none; 
             padding: 0 20px 20px 20px;
             border-top: 1px solid #eee;
             animation: fadeInDown 0.3s;
@@ -146,6 +146,23 @@
 
         .card li {
             margin-bottom: 8px;
+        }
+
+        /* Formatting for Writing Notes */
+        .writing-notes {
+            background-color: #f0f4f8; 
+            padding: 15px; 
+            border-radius: 8px; 
+            margin-top: 15px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--primary-blue);
+        }
+
+        .writing-notes h4 {
+            margin-top: 0; 
+            color: var(--primary-blue);
+            font-size: 1.15rem;
+            margin-bottom: 10px;
         }
 
         /* Formatting for Pattern Examples */
@@ -252,7 +269,7 @@
             flex-direction: column;
             align-items: center;
             padding: 10px 0;
-            width: 33.33%; /* Updated width for 3 buttons */
+            width: 33.33%; 
             color: var(--inactive-color);
             text-decoration: none;
             cursor: pointer;
@@ -300,6 +317,17 @@
                 <i class="material-icons expand-arrow">expand_more</i>
             </div>
             <div class="card-body">
+                <div class="writing-notes">
+                    <h4>Writing Notes</h4>
+                    <ul style="padding-left: 20px; margin-bottom: 0;">
+                        <li><strong>Title:</strong> Needs to be attention-grabbing, predict the content, and be relevant. Use a phrase starting with a gerund (verb + -ing) or a question word.</li>
+                        <li><strong>Introduction:</strong> Offer information to let readers know what to expect. Limit to around three sentences.</li>
+                        <li><strong>Headings:</strong> Place before each body paragraph to separate content. Keep them short, specific, and consistent in grammatical structure.</li>
+                        <li><strong>Body Paragraphs:</strong> Provide relevant information and examples to support what is mentioned under each heading.</li>
+                        <li><strong>Conclusion:</strong> Wrap up main ideas with a call to action.</li>
+                    </ul>
+                </div>
+
                 <p><strong>Topic:</strong> At the beginning of the school year, your school magazine is going to include a special feature on tips for coping with secondary school life. As the chairperson of Peer Counsellors, you have been asked to write an article for the school magazine about the following:</p>
                 <ul>
                     <li>challenges commonly faced by new Form 1 students</li>
@@ -321,6 +349,16 @@
                 <i class="material-icons expand-arrow">expand_more</i>
             </div>
             <div class="card-body">
+                <div class="writing-notes">
+                    <h4>Writing Notes</h4>
+                    <p style="margin-bottom: 5px;"><strong>Three Main Parts:</strong></p>
+                    <ul style="padding-left: 20px; margin-bottom: 0;">
+                        <li><strong>Opening Paragraph:</strong> Show that you understand the recipient's situation and feelings.</li>
+                        <li><strong>Body Paragraphs:</strong> Give specific advice to address the situation. Include one main idea in each paragraph clearly shown in the topic sentences. Give reasons and examples to support your advice.</li>
+                        <li><strong>Closing Paragraph:</strong> Briefly summarise your suggestions and encourage the recipient to try them out.</li>
+                    </ul>
+                </div>
+
                 <p><strong>Topic:</strong> You recently had a conversation with your friend Winnie, who is upset. She wants to drop out of school to pursue a career as a pop singer, but her parents are not letting her. Write a letter to Winnie to give advice on her situation.</p>
                 <details class="sample-essay">
                     <summary>Tap to view Sample Essay</summary>
@@ -338,6 +376,23 @@
                 <i class="material-icons expand-arrow">expand_more</i>
             </div>
             <div class="card-body">
+                <div class="writing-notes">
+                    <h4>Writing Notes</h4>
+                    <ul style="padding-left: 20px; margin-bottom: 0;">
+                        <li><strong>Purpose:</strong> A formal letter written to express dissatisfaction and ask for a follow-up action.</li>
+                        <li><strong>Tone:</strong> Firm and polite.</li>
+                        <li><strong>Style Restrictions:</strong> You should NOT use:
+                            <ul>
+                                <li>Contractions (e.g., use "I am" instead of "I'm")</li>
+                                <li>Abbreviations (e.g., use "Hong Kong" instead of "HK")</li>
+                                <li>Direct speech</li>
+                                <li>Informal punctuation (e.g., dashes, brackets)</li>
+                            </ul>
+                        </li>
+                        <li><strong>Structure:</strong> Greeting &rarr; Subject &rarr; Reason for writing &rarr; Complaint(s) &rarr; Ask for action &rarr; Closing &rarr; Sender's signature &rarr; Sender's name.</li>
+                    </ul>
+                </div>
+
                 <p><strong>Topic:</strong> Last week, you joined an English tutorial class with your friend because of the attractive offers listed on the leaflet. However, you experienced something unpleasant in the first session. Write a letter of complaint to the tutorial centre and comment on at least THREE of the following:</p>
                 <ul>
                     <li>the facilities</li>
@@ -361,6 +416,16 @@
                 <i class="material-icons expand-arrow">expand_more</i>
             </div>
             <div class="card-body">
+                <div class="writing-notes">
+                    <h4>Writing Notes</h4>
+                    <ul style="padding-left: 20px; margin-bottom: 0;">
+                        <li><strong>Audience & Occasion:</strong> Tailor your content and tone to your audience (e.g., schoolmates) and adapt to the occasion (e.g., morning assembly).</li>
+                        <li><strong>Opening Statement:</strong> Grab attention, get them engaged, and let them know the purpose. Use a provocative question, relevant quote, brief personal story, or surprising fact.</li>
+                        <li><strong>Structure:</strong> Add topic sentences at the beginning of every point. Use repetition of keywords/themes to reinforce ideas.</li>
+                        <li><strong>End Memorably:</strong> Return to the strong purpose and end in a meaningful way (promoting the event, stating how they can help, or sharing a true story).</li>
+                    </ul>
+                </div>
+
                 <p><strong>Topic:</strong> You are the Chairperson of the Student Union. You are helping your school organise the annual school fair. You have been asked to deliver a promotional speech about the event during the morning assembly.</p>
                 <p>Use the poster below to help you write your announcement. In your announcement:</p>
                 <ul>
