@@ -257,7 +257,7 @@
             color: white;
             padding: 12px 0;
             border-radius: 8px;
-            margin-top: 20px;
+            margin-bottom: 20px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
@@ -274,7 +274,7 @@
             100% { transform: translateX(-100%); }
         }
 
-        /* Bottom Navigation Bar */
+        /* Bottom Navigation Bar (Updated for 3 items) */
         nav {
             position: fixed;
             bottom: 0;
@@ -746,12 +746,15 @@ Let’s come together to celebrate and support our school. Don’t wait – cont
 
     <main id="tools" class="tab-content">
         
-        <div class="card" style="background: linear-gradient(135deg, var(--primary-blue), #3a53b5); color: white; text-align: center; padding: 25px 20px;">
-            <h2 style="color: white; border-bottom: none; display: flex; justify-content: center; align-items: center; margin-bottom: 5px;"><i class="material-icons" style="color: var(--accent-orange); margin-right: 8px;">timer</i> HKDSE Countdown</h2>
-            <div style="font-size: 3rem; font-weight: bold; margin: 10px 0; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">
-                <span id="countdown-days">0</span> <span style="font-size: 1.2rem; font-weight: 500;">Days</span>
+        <div class="scrolling-container" style="margin-top: 0; margin-bottom: 15px;">
+            <div class="scrolling-text">
+                ⭐ There are no shortcuts to any place worth going. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                ⭐ Success is the sum of small efforts, repeated day in and day out. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                ⭐ Preparation for tomorrow is hard work today. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                ⭐ There are no shortcuts to any place worth going. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                ⭐ Success is the sum of small efforts, repeated day in and day out. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                ⭐ Preparation for tomorrow is hard work today. 
             </div>
-            <p style="margin: 0; font-size: 0.95rem; opacity: 0.9; font-weight: 500;">until April 10, 2028</p>
         </div>
 
         <div class="card" style="padding: 20px;">
@@ -813,17 +816,6 @@ Let’s come together to celebrate and support our school. Don’t wait – cont
                 </li>
             </ul>
         </div>
-
-        <div class="scrolling-container">
-            <div class="scrolling-text">
-                ⭐ There are no shortcuts to any place worth going. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                ⭐ Success is the sum of small efforts, repeated day in and day out. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                ⭐ Preparation for tomorrow is hard work today. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                ⭐ There are no shortcuts to any place worth going. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                ⭐ Success is the sum of small efforts, repeated day in and day out. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                ⭐ Preparation for tomorrow is hard work today. 
-            </div>
-        </div>
     </main>
 
     <nav>
@@ -863,32 +855,6 @@ Let’s come together to celebrate and support our school. Don’t wait – cont
             // Toggle the 'expanded' class to show/hide the card-body
             card.classList.toggle('expanded');
         }
-
-        // HKDSE Countdown Logic
-        function updateCountdown() {
-            // Set the target date (Month DD, YYYY HH:MM:SS)
-            const targetDate = new Date("April 10, 2028 00:00:00").getTime();
-            const now = new Date().getTime();
-            
-            // Find the distance between now and the target date
-            const distance = targetDate - now;
-            
-            // Calculate remaining days
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            
-            // Output the result in the element with id="countdown-days"
-            if (days >= 0) {
-                document.getElementById("countdown-days").innerHTML = days;
-            } else {
-                document.getElementById("countdown-days").innerHTML = "0";
-            }
-        }
-
-        // Run the countdown immediately on load
-        updateCountdown();
-        
-        // Optionally update it every hour to keep it fresh if they leave the app open
-        setInterval(updateCountdown, 1000 * 60 * 60);
     </script>
 
 </body>
