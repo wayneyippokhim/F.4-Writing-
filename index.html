@@ -291,6 +291,23 @@
             object-fit: contain; 
         }
 
+        /* Custom SOS Icon Box */
+        .sos-icon {
+            width: 28px;
+            height: 28px;
+            background-color: var(--accent-red);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 6px;
+            margin-right: 15px;
+            font-weight: 800;
+            font-size: 10px;
+            letter-spacing: 0.5px;
+            box-shadow: 0 1px 3px rgba(227, 53, 33, 0.4);
+        }
+
         /* Scrolling Text Animation */
         .scrolling-container {
             overflow: hidden;
@@ -850,6 +867,87 @@ Let’s come together to celebrate and support our school. Don’t wait – cont
                 </div>
             </div>
         </div>
+        
+        <div class="card" style="border-top-color: var(--primary-blue);">
+            <div class="accordion-header" onclick="toggleCard(this)">
+                <i class="material-icons main-icon">gavel</i> 
+                <span style="font-size: 1.1rem; line-height: 1.2;">Sentence patterns used in a two-sided argumentative essay</span>
+                <i class="material-icons expand-arrow">expand_more</i>
+            </div>
+            
+            <div class="card-body">
+                <h3>1. Background (Introduction)</h3>
+                <div class="pattern-box">
+                    <p class="pattern-highlight">In recent years, [Topic] has become a highly debated issue in our society, with growing concerns over its impact on [Group/Aspect].</p>
+                    <p class="pattern-example">E.g. "In recent years, the rise of artificial intelligence has become a highly debated issue in our society, with growing concerns over its impact on human employment."</p>
+                </div>
+
+                <h3>2. Showing Stance (Thesis Statement)</h3>
+                <div class="pattern-box">
+                    <p class="pattern-highlight">From my perspective, it is undeniably clear that [Stance] due to its overwhelming benefits / detrimental effects.</p>
+                    <p class="pattern-example">E.g. "From my perspective, it is undeniably clear that implementing a four-day workweek is necessary due to its overwhelming benefits to employee mental health."</p>
+                </div>
+
+                <h3>3. Giving Examples (Body Paragraphs)</h3>
+                <div class="pattern-box">
+                    <p class="pattern-highlight">A prime example of this is [Example/Scenario], which vividly demonstrates how [Point being made].</p>
+                    <p class="pattern-example">E.g. "A prime example of this is Finland's education system, which vividly demonstrates how reducing standardized testing can actually boost academic performance."</p>
+                </div>
+
+                <h3>4. Making a Summary (End of a Point/Paragraph)</h3>
+                <div class="pattern-box">
+                    <p class="pattern-highlight">To put it briefly, the evidence presented underscores the fact that [Summary of argument point].</p>
+                    <p class="pattern-example">E.g. "To put it briefly, the evidence presented underscores the fact that excessive screen time severely harms teenagers' social development."</p>
+                </div>
+
+                <h3>5. Restating Stance (Conclusion)</h3>
+                <div class="pattern-box">
+                    <p class="pattern-highlight">Taking all these factors into consideration, I firmly reiterate that [Restated Stance] is the only logical course of action.</p>
+                    <p class="pattern-example">E.g. "Taking all these factors into consideration, I firmly reiterate that banning single-use plastics is the only logical course of action for a sustainable future."</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card" style="border-top-color: var(--accent-red);">
+            <div class="accordion-header" onclick="toggleCard(this)">
+                <i class="material-icons main-icon">newspaper</i> 
+                <span style="font-size: 1.1rem; line-height: 1.2;">Sentence patterns used in a letter to the editor</span>
+                <i class="material-icons expand-arrow">expand_more</i>
+            </div>
+            
+            <div class="card-body">
+                <h3>1. Background (Referencing a Trigger Event)</h3>
+                <div class="pattern-box">
+                    <p class="pattern-highlight">I am writing in response to the recent article titled "[Article Title]" published on [Date], which highlighted the rising issue of [Issue].</p>
+                    <p class="pattern-example">E.g. "I am writing in response to the recent article titled 'The Cost of Fast Fashion' published on 5th May, which highlighted the rising issue of textile waste in our city."</p>
+                </div>
+
+                <h3>2. Showing Purpose of Writing</h3>
+                <div class="pattern-box">
+                    <p class="pattern-highlight">The primary purpose of this letter is to draw public attention to [Issue] and to voice my deep concerns regarding [Specific aspect].</p>
+                    <p class="pattern-example">E.g. "The primary purpose of this letter is to draw public attention to the lack of youth recreational centers and to voice my deep concerns regarding the rise in teenage tech addiction."</p>
+                </div>
+
+                <h3>3. Writing a Topic Sentence (Body Paragraph)</h3>
+                <div class="pattern-box">
+                    <p class="pattern-highlight">First and foremost, it is crucial to recognize that the root cause of [Problem] lies in [Cause].</p>
+                    <p class="pattern-example">E.g. "First and foremost, it is crucial to recognize that the root cause of light pollution in Hong Kong lies in the unregulated use of commercial neon signs."</p>
+                </div>
+
+                <h3>4. Making a Summary (Concluding the Arguments)</h3>
+                <div class="pattern-box">
+                    <p class="pattern-highlight">In short, the arguments raised above clearly indicate that [Core Message] requires immediate public scrutiny.</p>
+                    <p class="pattern-example">E.g. "In short, the arguments raised above clearly indicate that the proposed redevelopment of our heritage sites requires immediate public scrutiny."</p>
+                </div>
+
+                <h3>5. Hope for the Future (Sign-off)</h3>
+                <div class="pattern-box">
+                    <p class="pattern-highlight">It is my sincere hope that the authorities will take swift action and that your readers will become more mindful of [Issue].</p>
+                    <p class="pattern-example">E.g. "It is my sincere hope that the authorities will take swift action and that your readers will become more mindful of their daily food waste."</p>
+                </div>
+            </div>
+        </div>
+        
     </main>
 
     <main id="vocab" class="tab-content">
@@ -1618,768 +1716,3 @@ Let’s come together to celebrate and support our school. Don’t wait – cont
                                 <tr><td><strong>roller-coaster</strong></td><td>n.</td><td>高低起伏的</td><td>This movie takes you on a roller-coaster ride of emotion.</td></tr>
                                 <tr><td><strong>launch</strong></td><td>v.</td><td>推出</td><td>The programme was launched a year ago.</td></tr>
                                 <tr><td><strong>domestically</strong></td><td>adv.</td><td>在國內</td><td>The movie made $76 million domestically but only $1.3 million abroad.</td></tr>
-                                <tr><td><strong>pro-environmental</strong></td><td>adj.</td><td>支持環保的</td><td>Pro-environmental behavior plays an important role in decreasing the waste of natural resources.</td></tr>
-                                <tr><td><strong>influence</strong></td><td>n.</td><td>影響</td><td>Helen's a bad/good influence on him.</td></tr>
-                                <tr><td><strong>adopt</strong></td><td>v.</td><td>採納</td><td>He’s adopted a remarkably light-hearted attitude towards the situation.</td></tr>
-                                <tr><td><strong>characterisation</strong></td><td>n.</td><td>人物塑造</td><td>His book has good characterisation and lively dialogue. The people represented in the story seem real and natural.</td></tr>
-                                <tr><td><strong>collaboration</strong></td><td>n.</td><td>合作</td><td>The two playwrights worked in close collaboration on the script.</td></tr>
-                                <tr><td><strong>founded in</strong></td><td>v.</td><td>創辦</td><td>He used the money to found an internet business.</td></tr>
-                                <tr><td><strong>driving force</strong></td><td>n.</td><td>推動力</td><td>She was always the driving force behind the plan.</td></tr>
-                                <tr><td><strong>innocent</strong></td><td>adj.</td><td>天真無邪的</td><td>She has such an innocent face that I find it hard to believe anything bad of her.</td></tr>
-                                <tr><td><strong>varied</strong></td><td>adj.</td><td>形形色色的</td><td>The school offers an exciting and varied programme of social events.</td></tr>
-                                <tr><td><strong>notable</strong></td><td>adj.</td><td>顯著的</td><td>Getting both sides to agree was a notable achievement.</td></tr>
-                                <tr><td><strong>labour-intensive</strong></td><td>adj.</td><td>勞動密集型的</td><td>A lot of farming techniques have been abandoned because they were too labour-intensive.</td></tr>
-                                <tr><td><strong>context</strong></td><td>n.</td><td>背景</td><td>To understand this issue, it must first be situated in its context.</td></tr>
-                                <tr><td><strong>superior</strong></td><td>adj.</td><td>佔優</td><td>For babies, breastfeeding is superior to bottle-feeding.</td></tr>
-                                <tr><td><strong>dazzling</strong></td><td>adj.</td><td>精彩的</td><td>a dazzling performance/display</td></tr>
-                                <tr><td><strong>poisonous</strong></td><td>adj.</td><td>有毒的</td><td>Can you tell the difference between poisonous mushrooms and edible varieties?</td></tr>
-                                <tr><td><strong>atmosphere</strong></td><td>n.</td><td>氣氛</td><td>There's a very relaxed atmosphere in our office.</td></tr>
-                                <tr><td><strong>bizarre</strong></td><td>adj.</td><td>怪誕的</td><td>What she was saying was rather bizarre.</td></tr>
-                                <tr><td><strong>captivating</strong></td><td>adj.</td><td>迷人的</td><td>Her voice was utterly/absolutely captivating.</td></tr>
-                                <tr><td><strong>clichéd</strong></td><td>adj.</td><td>陳詞濫調的</td><td>It might sound clichéd, but knowing that you’re doing something worthwhile makes a big difference.</td></tr>
-                                <tr><td><strong>humourless</strong></td><td>adj.</td><td>缺乏幽默感的</td><td>He was a straight-faced, humourless character.</td></tr>
-                                <tr><td><strong>exaggerated</strong></td><td>adj.</td><td>誇張的</td><td>The slimming effect of wearing black has been greatly exaggerated.</td></tr>
-                                <tr><td><strong>score</strong></td><td>n.</td><td>配樂</td><td>a film score</td></tr>
-                                <tr><td><strong>intrusive</strong></td><td>adj.</td><td>唐突的</td><td>The photographers were pushy and intrusive.</td></tr>
-                                <tr><td><strong>capitalism</strong></td><td>n.</td><td>資本主義</td><td>With capitalism, people are motivated by the idea of personal profit and success.</td></tr>
-                                <tr><td><strong>mainstream</strong></td><td>n.</td><td>主流的</td><td>This is the director’s first mainstream Hollywood film.</td></tr>
-                                <tr><td><strong>authentic</strong></td><td>adj.</td><td>可信的</td><td>He was there and saw what happened, so his is the only authentic account.</td></tr>
-                                <tr><td><strong>dialogue</strong></td><td>n.</td><td>對話</td><td>Act Two begins with a short dialogue between father and son.</td></tr>
-                                <tr><td><strong>unpredictable</strong></td><td>adj.</td><td>無法預測的</td><td>The weather there can be unpredictable – one minute it’s blue skies and the next minute it’s pouring rain.</td></tr>
-                                <tr><td><strong>be riddled with sth</strong></td><td>idiom</td><td>充斥著</td><td>This article is riddled with errors.</td></tr>
-                                <tr><td><strong>misinformation</strong></td><td>n.</td><td>錯誤的資訊</td><td>There’s a lot of misinformation about the disease that needs to be corrected.</td></tr>
-                                <tr><td><strong>well-balanced</strong></td><td>adj.</td><td>持平的</td><td>a well-balanced article</td></tr>
-                                <tr><td><strong>influential</strong></td><td>adj.</td><td>有影響力的</td><td>Johnson was influential (= important) in persuading the producers to put money into the film.</td></tr>
-                                <tr><td><strong>visual effects</strong></td><td>n.</td><td>視覺效果</td><td>The movie’s other awards were for visual effects, costume design, and sound.</td></tr>
-                                <tr><td><strong>fearsome</strong></td><td>adj.</td><td>可怕的</td><td>The champion boxer has a fearsome reputation because he knocks out most of his opponents in the first round.</td></tr>
-                                <tr><td><strong>reputation</strong></td><td>n.</td><td>名譽</td><td>The company has a worldwide reputation for quality.</td></tr>
-                                <tr><td><strong>plague sb with sth</strong></td><td>v.</td><td>困擾</td><td>The children plagued him with questions all through lunch.</td></tr>
-                                <tr><td><strong>setback</strong></td><td>n.</td><td>挫折</td><td>There has been a slight/temporary setback in our plans.</td></tr>
-                                <tr><td><strong>take a / one’s toll on</strong></td><td>idiom</td><td>造成破壞</td><td>The problems of the past few months have taken their toll on her health.</td></tr>
-                                <tr><td><strong>documentary</strong></td><td>n.</td><td>紀錄片</td><td>They showed a documentary on animal communication.</td></tr>
-                                <tr><td><strong>evidently</strong></td><td>adv.</td><td>顯然地</td><td>He was evidently upset by the news of the accident.</td></tr>
-                                <tr><td><strong>shrug one’s shoulders</strong></td><td>phr.</td><td>不知道</td><td>When I asked where he was, she just shrugged her shoulders.</td></tr>
-                                <tr><td><strong>villain</strong></td><td>n.</td><td>反派角色</td><td>He made his reputation as an actor playing villains.</td></tr>
-                                <tr><td><strong>money-spinner</strong></td><td>n.</td><td>賺錢的生意</td><td>The toy companies are always trying to find another money-spinner like Monopoly or the Barbie doll.</td></tr>
-                                <tr><td><strong>breathtaking</strong></td><td>adj.</td><td>令人嘆為觀止的</td><td>The view from the top of the mountain is breathtaking.</td></tr>
-                                <tr><td><strong>magnificent</strong></td><td>adj.</td><td>出眾的</td><td>a magnificent performance</td></tr>
-                                <tr><td><strong>disagreement</strong></td><td>n.</td><td>分歧</td><td>We had a disagreement about/over the fee for the work.</td></tr>
-                                <tr><td><strong>computer-generated imagery (CGI)</strong></td><td>n.</td><td>電腦合成影像</td><td>Computer-generated imagery (CGI) is the creation of animated content using imaging software.</td></tr>
-                                <tr><td><strong>radically</strong></td><td>adv.</td><td>極端地</td><td>The accident radically changed the course of his life.</td></tr>
-                                <tr><td><strong>adapted from</strong></td><td>v.</td><td>改編</td><td>The recipe here is a pork roast adapted from Caroline O'Neill's book "Louisiana Kitchen".</td></tr>
-                                <tr><td><strong>bland</strong></td><td>adj.</td><td>枯燥乏味的</td><td>Pop music these days is so bland and boring.</td></tr>
-                                <tr><td><strong>unoriginal</strong></td><td>adj.</td><td>無新意的</td><td>Students were not impressed by his unoriginal thoughts on the novel.</td></tr>
-                                <tr><td><strong>water sth down</strong></td><td>phr. v.</td><td>淡化</td><td>They need to water the plan down before proposing it to their clients.</td></tr>
-                                <tr><td><strong>playfulness</strong></td><td>n.</td><td>趣味</td><td>She plays the part with a childlike playfulness.</td></tr>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-        <div class="card" style="border-top-color: var(--accent-orange);">
-            <div class="accordion-header" onclick="toggleCard(this)">
-                <i class="material-icons main-icon">spellcheck</i> 
-                Basic Vocab
-                <i class="material-icons expand-arrow">expand_more</i>
-            </div>
-            <div class="card-body" style="background-color: #f5f5f9; padding: 15px 10px;">
-                
-                <div class="card nested-card">
-                    <div class="accordion-header" onclick="toggleCard(this)">
-                        <i class="material-icons main-icon">menu_book</i>
-                        Part 1: 150 Essential Academic Words
-                        <i class="material-icons expand-arrow">expand_more</i>
-                    </div>
-                    <div class="card-body">
-                        
-                        <div class="card nested-card sub-nested-card">
-                            <div class="accordion-header" onclick="toggleCard(this)">
-                                <i class="material-icons main-icon">list</i> Dictation 1: Getting Started <i class="material-icons expand-arrow">expand_more</i>
-                            </div>
-                            <div class="card-body">
-                                <ul class="vocab-word-list">
-                                    <li><strong>1. Achieve (v.)</strong> – To reach a goal</li>
-                                    <li><strong>2. Affect (v.)</strong> – To change or influence</li>
-                                    <li><strong>3. Analyze (v.)</strong> – To study closely</li>
-                                    <li><strong>4. Approach (n./v.)</strong> – A way of doing something</li>
-                                    <li><strong>5. Aspect (n.)</strong> – A part or feature</li>
-                                    <li><strong>6. Assess (v.)</strong> – To judge or evaluate</li>
-                                    <li><strong>7. Assume (v.)</strong> – To guess or believe</li>
-                                    <li><strong>8. Authority (n.)</strong> – Power or right to control</li>
-                                    <li><strong>9. Available (adj.)</strong> – Ready to be used</li>
-                                    <li><strong>10. Benefit (n./v.)</strong> – An advantage / to help</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="card nested-card sub-nested-card">
-                            <div class="accordion-header" onclick="toggleCard(this)">
-                                <i class="material-icons main-icon">list</i> Dictation 2: Building Ideas <i class="material-icons expand-arrow">expand_more</i>
-                            </div>
-                            <div class="card-body">
-                                <ul class="vocab-word-list">
-                                    <li><strong>11. Category (n.)</strong> – A group or type</li>
-                                    <li><strong>12. Community (n.)</strong> – A group of people living together</li>
-                                    <li><strong>13. Complex (adj.)</strong> – Not simple; difficult</li>
-                                    <li><strong>14. Conclude (v.)</strong> – To finish or bring to an end</li>
-                                    <li><strong>15. Conduct (v.)</strong> – To organize and do</li>
-                                    <li><strong>16. Consequence (n.)</strong> – A result of an action</li>
-                                    <li><strong>17. Construct (v.)</strong> – To build or make</li>
-                                    <li><strong>18. Consume (v.)</strong> – To use up or eat</li>
-                                    <li><strong>19. Context (n.)</strong> – The situation or background</li>
-                                    <li><strong>20. Contrast (n./v.)</strong> – A clear difference</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="card nested-card sub-nested-card">
-                            <div class="accordion-header" onclick="toggleCard(this)">
-                                <i class="material-icons main-icon">list</i> Dictation 3: Society & Culture <i class="material-icons expand-arrow">expand_more</i>
-                            </div>
-                            <div class="card-body">
-                                <ul class="vocab-word-list">
-                                    <li><strong>21. Contribute (v.)</strong> – To give or help</li>
-                                    <li><strong>22. Create (v.)</strong> – To make something new</li>
-                                    <li><strong>23. Culture (n.)</strong> – Way of life / arts</li>
-                                    <li><strong>24. Data (n.)</strong> – Facts and information</li>
-                                    <li><strong>25. Define (v.)</strong> – To explain the meaning</li>
-                                    <li><strong>26. Design (v./n.)</strong> – To plan / a drawing</li>
-                                    <li><strong>27. Detail (n.)</strong> – A small piece of information</li>
-                                    <li><strong>28. Develop (v.)</strong> – To grow or improve</li>
-                                    <li><strong>29. Difference (n.)</strong> – Not the same</li>
-                                    <li><strong>30. Direct (adj./v.)</strong> – Straight / to guide</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="card nested-card sub-nested-card">
-                            <div class="accordion-header" onclick="toggleCard(this)">
-                                <i class="material-icons main-icon">list</i> Dictation 4: Science & Environment <i class="material-icons expand-arrow">expand_more</i>
-                            </div>
-                            <div class="card-body">
-                                <ul class="vocab-word-list">
-                                    <li><strong>31. Discover (v.)</strong> – To find something new</li>
-                                    <li><strong>32. Discuss (v.)</strong> – To talk about</li>
-                                    <li><strong>33. Economy (n.)</strong> – System of money and jobs</li>
-                                    <li><strong>34. Effect (n.)</strong> – A result</li>
-                                    <li><strong>35. Element (n.)</strong> – A basic part</li>
-                                    <li><strong>36. Emphasize (v.)</strong> – To show importance</li>
-                                    <li><strong>37. Environment (n.)</strong> – The natural world / surroundings</li>
-                                    <li><strong>38. Error (n.)</strong> – A mistake</li>
-                                    <li><strong>39. Establish (v.)</strong> – To set up or start</li>
-                                    <li><strong>40. Evaluate (v.)</strong> – To judge the value</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="card nested-card sub-nested-card">
-                            <div class="accordion-header" onclick="toggleCard(this)">
-                                <i class="material-icons main-icon">list</i> Dictation 5: Making Judgments <i class="material-icons expand-arrow">expand_more</i>
-                            </div>
-                            <div class="card-body">
-                                <ul class="vocab-word-list">
-                                    <li><strong>41. Evidence (n.)</strong> – Proof</li>
-                                    <li><strong>42. Factor (n.)</strong> – Something that causes a result</li>
-                                    <li><strong>43. Feature (n.)</strong> – An important part</li>
-                                    <li><strong>44. Final (adj.)</strong> – The last one</li>
-                                    <li><strong>45. Focus (v./n.)</strong> – To pay attention</li>
-                                    <li><strong>46. Function (n./v.)</strong> – Purpose / how it works</li>
-                                    <li><strong>47. Global (adj.)</strong> – Worldwide</li>
-                                    <li><strong>48. Identify (v.)</strong> – To recognize or find</li>
-                                    <li><strong>49. Illustrate (v.)</strong> – To explain with examples</li>
-                                    <li><strong>50. Impact (n./v.)</strong> – A strong effect</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="card nested-card sub-nested-card">
-                            <div class="accordion-header" onclick="toggleCard(this)">
-                                <i class="material-icons main-icon">list</i> Dictation 6: Inclusion & Action <i class="material-icons expand-arrow">expand_more</i>
-                            </div>
-                            <div class="card-body">
-                                <ul class="vocab-word-list">
-                                    <li><strong>51. Important (adj.)</strong> – Having great meaning or value</li>
-                                    <li><strong>52. Include (v.)</strong> – To put in</li>
-                                    <li><strong>53. Indicate (v.)</strong> – To show or point out</li>
-                                    <li><strong>54. Individual (n./adj.)</strong> – One single person</li>
-                                    <li><strong>55. Initial (adj.)</strong> – First or beginning</li>
-                                    <li><strong>56. Injure (v.)</strong> – To hurt</li>
-                                    <li><strong>57. Involve (v.)</strong> – To include someone or something</li>
-                                    <li><strong>58. Issue (n.)</strong> – A problem or topic</li>
-                                    <li><strong>59. Item (n.)</strong> – One single thing</li>
-                                    <li><strong>60. Journal (n.)</strong> – A magazine or diary</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="card nested-card sub-nested-card">
-                            <div class="accordion-header" onclick="toggleCard(this)">
-                                <i class="material-icons main-icon">list</i> Dictation 7: Rules & Limits <i class="material-icons expand-arrow">expand_more</i>
-                            </div>
-                            <div class="card-body">
-                                <ul class="vocab-word-list">
-                                    <li><strong>61. Label (n./v.)</strong> – A tag / to name</li>
-                                    <li><strong>62. Labor (n.)</strong> – Hard work</li>
-                                    <li><strong>63. Legal (adj.)</strong> – Allowed by law</li>
-                                    <li><strong>64. Limit (n./v.)</strong> – A maximum point / to restrict</li>
-                                    <li><strong>65. Link (n./v.)</strong> – A connection</li>
-                                    <li><strong>66. Locate (v.)</strong> – To find the place of</li>
-                                    <li><strong>67. Maintain (v.)</strong> – To keep in good condition</li>
-                                    <li><strong>68. Major (adj.)</strong> – Very large or important</li>
-                                    <li><strong>69. Maximum (n./adj.)</strong> – The highest amount</li>
-                                    <li><strong>70. Mental (adj.)</strong> – Relating to the mind</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="card nested-card sub-nested-card">
-                            <div class="accordion-header" onclick="toggleCard(this)">
-                                <i class="material-icons main-icon">list</i> Dictation 8: Choices & Changes <i class="material-icons expand-arrow">expand_more</i>
-                            </div>
-                            <div class="card-body">
-                                <ul class="vocab-word-list">
-                                    <li><strong>71. Method (n.)</strong> – A way of doing something</li>
-                                    <li><strong>72. Minimum (n./adj.)</strong> – The lowest amount</li>
-                                    <li><strong>73. Modify (v.)</strong> – To change slightly</li>
-                                    <li><strong>74. Negative (adj.)</strong> – Bad or harmful</li>
-                                    <li><strong>75. Normal (adj.)</strong> – Usual or typical</li>
-                                    <li><strong>76. Obtain (v.)</strong> – To get</li>
-                                    <li><strong>77. Obvious (adj.)</strong> – Easy to see or understand</li>
-                                    <li><strong>78. Occur (v.)</strong> – To happen</li>
-                                    <li><strong>79. Option (n.)</strong> – A choice</li>
-                                    <li><strong>80. Participate (v.)</strong> – To join in</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="card nested-card sub-nested-card">
-                            <div class="accordion-header" onclick="toggleCard(this)">
-                                <i class="material-icons main-icon">list</i> Dictation 9: Processes & Steps <i class="material-icons expand-arrow">expand_more</i>
-                            </div>
-                            <div class="card-body">
-                                <ul class="vocab-word-list">
-                                    <li><strong>81. Partner (n.)</strong> – A person you work with</li>
-                                    <li><strong>82. Percent (n.)</strong> – Out of 100</li>
-                                    <li><strong>83. Period (n.)</strong> – A length of time</li>
-                                    <li><strong>84. Physical (adj.)</strong> – Relating to the body</li>
-                                    <li><strong>85. Policy (n.)</strong> – A rule or plan</li>
-                                    <li><strong>86. Positive (adj.)</strong> – Good or hopeful</li>
-                                    <li><strong>87. Potential (n./adj.)</strong> – Possible future ability</li>
-                                    <li><strong>88. Previous (adj.)</strong> – Happening before</li>
-                                    <li><strong>89. Primary (adj.)</strong> – Main or most important</li>
-                                    <li><strong>90. Principle (n.)</strong> – A basic rule or belief</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="card nested-card sub-nested-card">
-                            <div class="accordion-header" onclick="toggleCard(this)">
-                                <i class="material-icons main-icon">list</i> Dictation 10: Progress & Promotion <i class="material-icons expand-arrow">expand_more</i>
-                            </div>
-                            <div class="card-body">
-                                <ul class="vocab-word-list">
-                                    <li><strong>91. Proceed (v.)</strong> – To go forward</li>
-                                    <li><strong>92. Process (n.)</strong> – A series of steps</li>
-                                    <li><strong>93. Project (n.)</strong> – A planned piece of work</li>
-                                    <li><strong>94. Promote (v.)</strong> – To encourage or advertise</li>
-                                    <li><strong>95. Provide (v.)</strong> – To give what is needed</li>
-                                    <li><strong>96. Public (adj./n.)</strong> – For everyone / the people</li>
-                                    <li><strong>97. Publish (v.)</strong> – To print or share officially</li>
-                                    <li><strong>98. Purchase (v./n.)</strong> – To buy</li>
-                                    <li><strong>99. Range (n.)</strong> – A variety of things</li>
-                                    <li><strong>100. React (v.)</strong> – To respond to something</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="card nested-card sub-nested-card">
-                            <div class="accordion-header" onclick="toggleCard(this)">
-                                <i class="material-icons main-icon">list</i> Dictation 11: Regulation & Reliance <i class="material-icons expand-arrow">expand_more</i>
-                            </div>
-                            <div class="card-body">
-                                <ul class="vocab-word-list">
-                                    <li><strong>101. Region (n.)</strong> – An area</li>
-                                    <li><strong>102. Register (v.)</strong> – To sign up</li>
-                                    <li><strong>103. Regulate (v.)</strong> – To control with rules</li>
-                                    <li><strong>104. Reject (v.)</strong> – To say no to</li>
-                                    <li><strong>105. Rely (v.)</strong> – To depend on</li>
-                                    <li><strong>106. Remove (v.)</strong> – To take away</li>
-                                    <li><strong>107. Require (v.)</strong> – To need</li>
-                                    <li><strong>108. Research (n./v.)</strong> – Careful study</li>
-                                    <li><strong>109. Respond (v.)</strong> – To answer or react</li>
-                                    <li><strong>110. Restrict (v.)</strong> – To limit</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="card nested-card sub-nested-card">
-                            <div class="accordion-header" onclick="toggleCard(this)">
-                                <i class="material-icons main-icon">list</i> Dictation 12: Roles & Strategies <i class="material-icons expand-arrow">expand_more</i>
-                            </div>
-                            <div class="card-body">
-                                <ul class="vocab-word-list">
-                                    <li><strong>111. Result (n./v.)</strong> – The outcome</li>
-                                    <li><strong>112. Retain (v.)</strong> – To keep</li>
-                                    <li><strong>113. Reveal (v.)</strong> – To show a secret</li>
-                                    <li><strong>114. Role (n.)</strong> – A part played by someone</li>
-                                    <li><strong>115. Route (n.)</strong> – A way to get somewhere</li>
-                                    <li><strong>116. Search (v./n.)</strong> – To look for</li>
-                                    <li><strong>117. Section (n.)</strong> – A part of a whole</li>
-                                    <li><strong>118. Sector (n.)</strong> – A part of the economy</li>
-                                    <li><strong>119. Secure (adj./v.)</strong> – Safe / to protect</li>
-                                    <li><strong>120. Select (v.)</strong> – To choose</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="card nested-card sub-nested-card">
-                            <div class="accordion-header" onclick="toggleCard(this)">
-                                <i class="material-icons main-icon">list</i> Dictation 13: Details & Technology <i class="material-icons expand-arrow">expand_more</i>
-                            </div>
-                            <div class="card-body">
-                                <ul class="vocab-word-list">
-                                    <li><strong>121. Series (n.)</strong> – A group of related things</li>
-                                    <li><strong>122. Shift (v./n.)</strong> – To change / a change</li>
-                                    <li><strong>123. Significant (adj.)</strong> – Important and large</li>
-                                    <li><strong>124. Similar (adj.)</strong> – Almost the same</li>
-                                    <li><strong>125. Source (n.)</strong> – Where something comes from</li>
-                                    <li><strong>126. Specific (adj.)</strong> – Exact or particular</li>
-                                    <li><strong>127. Strategy (n.)</strong> – A careful plan</li>
-                                    <li><strong>128. Structure (n.)</strong> – How things are built/organized</li>
-                                    <li><strong>129. Submit (v.)</strong> – To hand in</li>
-                                    <li><strong>130. Summary (n.)</strong> – A short version of a text</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="card nested-card sub-nested-card">
-                            <div class="accordion-header" onclick="toggleCard(this)">
-                                <i class="material-icons main-icon">list</i> Dictation 14: Survival & Tasks <i class="material-icons expand-arrow">expand_more</i>
-                            </div>
-                            <div class="card-body">
-                                <ul class="vocab-word-list">
-                                    <li><strong>131. Survey (n./v.)</strong> – A questionnaire / to gather data</li>
-                                    <li><strong>132. Survive (v.)</strong> – To stay alive</li>
-                                    <li><strong>133. Target (n./v.)</strong> – A goal / to aim at</li>
-                                    <li><strong>134. Task (n.)</strong> – A job to be done</li>
-                                    <li><strong>135. Team (n.)</strong> – A group working together</li>
-                                    <li><strong>136. Technique (n.)</strong> – A special skill or method</li>
-                                    <li><strong>137. Technology (n.)</strong> – Scientific machines/software</li>
-                                    <li><strong>138. Theory (n.)</strong> – An idea that explains something</li>
-                                    <li><strong>139. Traditional (adj.)</strong> – Done for a long time</li>
-                                    <li><strong>140. Transfer (v.)</strong> – To move from one place to another</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="card nested-card sub-nested-card">
-                            <div class="accordion-header" onclick="toggleCard(this)">
-                                <i class="material-icons main-icon">list</i> Dictation 15: Visuals & Wealth <i class="material-icons expand-arrow">expand_more</i>
-                            </div>
-                            <div class="card-body">
-                                <ul class="vocab-word-list">
-                                    <li><strong>141. Transport (n./v.)</strong> – Moving people/goods</li>
-                                    <li><strong>142. Vary (v.)</strong> – To change or be different</li>
-                                    <li><strong>143. Vehicle (n.)</strong> – A car, bus, or truck</li>
-                                    <li><strong>144. Version (n.)</strong> – A different form of something</li>
-                                    <li><strong>145. Visual (adj.)</strong> – Related to seeing</li>
-                                    <li><strong>146. Volume (n.)</strong> – Amount or sound level</li>
-                                    <li><strong>147. Wealth (n.)</strong> – A large amount of money</li>
-                                    <li><strong>148. Whereas (conj.)</strong> – But / on the other hand</li>
-                                    <li><strong>149. Widespread (adj.)</strong> – Happening in many places</li>
-                                    <li><strong>150. Yield (v./n.)</strong> – To produce / the harvest</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="card nested-card">
-                    <div class="accordion-header" onclick="toggleCard(this)">
-                        <i class="material-icons main-icon">menu_book</i>
-                        Part 2: 50 Daily Life Words
-                        <i class="material-icons expand-arrow">expand_more</i>
-                    </div>
-                    <div class="card-body">
-                        <p style="font-size: 0.95rem; color: #555; margin-top: 0; margin-bottom: 15px;">These words are crucial for informal emails, stories, and describing personal experiences.</p>
-
-                        <div class="card nested-card sub-nested-card">
-                            <div class="accordion-header" onclick="toggleCard(this)">
-                                <i class="material-icons main-icon">list</i> Dictation 16: School & Hobbies <i class="material-icons expand-arrow">expand_more</i>
-                            </div>
-                            <div class="card-body">
-                                <ul class="vocab-word-list">
-                                    <li><strong>151. Assignment (n.)</strong> – Homework</li>
-                                    <li><strong>152. Backpack (n.)</strong> – A school bag</li>
-                                    <li><strong>153. Campus (n.)</strong> – The school grounds</li>
-                                    <li><strong>154. Canteen (n.)</strong> – The school dining room</li>
-                                    <li><strong>155. Dictionary (n.)</strong> – A book for word meanings</li>
-                                    <li><strong>156. Exam (n.)</strong> – A test</li>
-                                    <li><strong>157. Gymnasium (Gym) (n.)</strong> – A sports hall</li>
-                                    <li><strong>158. Hobby (n.)</strong> – A fun activity</li>
-                                    <li><strong>159. Library (n.)</strong> – A place for books</li>
-                                    <li><strong>160. Uniform (n.)</strong> – Special school clothes</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="card nested-card sub-nested-card">
-                            <div class="accordion-header" onclick="toggleCard(this)">
-                                <i class="material-icons main-icon">list</i> Dictation 17: Food & Home <i class="material-icons expand-arrow">expand_more</i>
-                            </div>
-                            <div class="card-body">
-                                <ul class="vocab-word-list">
-                                    <li><strong>161. Breakfast (n.)</strong> – The morning meal</li>
-                                    <li><strong>162. Delicious (adj.)</strong> – Very tasty</li>
-                                    <li><strong>163. Dessert (n.)</strong> – Sweet food after a meal</li>
-                                    <li><strong>164. Dinner (n.)</strong> – The evening meal</li>
-                                    <li><strong>165. Furniture (n.)</strong> – Chairs, tables, beds</li>
-                                    <li><strong>166. Grocery (n.)</strong> – Food bought at a store</li>
-                                    <li><strong>167. Kitchen (n.)</strong> – A room for cooking</li>
-                                    <li><strong>168. Recipe (n.)</strong> – Instructions for cooking</li>
-                                    <li><strong>169. Refrigerator (n.)</strong> – A fridge</li>
-                                    <li><strong>170. Vegetable (n.)</strong> – Healthy plant food</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="card nested-card sub-nested-card">
-                            <div class="accordion-header" onclick="toggleCard(this)">
-                                <i class="material-icons main-icon">list</i> Dictation 18: Travel & Transport <i class="material-icons expand-arrow">expand_more</i>
-                            </div>
-                            <div class="card-body">
-                                <ul class="vocab-word-list">
-                                    <li><strong>171. Airport (n.)</strong> – Where planes fly from</li>
-                                    <li><strong>172. Luggage (n.)</strong> – Bags for traveling</li>
-                                    <li><strong>173. Passenger (n.)</strong> – A person riding a vehicle</li>
-                                    <li><strong>174. Passport (n.)</strong> – A travel document</li>
-                                    <li><strong>175. Platform (n.)</strong> – Where you wait for a train</li>
-                                    <li><strong>176. Subway (n.)</strong> – Underground train (MTR)</li>
-                                    <li><strong>177. Suitcase (n.)</strong> – A travel bag</li>
-                                    <li><strong>178. Ticket (n.)</strong> – A pass to enter or ride</li>
-                                    <li><strong>179. Tourist (n.)</strong> – A person traveling for fun</li>
-                                    <li><strong>180. Traffic (n.)</strong> – Cars on the road</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="card nested-card sub-nested-card">
-                            <div class="accordion-header" onclick="toggleCard(this)">
-                                <i class="material-icons main-icon">list</i> Dictation 19: People & Feelings <i class="material-icons expand-arrow">expand_more</i>
-                            </div>
-                            <div class="card-body">
-                                <ul class="vocab-word-list">
-                                    <li><strong>181. Angry (adj.)</strong> – Very mad</li>
-                                    <li><strong>182. Anxious (adj.)</strong> – Worried or nervous</li>
-                                    <li><strong>183. Excited (adj.)</strong> – Very happy and thrilled</li>
-                                    <li><strong>184. Exhausted (adj.)</strong> – Very tired</li>
-                                    <li><strong>185. Grateful (adj.)</strong> – Thankful</li>
-                                    <li><strong>186. Neighbor (n.)</strong> – A person living near you</li>
-                                    <li><strong>187. Nervous (adj.)</strong> – Scared or worried</li>
-                                    <li><strong>188. Patient (adj./n.)</strong> – Able to wait / a sick person</li>
-                                    <li><strong>189. Relative (n.)</strong> – A family member</li>
-                                    <li><strong>190. Stranger (n.)</strong> – Someone you don't know</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="card nested-card sub-nested-card">
-                            <div class="accordion-header" onclick="toggleCard(this)">
-                                <i class="material-icons main-icon">list</i> Dictation 20: Everyday Actions <i class="material-icons expand-arrow">expand_more</i>
-                            </div>
-                            <div class="card-body">
-                                <ul class="vocab-word-list">
-                                    <li><strong>191. Apologize (v.)</strong> – To say sorry</li>
-                                    <li><strong>192. Borrow (v.)</strong> – To take and return later</li>
-                                    <li><strong>193. Celebrate (v.)</strong> – To have a party or joyful event</li>
-                                    <li><strong>194. Complain (v.)</strong> – To say you are unhappy about something</li>
-                                    <li><strong>195. Forgive (v.)</strong> – To stop being angry at someone</li>
-                                    <li><strong>196. Invite (v.)</strong> – To ask someone to come</li>
-                                    <li><strong>197. Organize (v.)</strong> – To plan or arrange</li>
-                                    <li><strong>198. Prepare (v.)</strong> – To get ready</li>
-                                    <li><strong>199. Remember (v.)</strong> – To keep in your memory</li>
-                                    <li><strong>200. Remind (v.)</strong> – To make someone remember</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-        <div class="card" style="border-top-color: var(--accent-red);">
-            <div class="accordion-header" onclick="toggleCard(this)">
-                <i class="material-icons main-icon">edit_note</i> 
-                Phrases for Writing
-                <i class="material-icons expand-arrow">expand_more</i>
-            </div>
-            <div class="card-body" style="background-color: #f5f5f9; padding: 15px 10px;">
-                
-                <div class="card nested-card">
-                    <div class="accordion-header" onclick="toggleCard(this)">
-                        <i class="material-icons main-icon">menu_book</i>
-                        Part 1: Opinions & Argumentation
-                        <i class="material-icons expand-arrow">expand_more</i>
-                    </div>
-                    <div class="card-body">
-                        <p style="font-size: 0.9rem; color: #555; margin-top: 0; margin-bottom: 15px;">(Best for: Letters to the Editor, Argumentative Essays, Editorials)</p>
-                        <div class="vocab-table-container">
-                            <table class="vocab-table">
-                                <tr><th>No.</th><th>Phrase</th><th>Meaning</th><th>Suitable Text Types</th><th>Sample Sentence</th></tr>
-                                <tr><td>1</td><td><strong>A double-edged sword</strong></td><td>Something that has both positive and negative consequences.</td><td>Argumentative Essays, Letters to the Editor</td><td>Social media is a double-edged sword; it connects us globally but can also cause severe anxiety.</td></tr>
-                                <tr><td>2</td><td><strong>Turn a blind eye to</strong></td><td>To ignore something that you know is wrong.</td><td>Editorials, Speeches, Letters</td><td>The government can no longer turn a blind eye to the worsening housing crisis in the city.</td></tr>
-                                <tr><td>3</td><td><strong>Spark a heated debate</strong></td><td>To cause people to argue passionately about a topic.</td><td>Articles, Editorials</td><td>The proposal to build a new landfill in the district has sparked a heated debate among residents.</td></tr>
-                                <tr><td>4</td><td><strong>The tip of the iceberg</strong></td><td>Only a small, visible part of a much larger problem.</td><td>Reports, Essays, Letters</td><td>The recent rise in youth crime is merely the tip of the iceberg of deeper societal issues.</td></tr>
-                                <tr><td>5</td><td><strong>A blessing in disguise</strong></td><td>A good thing that seemed bad at first.</td><td>Blogs, Personal Reflections</td><td>Failing my first exam was a blessing in disguise because it forced me to change my study habits.</td></tr>
-                                <tr><td>6</td><td><strong>Nip (something) in the bud</strong></td><td>To stop a bad situation before it can develop further.</td><td>Proposals, Letters to the Editor</td><td>We must nip school bullying in the bud by promoting empathy in classrooms.</td></tr>
-                                <tr><td>7</td><td><strong>Bear the brunt of</strong></td><td>To suffer the worst part of an unpleasant situation.</td><td>Articles, Reports</td><td>Small businesses bore the brunt of the economic downturn during the pandemic.</td></tr>
-                                <tr><td>8</td><td><strong>A vicious cycle</strong></td><td>A repeating situation where one problem causes another, making it worse.</td><td>Essays, Articles</td><td>Many poor families are trapped in a vicious cycle of poverty and lack of education.</td></tr>
-                                <tr><td>9</td><td><strong>A step in the right direction</strong></td><td>An action that helps you get closer to a goal.</td><td>Proposals, Speeches</td><td>Banning single-use plastics is definitely a step in the right direction for our environment.</td></tr>
-                                <tr><td>10</td><td><strong>Open Pandora’s box</strong></td><td>To do something that causes a lot of new, unexpected problems.</td><td>Argumentative Essays</td><td>Legalizing soft drugs might open Pandora’s box, leading to a rise in addiction.</td></tr>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card nested-card">
-                    <div class="accordion-header" onclick="toggleCard(this)">
-                        <i class="material-icons main-icon">menu_book</i>
-                        Part 2: Trends, Situations & Impacts
-                        <i class="material-icons expand-arrow">expand_more</i>
-                    </div>
-                    <div class="card-body">
-                        <p style="font-size: 0.9rem; color: #555; margin-top: 0; margin-bottom: 15px;">(Best for: News Articles, Reports, Proposals)</p>
-                        <div class="vocab-table-container">
-                            <table class="vocab-table">
-                                <tr><th>No.</th><th>Phrase</th><th>Meaning</th><th>Suitable Text Types</th><th>Sample Sentence</th></tr>
-                                <tr><td>11</td><td><strong>Gain momentum</strong></td><td>To become popular or develop more quickly.</td><td>Articles, Reports</td><td>The campaign to reduce food waste has gained significant momentum in recent months.</td></tr>
-                                <tr><td>12</td><td><strong>Wreak havoc on</strong></td><td>To cause massive damage or destruction to something.</td><td>Articles, Letters to the Editor</td><td>The super typhoon wreaked havoc on the coastal areas of Hong Kong.</td></tr>
-                                <tr><td>13</td><td><strong>Spring up like mushrooms</strong></td><td>To appear or develop quickly and in large numbers.</td><td>Articles, Blogs</td><td>Bubble tea shops have sprung up like mushrooms across the city over the past decade.</td></tr>
-                                <tr><td>14</td><td><strong>In the blink of an eye</strong></td><td>Extremely quickly.</td><td>Narratives, Blogs, Articles</td><td>The technology landscape changes in the blink of an eye, forcing workers to constantly adapt.</td></tr>
-                                <tr><td>15</td><td><strong>Stand the test of time</strong></td><td>To remain popular or effective for a very long period.</td><td>Reviews, Feature Articles</td><td>Traditional dim sum has stood the test of time and remains a favorite among locals.</td></tr>
-                                <tr><td>16</td><td><strong>A growing consensus</strong></td><td>A general agreement among people that is becoming stronger.</td><td>Essays, Reports</td><td>There is a growing consensus that we need to prioritize mental health in schools.</td></tr>
-                                <tr><td>17</td><td><strong>Pave the way for</strong></td><td>To make it possible or easier for something else to happen.</td><td>Articles, Speeches</td><td>The discovery of this new vaccine will pave the way for a healthier future.</td></tr>
-                                <tr><td>18</td><td><strong>Reach a fever pitch</strong></td><td>To reach a level of extreme excitement or intensity.</td><td>Feature Articles, Narratives</td><td>The excitement in the stadium reached a fever pitch as the final whistle blew.</td></tr>
-                                <tr><td>19</td><td><strong>A far cry from</strong></td><td>Very different from.</td><td>Reviews, Comparative Essays</td><td>The dirty streets are a far cry from the pristine image the tourism board promotes.</td></tr>
-                                <tr><td>20</td><td><strong>Take its toll on</strong></td><td>To cause harm or suffering over a period of time.</td><td>Letters to the Editor, Blogs</td><td>The relentless exam pressure is taking its toll on students' physical and mental health.</td></tr>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card nested-card">
-                    <div class="accordion-header" onclick="toggleCard(this)">
-                        <i class="material-icons main-icon">menu_book</i>
-                        Part 3: Taking Action & Problem Solving
-                        <i class="material-icons expand-arrow">expand_more</i>
-                    </div>
-                    <div class="card-body">
-                        <p style="font-size: 0.9rem; color: #555; margin-top: 0; margin-bottom: 15px;">(Best for: Speeches, Proposals, Formal Letters)</p>
-                        <div class="vocab-table-container">
-                            <table class="vocab-table">
-                                <tr><th>No.</th><th>Phrase</th><th>Meaning</th><th>Suitable Text Types</th><th>Sample Sentence</th></tr>
-                                <tr><td>21</td><td><strong>Take proactive measures</strong></td><td>To act in advance to deal with an expected difficulty.</td><td>Proposals, Official Letters</td><td>The school must take proactive measures to ensure campus security.</td></tr>
-                                <tr><td>22</td><td><strong>Join hands to</strong></td><td>To work together cooperatively.</td><td>Speeches, Proposals</td><td>Citizens must join hands to protect our beautiful country parks.</td></tr>
-                                <tr><td>23</td><td><strong>Leave no stone unturned</strong></td><td>To try every possible course of action to achieve something.</td><td>Speeches, Reports</td><td>The police have promised to leave no stone unturned in their investigation.</td></tr>
-                                <tr><td>24</td><td><strong>Strike a balance between</strong></td><td>To find a compromise between two conflicting things.</td><td>Essays, Editorials</td><td>It is crucial to strike a balance between economic development and environmental conservation.</td></tr>
-                                <tr><td>25</td><td><strong>Think outside the box</strong></td><td>To think creatively and unconventionally.</td><td>Proposals, Blogs</td><td>To solve the traffic congestion, town planners need to think outside the box.</td></tr>
-                                <tr><td>26</td><td><strong>Bear in mind</strong></td><td>To remember a piece of information when making a decision.</td><td>Speeches, Advice Letters</td><td>Please bear in mind that academic success does not define your entire worth.</td></tr>
-                                <tr><td>27</td><td><strong>Make concerted efforts</strong></td><td>To try really hard as a group.</td><td>Proposals, Letters</td><td>If we make concerted efforts, we can definitely reduce our carbon footprint.</td></tr>
-                                <tr><td>28</td><td><strong>Shed light on</strong></td><td>To help explain a situation or make it clearer.</td><td>Reports, Articles</td><td>The survey sheds light on the sleeping habits of local teenagers.</td></tr>
-                                <tr><td>29</td><td><strong>Rise to the occasion</strong></td><td>To show you can deal with a difficult situation successfully.</td><td>Speeches, Narratives</td><td>Even though he was nervous, the captain rose to the occasion and led his team to victory.</td></tr>
-                                <tr><td>30</td><td><strong>Go to great lengths</strong></td><td>To put a lot of effort into doing something.</td><td>Articles, Stories</td><td>The organizers went to great lengths to ensure the safety of the marathon runners.</td></tr>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card nested-card">
-                    <div class="accordion-header" onclick="toggleCard(this)">
-                        <i class="material-icons main-icon">menu_book</i>
-                        Part 4: Personal Growth & Feelings
-                        <i class="material-icons expand-arrow">expand_more</i>
-                    </div>
-                    <div class="card-body">
-                        <p style="font-size: 0.9rem; color: #555; margin-top: 0; margin-bottom: 15px;">(Best for: Blogs, Narratives/Stories, Diary Entries, Advice Letters)</p>
-                        <div class="vocab-table-container">
-                            <table class="vocab-table">
-                                <tr><th>No.</th><th>Phrase</th><th>Meaning</th><th>Suitable Text Types</th><th>Sample Sentence</th></tr>
-                                <tr><td>31</td><td><strong>Broaden one’s horizons</strong></td><td>To expand one's knowledge, understanding, or experience.</td><td>Blogs, Speeches, Reflections</td><td>Traveling abroad is a fantastic way to broaden your horizons and learn about other cultures.</td></tr>
-                                <tr><td>32</td><td><strong>See eye to eye</strong></td><td>To agree with someone entirely.</td><td>Blogs, Stories</td><td>My parents and I don't always see eye to eye regarding my future career choices.</td></tr>
-                                <tr><td>33</td><td><strong>A shoulder to cry on</strong></td><td>Someone who gives you sympathy and comfort.</td><td>Advice Letters, Narratives</td><td>True friends will always offer a shoulder to cry on when you are going through a tough time.</td></tr>
-                                <tr><td>34</td><td><strong>Down in the dumps</strong></td><td>Feeling very sad or depressed.</td><td>Diary Entries, Stories</td><td>I was feeling down in the dumps after failing my driving test.</td></tr>
-                                <tr><td>35</td><td><strong>On cloud nine</strong></td><td>Extremely happy or joyful.</td><td>Diary Entries, Narratives</td><td>When she found out she was accepted into her dream university, she was on cloud nine.</td></tr>
-                                <tr><td>36</td><td><strong>Step out of one’s comfort zone</strong></td><td>To do something you are not used to doing.</td><td>Blogs, Reflections</td><td>Joining the drama club forced me to step out of my comfort zone and build my confidence.</td></tr>
-                                <tr><td>37</td><td><strong>Turn over a new leaf</strong></td><td>To start behaving in a better way.</td><td>Reflections, Advice Letters</td><td>John promised to turn over a new leaf and start handing in his homework on time.</td></tr>
-                                <tr><td>38</td><td><strong>Look up to (someone)</strong></td><td>To admire and respect someone deeply.</td><td>Articles, Speeches</td><td>I look up to my older sister because of her incredible dedication to her nursing career.</td></tr>
-                                <tr><td>39</td><td><strong>Give (someone) a helping hand</strong></td><td>To assist someone.</td><td>Narratives, Advice Letters</td><td>We should always be ready to give a helping hand to the elderly in our community.</td></tr>
-                                <tr><td>40</td><td><strong>Put oneself in someone else’s shoes</strong></td><td>To imagine what it is like to be in another person's situation.</td><td>Editorials, Advice Letters</td><td>Before you judge him, try putting yourself in his shoes to understand his struggles.</td></tr>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card nested-card">
-                    <div class="accordion-header" onclick="toggleCard(this)">
-                        <i class="material-icons main-icon">menu_book</i>
-                        Part 5: Places, Events & Success
-                        <i class="material-icons expand-arrow">expand_more</i>
-                    </div>
-                    <div class="card-body">
-                        <p style="font-size: 0.9rem; color: #555; margin-top: 0; margin-bottom: 15px;">(Best for: Feature Articles, Reviews, Promotional Texts)</p>
-                        <div class="vocab-table-container">
-                            <table class="vocab-table">
-                                <tr><th>No.</th><th>Phrase</th><th>Meaning</th><th>Suitable Text Types</th><th>Sample Sentence</th></tr>
-                                <tr><td>41</td><td><strong>Hustle and bustle</strong></td><td>Busy and noisy activity (often used for cities).</td><td>Articles, Blogs, Reviews</td><td>Sometimes I like to escape the hustle and bustle of Mong Kok by hiking in Sai Kung.</td></tr>
-                                <tr><td>42</td><td><strong>Breathtaking view</strong></td><td>Extremely beautiful or amazing scenery.</td><td>Travel Blogs, Reviews</td><td>Once you reach the peak, you are rewarded with a breathtaking view of the Victoria Harbour.</td></tr>
-                                <tr><td>43</td><td><strong>Pay dividends</strong></td><td>To bring great advantages at a later time.</td><td>Articles, Advice Letters</td><td>Building good study habits in Form 4 will certainly pay dividends when you reach Form 6.</td></tr>
-                                <tr><td>44</td><td><strong>State-of-the-art</strong></td><td>Using the newest, most advanced ideas and features.</td><td>Reviews, Proposals</td><td>The newly built sports center features state-of-the-art swimming facilities.</td></tr>
-                                <tr><td>45</td><td><strong>Second to none</strong></td><td>The best; unmatched by anything else.</td><td>Reviews, Promotional Texts</td><td>The hospitality at that hotel is second to none; they treat every guest like royalty.</td></tr>
-                                <tr><td>46</td><td><strong>A roaring success</strong></td><td>A huge, undeniable achievement.</td><td>Event Reports, Articles</td><td>Thanks to the volunteers' hard work, the charity bake sale was a roaring success.</td></tr>
-                                <tr><td>47</td><td><strong>Leave a lasting impression</strong></td><td>To make people remember something for a long time.</td><td>Reviews, Reflections</td><td>The incredible performance by the school choir left a lasting impression on the audience.</td></tr>
-                                <tr><td>48</td><td><strong>Stand out from the crowd</strong></td><td>To be much better than other similar things or people.</td><td>Articles, Advice Letters</td><td>If you want your university application to stand out from the crowd, you need unique extracurriculars.</td></tr>
-                                <tr><td>49</td><td><strong>Exceed expectations</strong></td><td>To be much better than people thought it would be.</td><td>Reviews, Reports</td><td>The new M+ Museum exhibits completely exceeded my expectations.</td></tr>
-                                <tr><td>50</td><td><strong>Picture-perfect</strong></td><td>Completely lacking in defects or flaws; ideal.</td><td>Stories, Travel Blogs</td><td>The wedding was picture-perfect, with beautiful weather and stunning decorations.</td></tr>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </main>
-
-    <main id="tools" class="tab-content">
-        
-        <div class="scrolling-container" style="margin-top: 0; margin-bottom: 15px;">
-            <div class="scrolling-text">
-                ⭐ There are no shortcuts to any place worth going. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                ⭐ Success is the sum of small efforts, repeated day in and day out. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                ⭐ Preparation for tomorrow is hard work today. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                ⭐ There are no shortcuts to any place worth going. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                ⭐ Success is the sum of small efforts, repeated day in and day out. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                ⭐ Preparation for tomorrow is hard work today. 
-            </div>
-        </div>
-
-        <div class="card" style="padding: 20px;">
-            <h2 style="border-bottom:none; margin-bottom: 15px;"><i class="material-icons" style="color: var(--primary-blue); font-size: 1.8rem; vertical-align: middle;">build</i> Classroom & AI Tools</h2>
-            <ul class="tool-list">
-                <li>
-                    <a href="https://classroom.google.com/c/Nzk1ODg2MDI0OTc4" target="_blank">
-                        <img src="https://www.google.com/s2/favicons?domain=google.com&sz=64" alt="Google Logo">
-                        Google Classroom
-                    </a>
-                </li>
-                <li>
-                    <a href="https://kahoot.com" target="_blank">
-                        <img src="https://www.google.com/s2/favicons?domain=kahoot.com&sz=64" alt="Kahoot Logo">
-                        Kahoot!
-                    </a>
-                </li>
-                <li>
-                    <a href="https://padlet.com/yph6/as-the-captain-what-would-you-tell-your-teammates-y3hxj4jyszigq244" target="_blank">
-                        <img src="https://www.google.com/s2/favicons?domain=padlet.com&sz=64" alt="Padlet Logo">
-                        Padlet
-                    </a>
-                </li>
-                <li>
-                    <a href="https://mizou.com/login-thread?ID=u-RseZ3sYcDDU-4XSCcJFL_n7IaUvhRI3f0BsOZf92s-119985" target="_blank">
-                        <img src="https://www.google.com/s2/favicons?domain=mizou.com&sz=64" alt="Mizou Logo">
-                        Mizou Bot
-                    </a>
-                </li>
-                <li>
-                    <a href="https://poe.com" target="_blank">
-                        <img src="https://www.google.com/s2/favicons?domain=poe.com&sz=64" alt="Poe Logo">
-                        Poe
-                    </a>
-                </li>
-                <li>
-                    <a href="https://chat.deepseek.com" target="_blank">
-                        <img src="https://www.google.com/s2/favicons?domain=deepseek.com&sz=64" alt="DeepSeek Logo">
-                        DeepSeek
-                    </a>
-                </li>
-                <li>
-                    <a href="https://www.doubao.com/chat/" target="_blank">
-                        <img src="https://www.google.com/s2/favicons?domain=doubao.com&sz=64" alt="Doubao Logo">
-                        Doubao AI
-                    </a>
-                </li>
-                <li>
-                    <a href="https://grok.com" target="_blank">
-                        <img src="https://www.google.com/s2/favicons?domain=grok.com&sz=64" alt="Grok Logo">
-                        Grok
-                    </a>
-                </li>
-                <li>
-                    <a href="https://www.youngpostclub.com/" target="_blank">
-                        <img src="https://www.google.com/s2/favicons?domain=instagram.com&sz=64" alt="Instagram Logo">
-                        Instagram
-                    </a>
-                </li>
-                <li>
-                    <a href="https://dictionary.cambridge.org/" target="_blank">
-                        <img src="https://www.google.com/s2/favicons?domain=dictionary.cambridge.org&sz=64" alt="Cambridge Dictionary Logo">
-                        Cambridge Dictionary
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </main>
-
-    <nav>
-        <a class="nav-btn active" onclick="switchTab('genres', this)">
-            <i class="material-icons">menu_book</i>
-            <span>Genres</span>
-        </a>
-        <a class="nav-btn" onclick="switchTab('patterns', this)">
-            <i class="material-icons">format_shapes</i>
-            <span>Patterns</span>
-        </a>
-        <a class="nav-btn" onclick="switchTab('vocab', this)">
-            <i class="material-icons">spellcheck</i>
-            <span>Vocab</span>
-        </a>
-        <a class="nav-btn" onclick="switchTab('tools', this)">
-            <i class="material-icons">build</i>
-            <span>Tools</span>
-        </a>
-    </nav>
-
-    <script>
-        // Tab switching logic
-        function switchTab(tabId, clickedBtn) {
-            const contents = document.querySelectorAll('.tab-content');
-            contents.forEach(content => content.classList.remove('active'));
-
-            const buttons = document.querySelectorAll('.nav-btn');
-            buttons.forEach(btn => btn.classList.remove('active'));
-
-            document.getElementById(tabId).classList.add('active');
-            clickedBtn.classList.add('active');
-            
-            window.scrollTo(0, 0);
-        }
-
-        // Accordion folding logic (Updated to only toggle the clicked header's immediate card)
-        function toggleCard(headerElement) {
-            // Stop the click event from bubbling up to parent accordions
-            event.stopPropagation(); 
-            
-            const card = headerElement.parentElement;
-            
-            // Toggle the 'expanded' class to show/hide the card-body
-            card.classList.toggle('expanded');
-        }
-    </script>
-
-</body>
-</html>
