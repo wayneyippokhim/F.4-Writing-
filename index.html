@@ -291,6 +291,23 @@
             object-fit: contain; 
         }
 
+        /* Custom SOS Icon Box */
+        .sos-icon {
+            width: 28px;
+            height: 28px;
+            background-color: var(--accent-red);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 6px;
+            margin-right: 15px;
+            font-weight: 800;
+            font-size: 10px;
+            letter-spacing: 0.5px;
+            box-shadow: 0 1px 3px rgba(227, 53, 33, 0.4);
+        }
+
         /* Scrolling Text Animation */
         .scrolling-container {
             overflow: hidden;
@@ -850,6 +867,87 @@ Let’s come together to celebrate and support our school. Don’t wait – cont
                 </div>
             </div>
         </div>
+        
+        <div class="card" style="border-top-color: var(--primary-blue);">
+            <div class="accordion-header" onclick="toggleCard(this)">
+                <i class="material-icons main-icon">gavel</i> 
+                <span style="font-size: 1.1rem; line-height: 1.2;">Sentence patterns used in a two-sided argumentative essay</span>
+                <i class="material-icons expand-arrow">expand_more</i>
+            </div>
+            
+            <div class="card-body">
+                <h3>1. Background (Introduction)</h3>
+                <div class="pattern-box">
+                    <p class="pattern-highlight">In recent years, [Topic] has become a highly debated issue in our society, with growing concerns over its impact on [Group/Aspect].</p>
+                    <p class="pattern-example">E.g. "In recent years, the rise of artificial intelligence has become a highly debated issue in our society, with growing concerns over its impact on human employment."</p>
+                </div>
+
+                <h3>2. Showing Stance (Thesis Statement)</h3>
+                <div class="pattern-box">
+                    <p class="pattern-highlight">From my perspective, it is undeniably clear that [Stance] due to its overwhelming benefits / detrimental effects.</p>
+                    <p class="pattern-example">E.g. "From my perspective, it is undeniably clear that implementing a four-day workweek is necessary due to its overwhelming benefits to employee mental health."</p>
+                </div>
+
+                <h3>3. Giving Examples (Body Paragraphs)</h3>
+                <div class="pattern-box">
+                    <p class="pattern-highlight">A prime example of this is [Example/Scenario], which vividly demonstrates how [Point being made].</p>
+                    <p class="pattern-example">E.g. "A prime example of this is Finland's education system, which vividly demonstrates how reducing standardized testing can actually boost academic performance."</p>
+                </div>
+
+                <h3>4. Making a Summary (End of a Point/Paragraph)</h3>
+                <div class="pattern-box">
+                    <p class="pattern-highlight">To put it briefly, the evidence presented underscores the fact that [Summary of argument point].</p>
+                    <p class="pattern-example">E.g. "To put it briefly, the evidence presented underscores the fact that excessive screen time severely harms teenagers' social development."</p>
+                </div>
+
+                <h3>5. Restating Stance (Conclusion)</h3>
+                <div class="pattern-box">
+                    <p class="pattern-highlight">Taking all these factors into consideration, I firmly reiterate that [Restated Stance] is the only logical course of action.</p>
+                    <p class="pattern-example">E.g. "Taking all these factors into consideration, I firmly reiterate that banning single-use plastics is the only logical course of action for a sustainable future."</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card" style="border-top-color: var(--accent-red);">
+            <div class="accordion-header" onclick="toggleCard(this)">
+                <i class="material-icons main-icon">newspaper</i> 
+                <span style="font-size: 1.1rem; line-height: 1.2;">Sentence patterns used in a letter to the editor</span>
+                <i class="material-icons expand-arrow">expand_more</i>
+            </div>
+            
+            <div class="card-body">
+                <h3>1. Background (Referencing a Trigger Event)</h3>
+                <div class="pattern-box">
+                    <p class="pattern-highlight">I am writing in response to the recent article titled "[Article Title]" published on [Date], which highlighted the rising issue of [Issue].</p>
+                    <p class="pattern-example">E.g. "I am writing in response to the recent article titled 'The Cost of Fast Fashion' published on 5th May, which highlighted the rising issue of textile waste in our city."</p>
+                </div>
+
+                <h3>2. Showing Purpose of Writing</h3>
+                <div class="pattern-box">
+                    <p class="pattern-highlight">The primary purpose of this letter is to draw public attention to [Issue] and to voice my deep concerns regarding [Specific aspect].</p>
+                    <p class="pattern-example">E.g. "The primary purpose of this letter is to draw public attention to the lack of youth recreational centers and to voice my deep concerns regarding the rise in teenage tech addiction."</p>
+                </div>
+
+                <h3>3. Writing a Topic Sentence (Body Paragraph)</h3>
+                <div class="pattern-box">
+                    <p class="pattern-highlight">First and foremost, it is crucial to recognize that the root cause of [Problem] lies in [Cause].</p>
+                    <p class="pattern-example">E.g. "First and foremost, it is crucial to recognize that the root cause of light pollution in Hong Kong lies in the unregulated use of commercial neon signs."</p>
+                </div>
+
+                <h3>4. Making a Summary (Concluding the Arguments)</h3>
+                <div class="pattern-box">
+                    <p class="pattern-highlight">In short, the arguments raised above clearly indicate that [Core Message] requires immediate public scrutiny.</p>
+                    <p class="pattern-example">E.g. "In short, the arguments raised above clearly indicate that the proposed redevelopment of our heritage sites requires immediate public scrutiny."</p>
+                </div>
+
+                <h3>5. Hope for the Future (Sign-off)</h3>
+                <div class="pattern-box">
+                    <p class="pattern-highlight">It is my sincere hope that the authorities will take swift action and that your readers will become more mindful of [Issue].</p>
+                    <p class="pattern-example">E.g. "It is my sincere hope that the authorities will take swift action and that your readers will become more mindful of their daily food waste."</p>
+                </div>
+            </div>
+        </div>
+        
     </main>
 
     <main id="vocab" class="tab-content">
@@ -2383,5 +2481,3 @@ Let’s come together to celebrate and support our school. Don’t wait – cont
 
 </body>
 </html>
-
-```
