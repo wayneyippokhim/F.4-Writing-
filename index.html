@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>4KS Writing Notes</title>
     
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -16,7 +16,7 @@
             
             --bg-color: #f2f2f7;
             --text-color: #333333;
-            --nav-bg: rgba(255, 255, 255, 0.9);
+            --nav-bg: rgba(255, 255, 255, 0.92);
             --inactive-color: #8e8e93;
             --sample-bg: rgba(247, 155, 104, 0.12);
         }
@@ -102,17 +102,20 @@
         /* BIG Icons for easy clicking */
         .accordion-header i.main-icon {
             color: var(--accent-orange);
-            font-size: 2.8rem; 
+            font-size: 2.5rem; 
+            flex-shrink: 0;
         }
 
         .icon-complaint { color: var(--accent-red) !important; }
         .icon-speech { color: var(--primary-blue) !important; }
+        .icon-error { color: var(--accent-red) !important; }
 
         .expand-arrow {
             margin-left: auto;
             color: #aaa;
             font-size: 1.8rem;
             transition: transform 0.3s;
+            flex-shrink: 0;
         }
 
         /* Foldable Body */
@@ -230,6 +233,37 @@
             font-size: 0.95rem;
         }
 
+        /* Error Bank Specific Styling */
+        .error-comparison {
+            background-color: #fdfdfd;
+            border: 1px solid #e5e5ea;
+            border-radius: 8px;
+            padding: 12px 15px;
+            margin-bottom: 12px;
+        }
+        .wrong-text {
+            color: var(--accent-red);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 4px;
+        }
+        .correct-text {
+            color: #2e7d32;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 4px;
+        }
+        .error-tip {
+            font-size: 0.88rem;
+            color: #666;
+            margin-top: 4px;
+            padding-left: 24px;
+        }
+
         /* Sample Essay Section */
         details.sample-essay {
             background-color: var(--sample-bg);
@@ -343,6 +377,8 @@
             background-color: var(--primary-blue);
             color: white;
             font-weight: 600;
+            position: sticky;
+            top: 0;
         }
 
         .vocab-table tr:nth-child(even) {
@@ -382,7 +418,7 @@
             display: block;
         }
 
-        /* Bottom Navigation Bar */
+        /* Bottom Navigation Bar (Updated to 5 flexible tabs) */
         nav {
             position: fixed;
             bottom: 0;
@@ -401,12 +437,13 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 10px 0;
-            width: 25%; 
+            padding: 9px 2px;
+            flex: 1; 
             color: var(--inactive-color);
             text-decoration: none;
             cursor: pointer;
             transition: color 0.2s;
+            text-align: center;
         }
 
         .nav-btn.active {
@@ -414,13 +451,14 @@
         }
 
         .nav-btn i {
-            font-size: 28px;
-            margin-bottom: 4px;
+            font-size: 24px;
+            margin-bottom: 3px;
         }
 
         .nav-btn span {
-            font-size: 11px;
-            font-weight: 500;
+            font-size: 10.5px;
+            font-weight: 600;
+            white-space: nowrap;
         }
 
         @keyframes fadeIn {
@@ -441,10 +479,11 @@
         4KS Writing Notes
     </header>
 
+    <!-- TAB 1: GENRES -->
     <main id="genres" class="tab-content active">
 
         <div class="card" style="border-top-color: var(--primary-blue);">
-            <div class="accordion-header" onclick="toggleCard(this)">
+            <div class="accordion-header" onclick="toggleCard(event, this)">
                 <i class="material-icons main-icon">gavel</i> 
                 One-sided Argumentative Essay
                 <i class="material-icons expand-arrow">expand_more</i>
@@ -468,7 +507,7 @@
         </div>
 
         <div class="card" style="border-top-color: var(--accent-red);">
-            <div class="accordion-header" onclick="toggleCard(this)">
+            <div class="accordion-header" onclick="toggleCard(event, this)">
                 <i class="material-icons main-icon">rate_review</i> 
                 Letter to the Editor
                 <i class="material-icons expand-arrow">expand_more</i>
@@ -493,7 +532,7 @@
         </div>
         
         <div class="card" style="border-top-color: var(--accent-orange);">
-            <div class="accordion-header" onclick="toggleCard(this)">
+            <div class="accordion-header" onclick="toggleCard(event, this)">
                 <i class="material-icons main-icon">article</i> 
                 Feature Article
                 <i class="material-icons expand-arrow">expand_more</i>
@@ -545,7 +584,7 @@ In conclusion, becoming a new Form 1 student is a big step, but you are never al
         </div>
 
         <div class="card" style="border-top-color: var(--accent-orange);">
-            <div class="accordion-header" onclick="toggleCard(this)">
+            <div class="accordion-header" onclick="toggleCard(event, this)">
                 <i class="material-icons main-icon">volunteer_activism</i> 
                 Letter of Advice
                 <i class="material-icons expand-arrow">expand_more</i>
@@ -593,7 +632,7 @@ Chris</div>
         </div>
 
         <div class="card" style="border-top-color: var(--accent-red);">
-            <div class="accordion-header" onclick="toggleCard(this)">
+            <div class="accordion-header" onclick="toggleCard(event, this)">
                 <i class="material-icons main-icon icon-complaint">report_problem</i> 
                 Letter of Complaint
                 <i class="material-icons expand-arrow">expand_more</i>
@@ -652,7 +691,7 @@ Chris Wong</div>
         </div>
 
         <div class="card" style="border-top-color: var(--primary-blue);">
-            <div class="accordion-header" onclick="toggleCard(this)">
+            <div class="accordion-header" onclick="toggleCard(event, this)">
                 <i class="material-icons main-icon icon-speech">campaign</i> 
                 Promotional Speech
                 <i class="material-icons expand-arrow">expand_more</i>
@@ -693,7 +732,7 @@ Have you ever wondered how you can make your school life more unforgettable? I a
 
 The fair will take place in the school playground from 9:00 a.m. to 4:00 p.m. The highlight of the school fair will undoubtedly be the Alumni Football Match. Prepare to be amazed by the impressive sports skills of our past students as they play against our school team! In addition to the games, you can also enjoy a variety of delicious food stalls prepared by different clubs.
 
-For just a $10 ticket, you can try out amazing snacks, buy beautiful handmade crafts, and play fun booth games to win big prizes. Furthermore, we are looking for student volunteers to help run the game booths. Let’s show our enthusiasm and make this event a huge success by signing up to help.
+For just a \$10 ticket, you can try out amazing snacks, buy beautiful handmade crafts, and play fun booth games to win big prizes. Furthermore, we are looking for student volunteers to help run the game booths. Let’s show our enthusiasm and make this event a huge success by signing up to help.
 
 Let’s come together to celebrate and support our school. Don’t wait – contact your class teachers today to buy your tickets or register as a volunteer. I look forward to seeing all of you there. Thank you!</div>
                 </details>
@@ -701,7 +740,7 @@ Let’s come together to celebrate and support our school. Don’t wait – cont
         </div>
 
         <div class="card" style="border-top-color: var(--primary-blue);">
-            <div class="accordion-header" onclick="toggleCard(this)">
+            <div class="accordion-header" onclick="toggleCard(event, this)">
                 <i class="material-icons main-icon">edit_note</i> 
                 Blog Entry
                 <i class="material-icons expand-arrow">expand_more</i>
@@ -717,22 +756,16 @@ Let’s come together to celebrate and support our school. Don’t wait – cont
                 </div>
 
                 <p><strong>Topic:</strong> You are the captain of a school team. Your team made it to the inter-school basketball championship final but came second. Write a blog entry to be posted on your school website about your experiences and feelings. Write about 300 words.</p>
-
-                <details class="sample-essay">
-                    <summary>Tap to view Sample Essay</summary>
-                    <div class="sample-content">
-[Insert your Blog Entry sample essay here...]
-                    </div>
-                </details>
             </div>
         </div>
 
     </main>
 
+    <!-- TAB 2: PATTERNS -->
     <main id="patterns" class="tab-content">
         
         <div class="card" style="border-top-color: var(--primary-blue);">
-            <div class="accordion-header" onclick="toggleCard(this)">
+            <div class="accordion-header" onclick="toggleCard(event, this)">
                 <i class="material-icons main-icon">gavel</i> 
                 <span style="font-size: 1.1rem; line-height: 1.2;">Sentence patterns used in a two-sided argumentative essay</span>
                 <i class="material-icons expand-arrow">expand_more</i>
@@ -772,7 +805,7 @@ Let’s come together to celebrate and support our school. Don’t wait – cont
         </div>
         
         <div class="card" style="border-top-color: var(--accent-red);">
-            <div class="accordion-header" onclick="toggleCard(this)">
+            <div class="accordion-header" onclick="toggleCard(event, this)">
                 <i class="material-icons main-icon">newspaper</i> 
                 <span style="font-size: 1.1rem; line-height: 1.2;">Sentence patterns used in a letter to the editor</span>
                 <i class="material-icons expand-arrow">expand_more</i>
@@ -812,7 +845,7 @@ Let’s come together to celebrate and support our school. Don’t wait – cont
         </div>
 
         <div class="card" style="border-top-color: var(--accent-orange);">
-            <div class="accordion-header" onclick="toggleCard(this)">
+            <div class="accordion-header" onclick="toggleCard(event, this)">
                 <i class="material-icons main-icon">article</i> 
                 <span style="font-size: 1.1rem; line-height: 1.2;">Sentence patterns used in a feature article</span>
                 <i class="material-icons expand-arrow">expand_more</i>
@@ -856,7 +889,7 @@ Let’s come together to celebrate and support our school. Don’t wait – cont
         </div>
 
         <div class="card" style="border-top-color: var(--accent-orange);">
-            <div class="accordion-header" onclick="toggleCard(this)">
+            <div class="accordion-header" onclick="toggleCard(event, this)">
                 <i class="material-icons main-icon">volunteer_activism</i> 
                 <span style="font-size: 1.1rem; line-height: 1.2;">Sentence patterns used in a letter of advice</span>
                 <i class="material-icons expand-arrow">expand_more</i>
@@ -886,7 +919,7 @@ Let’s come together to celebrate and support our school. Don’t wait – cont
         </div>
 
         <div class="card" style="border-top-color: var(--accent-red);">
-            <div class="accordion-header" onclick="toggleCard(this)">
+            <div class="accordion-header" onclick="toggleCard(event, this)">
                 <i class="material-icons main-icon icon-complaint">report_problem</i> 
                 <span style="font-size: 1.1rem; line-height: 1.2;">Sentence patterns used in a letter of complaint</span>
                 <i class="material-icons expand-arrow">expand_more</i>
@@ -909,7 +942,7 @@ Let’s come together to celebrate and support our school. Don’t wait – cont
         </div>
 
         <div class="card" style="border-top-color: var(--primary-blue);">
-            <div class="accordion-header" onclick="toggleCard(this)">
+            <div class="accordion-header" onclick="toggleCard(event, this)">
                 <i class="material-icons main-icon icon-speech">campaign</i> 
                 <span style="font-size: 1.1rem; line-height: 1.2;">Sentence patterns used in a promotional speech</span>
                 <i class="material-icons expand-arrow">expand_more</i>
@@ -932,7 +965,7 @@ Let’s come together to celebrate and support our school. Don’t wait – cont
 
                 <h3>Persuasion</h3>
                 <div class="pattern-box">
-                    <p class="pattern-highlight">For just a $10 ticket, you can …</p>
+                    <p class="pattern-highlight">For just a \$10 ticket, you can …</p>
                     <p class="pattern-highlight">We are looking for …</p>
                     <p class="pattern-highlight">Let’s show our enthusiasm …</p>
                 </div>
@@ -947,7 +980,7 @@ Let’s come together to celebrate and support our school. Don’t wait – cont
         </div>
 
         <div class="card" style="border-top-color: var(--primary-blue);">
-            <div class="accordion-header" onclick="toggleCard(this)">
+            <div class="accordion-header" onclick="toggleCard(event, this)">
                 <i class="material-icons main-icon">edit_note</i> 
                 <span style="font-size: 1.1rem; line-height: 1.2;">Sentence patterns used in a blog entry</span>
                 <i class="material-icons expand-arrow">expand_more</i>
@@ -981,10 +1014,11 @@ Let’s come together to celebrate and support our school. Don’t wait – cont
         </div>
     </main>
 
+    <!-- TAB 3: VOCAB -->
     <main id="vocab" class="tab-content">
         
         <div class="card" style="border-top-color: var(--primary-blue);">
-            <div class="accordion-header" onclick="toggleCard(this)">
+            <div class="accordion-header" onclick="toggleCard(event, this)">
                 <i class="material-icons main-icon">school</i> 
                 School Vocab List
                 <i class="material-icons expand-arrow">expand_more</i>
@@ -992,7 +1026,7 @@ Let’s come together to celebrate and support our school. Don’t wait – cont
             <div class="card-body">
                 
                 <div class="card nested-card">
-                    <div class="accordion-header" onclick="toggleCard(this)">
+                    <div class="accordion-header" onclick="toggleCard(event, this)">
                         <i class="material-icons main-icon">menu_book</i>
                         Unit 1: Exams and Learning
                         <i class="material-icons expand-arrow">expand_more</i>
@@ -1535,7 +1569,7 @@ Let’s come together to celebrate and support our school. Don’t wait – cont
                 </div>
 
                 <div class="card nested-card">
-                    <div class="accordion-header" onclick="toggleCard(this)">
+                    <div class="accordion-header" onclick="toggleCard(event, this)">
                         <i class="material-icons main-icon">menu_book</i>
                         Unit 2: Getting Along
                         <i class="material-icons expand-arrow">expand_more</i>
@@ -1823,7 +1857,7 @@ Let’s come together to celebrate and support our school. Don’t wait – cont
                                     <td><strong>exceed</strong></td>
                                     <td>v.</td>
                                     <td>超出（數量）</td>
-                                    <td>The final cost should not exceed $5,000.</td>
+                                    <td>The final cost should not exceed \$5,000.</td>
                                 </tr>
                                 <tr>
                                     <td><strong>pathetic</strong></td>
@@ -1915,7 +1949,7 @@ Let’s come together to celebrate and support our school. Don’t wait – cont
                 </div>
 
                 <div class="card nested-card">
-                    <div class="accordion-header" onclick="toggleCard(this)">
+                    <div class="accordion-header" onclick="toggleCard(event, this)">
                         <i class="material-icons main-icon">menu_book</i>
                         Unit 3: Winner Takes All
                         <i class="material-icons expand-arrow">expand_more</i>
@@ -2155,7 +2189,7 @@ Let’s come together to celebrate and support our school. Don’t wait – cont
                                     <td><strong>sponsorship</strong></td>
                                     <td>N.</td>
                                     <td>贊助費</td>
-                                    <td>The basketball team receives $2 million a year in sponsorship from companies.</td>
+                                    <td>The basketball team receives \$2 million a year in sponsorship from companies.</td>
                                 </tr>
                                 <tr>
                                     <td><strong>championship</strong></td>
@@ -2455,7 +2489,7 @@ Let’s come together to celebrate and support our school. Don’t wait – cont
                                     <td><strong>contribute</strong></td>
                                     <td>V.</td>
                                     <td>貢獻</td>
-                                    <td>Her family has contributed $50,000 to the fund.</td>
+                                    <td>Her family has contributed \$50,000 to the fund.</td>
                                 </tr>
                                 <tr>
                                     <td><strong>worthwhile</strong></td>
@@ -2523,7 +2557,7 @@ Let’s come together to celebrate and support our school. Don’t wait – cont
                 </div>
 
                 <div class="card nested-card">
-                    <div class="accordion-header" onclick="toggleCard(this)">
+                    <div class="accordion-header" onclick="toggleCard(event, this)">
                         <i class="material-icons main-icon">menu_book</i>
                         Unit 4: Lights, Camera, Action!
                         <i class="material-icons expand-arrow">expand_more</i>
@@ -2559,7 +2593,7 @@ Let’s come together to celebrate and support our school. Don’t wait – cont
                                     <td><strong>blockbuster</strong></td>
                                     <td>n.</td>
                                     <td>賣座鉅片</td>
-                                    <td>Tom Holland’s new blockbuster opened to $120.5 million in its first weekend.</td>
+                                    <td>Tom Holland’s new blockbuster opened to \$120.5 million in its first weekend.</td>
                                 </tr>
                                 <tr>
                                     <td><strong>science fiction / sci-fi</strong></td>
@@ -3104,7 +3138,7 @@ Let’s come together to celebrate and support our school. Don’t wait – cont
         </div>
 
         <div class="card" style="border-top-color: var(--accent-orange);">
-            <div class="accordion-header" onclick="toggleCard(this)">
+            <div class="accordion-header" onclick="toggleCard(event, this)">
                 <i class="material-icons main-icon">spellcheck</i> 
                 Basic Vocab
                 <i class="material-icons expand-arrow">expand_more</i>
@@ -3112,7 +3146,7 @@ Let’s come together to celebrate and support our school. Don’t wait – cont
             <div class="card-body" style="background-color: #f5f5f9; padding: 15px 10px;">
                 
                 <div class="card nested-card">
-                    <div class="accordion-header" onclick="toggleCard(this)">
+                    <div class="accordion-header" onclick="toggleCard(event, this)">
                         <i class="material-icons main-icon">menu_book</i>
                         Part 1: 150 Essential Academic Words
                         <i class="material-icons expand-arrow">expand_more</i>
@@ -3120,7 +3154,7 @@ Let’s come together to celebrate and support our school. Don’t wait – cont
                     <div class="card-body">
                         
                         <div class="card nested-card sub-nested-card">
-                            <div class="accordion-header" onclick="toggleCard(this)">
+                            <div class="accordion-header" onclick="toggleCard(event, this)">
                                 <i class="material-icons main-icon">list</i> Dictation 1: Getting Started <i class="material-icons expand-arrow">expand_more</i>
                             </div>
                             <div class="card-body">
@@ -3140,7 +3174,7 @@ Let’s come together to celebrate and support our school. Don’t wait – cont
                         </div>
 
                         <div class="card nested-card sub-nested-card">
-                            <div class="accordion-header" onclick="toggleCard(this)">
+                            <div class="accordion-header" onclick="toggleCard(event, this)">
                                 <i class="material-icons main-icon">list</i> Dictation 2: Building Ideas <i class="material-icons expand-arrow">expand_more</i>
                             </div>
                             <div class="card-body">
@@ -3160,7 +3194,7 @@ Let’s come together to celebrate and support our school. Don’t wait – cont
                         </div>
 
                         <div class="card nested-card sub-nested-card">
-                            <div class="accordion-header" onclick="toggleCard(this)">
+                            <div class="accordion-header" onclick="toggleCard(event, this)">
                                 <i class="material-icons main-icon">list</i> Dictation 3: Society & Culture <i class="material-icons expand-arrow">expand_more</i>
                             </div>
                             <div class="card-body">
@@ -3180,7 +3214,7 @@ Let’s come together to celebrate and support our school. Don’t wait – cont
                         </div>
 
                         <div class="card nested-card sub-nested-card">
-                            <div class="accordion-header" onclick="toggleCard(this)">
+                            <div class="accordion-header" onclick="toggleCard(event, this)">
                                 <i class="material-icons main-icon">list</i> Dictation 4: Science & Environment <i class="material-icons expand-arrow">expand_more</i>
                             </div>
                             <div class="card-body">
@@ -3200,7 +3234,7 @@ Let’s come together to celebrate and support our school. Don’t wait – cont
                         </div>
 
                         <div class="card nested-card sub-nested-card">
-                            <div class="accordion-header" onclick="toggleCard(this)">
+                            <div class="accordion-header" onclick="toggleCard(event, this)">
                                 <i class="material-icons main-icon">list</i> Dictation 5: Making Judgments <i class="material-icons expand-arrow">expand_more</i>
                             </div>
                             <div class="card-body">
@@ -3220,7 +3254,7 @@ Let’s come together to celebrate and support our school. Don’t wait – cont
                         </div>
 
                         <div class="card nested-card sub-nested-card">
-                            <div class="accordion-header" onclick="toggleCard(this)">
+                            <div class="accordion-header" onclick="toggleCard(event, this)">
                                 <i class="material-icons main-icon">list</i> Dictation 6: Inclusion & Action <i class="material-icons expand-arrow">expand_more</i>
                             </div>
                             <div class="card-body">
@@ -3240,7 +3274,7 @@ Let’s come together to celebrate and support our school. Don’t wait – cont
                         </div>
 
                         <div class="card nested-card sub-nested-card">
-                            <div class="accordion-header" onclick="toggleCard(this)">
+                            <div class="accordion-header" onclick="toggleCard(event, this)">
                                 <i class="material-icons main-icon">list</i> Dictation 7: Rules & Limits <i class="material-icons expand-arrow">expand_more</i>
                             </div>
                             <div class="card-body">
@@ -3260,7 +3294,7 @@ Let’s come together to celebrate and support our school. Don’t wait – cont
                         </div>
 
                         <div class="card nested-card sub-nested-card">
-                            <div class="accordion-header" onclick="toggleCard(this)">
+                            <div class="accordion-header" onclick="toggleCard(event, this)">
                                 <i class="material-icons main-icon">list</i> Dictation 8: Choices & Changes <i class="material-icons expand-arrow">expand_more</i>
                             </div>
                             <div class="card-body">
@@ -3280,7 +3314,7 @@ Let’s come together to celebrate and support our school. Don’t wait – cont
                         </div>
 
                         <div class="card nested-card sub-nested-card">
-                            <div class="accordion-header" onclick="toggleCard(this)">
+                            <div class="accordion-header" onclick="toggleCard(event, this)">
                                 <i class="material-icons main-icon">list</i> Dictation 9: Processes & Steps <i class="material-icons expand-arrow">expand_more</i>
                             </div>
                             <div class="card-body">
@@ -3300,7 +3334,7 @@ Let’s come together to celebrate and support our school. Don’t wait – cont
                         </div>
 
                         <div class="card nested-card sub-nested-card">
-                            <div class="accordion-header" onclick="toggleCard(this)">
+                            <div class="accordion-header" onclick="toggleCard(event, this)">
                                 <i class="material-icons main-icon">list</i> Dictation 10: Progress & Promotion <i class="material-icons expand-arrow">expand_more</i>
                             </div>
                             <div class="card-body">
@@ -3320,7 +3354,7 @@ Let’s come together to celebrate and support our school. Don’t wait – cont
                         </div>
 
                         <div class="card nested-card sub-nested-card">
-                            <div class="accordion-header" onclick="toggleCard(this)">
+                            <div class="accordion-header" onclick="toggleCard(event, this)">
                                 <i class="material-icons main-icon">list</i> Dictation 11: Regulation & Reliance <i class="material-icons expand-arrow">expand_more</i>
                             </div>
                             <div class="card-body">
@@ -3340,7 +3374,7 @@ Let’s come together to celebrate and support our school. Don’t wait – cont
                         </div>
 
                         <div class="card nested-card sub-nested-card">
-                            <div class="accordion-header" onclick="toggleCard(this)">
+                            <div class="accordion-header" onclick="toggleCard(event, this)">
                                 <i class="material-icons main-icon">list</i> Dictation 12: Roles & Strategies <i class="material-icons expand-arrow">expand_more</i>
                             </div>
                             <div class="card-body">
@@ -3360,7 +3394,7 @@ Let’s come together to celebrate and support our school. Don’t wait – cont
                         </div>
 
                         <div class="card nested-card sub-nested-card">
-                            <div class="accordion-header" onclick="toggleCard(this)">
+                            <div class="accordion-header" onclick="toggleCard(event, this)">
                                 <i class="material-icons main-icon">list</i> Dictation 13: Details & Technology <i class="material-icons expand-arrow">expand_more</i>
                             </div>
                             <div class="card-body">
@@ -3380,7 +3414,7 @@ Let’s come together to celebrate and support our school. Don’t wait – cont
                         </div>
 
                         <div class="card nested-card sub-nested-card">
-                            <div class="accordion-header" onclick="toggleCard(this)">
+                            <div class="accordion-header" onclick="toggleCard(event, this)">
                                 <i class="material-icons main-icon">list</i> Dictation 14: Survival & Tasks <i class="material-icons expand-arrow">expand_more</i>
                             </div>
                             <div class="card-body">
@@ -3400,7 +3434,7 @@ Let’s come together to celebrate and support our school. Don’t wait – cont
                         </div>
 
                         <div class="card nested-card sub-nested-card">
-                            <div class="accordion-header" onclick="toggleCard(this)">
+                            <div class="accordion-header" onclick="toggleCard(event, this)">
                                 <i class="material-icons main-icon">list</i> Dictation 15: Visuals & Wealth <i class="material-icons expand-arrow">expand_more</i>
                             </div>
                             <div class="card-body">
@@ -3423,7 +3457,7 @@ Let’s come together to celebrate and support our school. Don’t wait – cont
                 </div>
 
                 <div class="card nested-card">
-                    <div class="accordion-header" onclick="toggleCard(this)">
+                    <div class="accordion-header" onclick="toggleCard(event, this)">
                         <i class="material-icons main-icon">menu_book</i>
                         Part 2: 50 Daily Life Words
                         <i class="material-icons expand-arrow">expand_more</i>
@@ -3432,7 +3466,7 @@ Let’s come together to celebrate and support our school. Don’t wait – cont
                         <p style="font-size: 0.95rem; color: #555; margin-top: 0; margin-bottom: 15px;">These words are crucial for informal emails, stories, and describing personal experiences.</p>
 
                         <div class="card nested-card sub-nested-card">
-                            <div class="accordion-header" onclick="toggleCard(this)">
+                            <div class="accordion-header" onclick="toggleCard(event, this)">
                                 <i class="material-icons main-icon">list</i> Dictation 16: School & Hobbies <i class="material-icons expand-arrow">expand_more</i>
                             </div>
                             <div class="card-body">
@@ -3452,7 +3486,7 @@ Let’s come together to celebrate and support our school. Don’t wait – cont
                         </div>
 
                         <div class="card nested-card sub-nested-card">
-                            <div class="accordion-header" onclick="toggleCard(this)">
+                            <div class="accordion-header" onclick="toggleCard(event, this)">
                                 <i class="material-icons main-icon">list</i> Dictation 17: Food & Home <i class="material-icons expand-arrow">expand_more</i>
                             </div>
                             <div class="card-body">
@@ -3472,7 +3506,7 @@ Let’s come together to celebrate and support our school. Don’t wait – cont
                         </div>
 
                         <div class="card nested-card sub-nested-card">
-                            <div class="accordion-header" onclick="toggleCard(this)">
+                            <div class="accordion-header" onclick="toggleCard(event, this)">
                                 <i class="material-icons main-icon">list</i> Dictation 18: Travel & Transport <i class="material-icons expand-arrow">expand_more</i>
                             </div>
                             <div class="card-body">
@@ -3492,7 +3526,7 @@ Let’s come together to celebrate and support our school. Don’t wait – cont
                         </div>
 
                         <div class="card nested-card sub-nested-card">
-                            <div class="accordion-header" onclick="toggleCard(this)">
+                            <div class="accordion-header" onclick="toggleCard(event, this)">
                                 <i class="material-icons main-icon">list</i> Dictation 19: People & Feelings <i class="material-icons expand-arrow">expand_more</i>
                             </div>
                             <div class="card-body">
@@ -3512,7 +3546,7 @@ Let’s come together to celebrate and support our school. Don’t wait – cont
                         </div>
 
                         <div class="card nested-card sub-nested-card">
-                            <div class="accordion-header" onclick="toggleCard(this)">
+                            <div class="accordion-header" onclick="toggleCard(event, this)">
                                 <i class="material-icons main-icon">list</i> Dictation 20: Everyday Actions <i class="material-icons expand-arrow">expand_more</i>
                             </div>
                             <div class="card-body">
@@ -3538,7 +3572,7 @@ Let’s come together to celebrate and support our school. Don’t wait – cont
         </div>
 
         <div class="card" style="border-top-color: var(--accent-red);">
-            <div class="accordion-header" onclick="toggleCard(this)">
+            <div class="accordion-header" onclick="toggleCard(event, this)">
                 <i class="material-icons main-icon">edit_note</i> 
                 Phrases for Writing
                 <i class="material-icons expand-arrow">expand_more</i>
@@ -3546,7 +3580,7 @@ Let’s come together to celebrate and support our school. Don’t wait – cont
             <div class="card-body" style="background-color: #f5f5f9; padding: 15px 10px;">
                 
                 <div class="card nested-card">
-                    <div class="accordion-header" onclick="toggleCard(this)">
+                    <div class="accordion-header" onclick="toggleCard(event, this)">
                         <i class="material-icons main-icon">menu_book</i>
                         Part 1: Opinions & Argumentation
                         <i class="material-icons expand-arrow">expand_more</i>
@@ -3638,7 +3672,7 @@ Let’s come together to celebrate and support our school. Don’t wait – cont
                 </div>
 
                 <div class="card nested-card">
-                    <div class="accordion-header" onclick="toggleCard(this)">
+                    <div class="accordion-header" onclick="toggleCard(event, this)">
                         <i class="material-icons main-icon">menu_book</i>
                         Part 2: Trends, Situations & Impacts
                         <i class="material-icons expand-arrow">expand_more</i>
@@ -3730,7 +3764,7 @@ Let’s come together to celebrate and support our school. Don’t wait – cont
                 </div>
 
                 <div class="card nested-card">
-                    <div class="accordion-header" onclick="toggleCard(this)">
+                    <div class="accordion-header" onclick="toggleCard(event, this)">
                         <i class="material-icons main-icon">menu_book</i>
                         Part 3: Taking Action & Problem Solving
                         <i class="material-icons expand-arrow">expand_more</i>
@@ -3822,7 +3856,7 @@ Let’s come together to celebrate and support our school. Don’t wait – cont
                 </div>
 
                 <div class="card nested-card">
-                    <div class="accordion-header" onclick="toggleCard(this)">
+                    <div class="accordion-header" onclick="toggleCard(event, this)">
                         <i class="material-icons main-icon">menu_book</i>
                         Part 4: Personal Growth & Feelings
                         <i class="material-icons expand-arrow">expand_more</i>
@@ -3914,7 +3948,7 @@ Let’s come together to celebrate and support our school. Don’t wait – cont
                 </div>
 
                 <div class="card nested-card">
-                    <div class="accordion-header" onclick="toggleCard(this)">
+                    <div class="accordion-header" onclick="toggleCard(event, this)">
                         <i class="material-icons main-icon">menu_book</i>
                         Part 5: Places, Events & Success
                         <i class="material-icons expand-arrow">expand_more</i>
@@ -4009,6 +4043,101 @@ Let’s come together to celebrate and support our school. Don’t wait – cont
         </div>
     </main>
 
+    <!-- TAB 4: ERROR BANK (NEW TAB) -->
+    <main id="error-bank" class="tab-content">
+        
+        <div class="card" style="border-top-color: var(--accent-red);">
+            <div class="accordion-header" onclick="toggleCard(event, this)">
+                <i class="material-icons main-icon icon-error">warning</i> 
+                1. Grammar & Tense Inconsistencies
+                <i class="material-icons expand-arrow">expand_more</i>
+            </div>
+            <div class="card-body">
+                <p style="color: #666; font-size: 0.95rem; margin-top: 15px;">Review these frequent tense and subject-verb agreement slips before handing in your essays.</p>
+
+                <div class="error-comparison">
+                    <div class="wrong-text"><i class="material-icons" style="font-size: 1.2rem;">close</i> <strong>Incorrect:</strong> Last week, our school organizes a fair and everyone is excited.</div>
+                    <div class="correct-text"><i class="material-icons" style="font-size: 1.2rem;">check</i> <strong>Correct:</strong> Last week, our school organized a fair and everyone was excited.</div>
+                    <div class="error-tip">💡 <em>Tip: Keep past narrative events in simple past tense; do not jump between present and past arbitrarily.</em></div>
+                </div>
+
+                <div class="error-comparison">
+                    <div class="wrong-text"><i class="material-icons" style="font-size: 1.2rem;">close</i> <strong>Incorrect:</strong> Although he worked hard, but he failed the exam.</div>
+                    <div class="correct-text"><i class="material-icons" style="font-size: 1.2rem;">check</i> <strong>Correct:</strong> Although he worked hard, he failed the exam.</div>
+                    <div class="error-tip">💡 <em>Tip: Never pair "Although / Even though" with "but" in the same complex sentence.</em></div>
+                </div>
+
+                <!-- Ready for your additional examples -->
+                <p style="font-style: italic; color: #888; font-size: 0.85rem; margin-top: 10px;">(More classroom errors will be added here)</p>
+            </div>
+        </div>
+
+        <div class="card" style="border-top-color: var(--accent-orange);">
+            <div class="accordion-header" onclick="toggleCard(event, this)">
+                <i class="material-icons main-icon">translate</i> 
+                2. Collocations & "Chinglish" Traps
+                <i class="material-icons expand-arrow">expand_more</i>
+            </div>
+            <div class="card-body">
+                <p style="color: #666; font-size: 0.95rem; margin-top: 15px;">Avoid direct word-for-word Chinese-to-English translations.</p>
+
+                <div class="error-comparison">
+                    <div class="wrong-text"><i class="material-icons" style="font-size: 1.2rem;">close</i> <strong>Chinglish:</strong> I very like this activity because it opens my eye.</div>
+                    <div class="correct-text"><i class="material-icons" style="font-size: 1.2rem;">check</i> <strong>Natural:</strong> I really enjoy this activity because it broadens my horizons.</div>
+                    <div class="error-tip">💡 <em>Tip: Use "really like / enjoy immensely", and use "broaden one's horizons" instead of "open eye".</em></div>
+                </div>
+
+                <div class="error-comparison">
+                    <div class="wrong-text"><i class="material-icons" style="font-size: 1.2rem;">close</i> <strong>Chinglish:</strong> Hong Kong has many cars so the traffic is very crowded.</div>
+                    <div class="correct-text"><i class="material-icons" style="font-size: 1.2rem;">check</i> <strong>Natural:</strong> Hong Kong has a high vehicle density, resulting in severe traffic congestion.</div>
+                    <div class="error-tip">💡 <em>Tip: Traffic is "congested" or "heavy", not "crowded".</em></div>
+                </div>
+
+                <p style="font-style: italic; color: #888; font-size: 0.85rem; margin-top: 10px;">(More classroom errors will be added here)</p>
+            </div>
+        </div>
+
+        <div class="card" style="border-top-color: var(--primary-blue);">
+            <div class="accordion-header" onclick="toggleCard(event, this)">
+                <i class="material-icons main-icon icon-speech">record_voice_over</i> 
+                3. Register & Tone Errors
+                <i class="material-icons expand-arrow">expand_more</i>
+            </div>
+            <div class="card-body">
+                <p style="color: #666; font-size: 0.95rem; margin-top: 15px;">Ensure you match formal vs. informal language requirements for each HKDSE genre.</p>
+
+                <div class="error-comparison">
+                    <div class="wrong-text"><i class="material-icons" style="font-size: 1.2rem;">close</i> <strong>Formal Letter Slip:</strong> Hey editor, I wanna talk about the rubbish issue.</div>
+                    <div class="correct-text"><i class="material-icons" style="font-size: 1.2rem;">check</i> <strong>Formal:</strong> Dear Editor, I am writing to express my grave concern regarding the municipal waste issue.</div>
+                    <div class="error-tip">💡 <em>Tip: Never use slang, contractions ("wanna", "gonna"), or conversational greetings in formal letters.</em></div>
+                </div>
+
+                <p style="font-style: italic; color: #888; font-size: 0.85rem; margin-top: 10px;">(More classroom errors will be added here)</p>
+            </div>
+        </div>
+
+        <div class="card" style="border-top-color: var(--primary-blue);">
+            <div class="accordion-header" onclick="toggleCard(event, this)">
+                <i class="material-icons main-icon">edit</i> 
+                4. Sentence Structure & Punctuation
+                <i class="material-icons expand-arrow">expand_more</i>
+            </div>
+            <div class="card-body">
+                <p style="color: #666; font-size: 0.95rem; margin-top: 15px;">Watch out for run-on sentences, comma splices, and sentence fragments.</p>
+
+                <div class="error-comparison">
+                    <div class="wrong-text"><i class="material-icons" style="font-size: 1.2rem;">close</i> <strong>Comma Splice:</strong> Studying is very stressful, many students cannot sleep well.</div>
+                    <div class="correct-text"><i class="material-icons" style="font-size: 1.2rem;">check</i> <strong>Correct:</strong> Studying is very stressful; consequently, many students cannot sleep well.</div>
+                    <div class="error-tip">💡 <em>Tip: Do not join two independent clauses with just a comma. Use a semicolon, full stop, or coordinating conjunction.</em></div>
+                </div>
+
+                <p style="font-style: italic; color: #888; font-size: 0.85rem; margin-top: 10px;">(More classroom errors will be added here)</p>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- TAB 5: TOOLS -->
     <main id="tools" class="tab-content">
         
         <div class="scrolling-container" style="margin-top: 0; margin-bottom: 15px;">
@@ -4025,6 +4154,13 @@ Let’s come together to celebrate and support our school. Don’t wait – cont
         <div class="card" style="padding: 20px;">
             <h2 style="border-bottom:none; margin-bottom: 15px;"><i class="material-icons" style="color: var(--primary-blue); font-size: 1.8rem; vertical-align: middle;">build</i> Classroom & AI Tools</h2>
             <ul class="tool-list">
+                <!-- Sayo Academy (Added) -->
+                <li>
+                    <a href="https://sayo.academy" target="_blank">
+                        <img src="https://www.google.com/s2/favicons?domain=sayo.academy&sz=64" alt="Sayo Academy Logo">
+                        Sayo (Educational AI Platform)
+                    </a>
+                </li>
                 <li>
                     <a href="https://classroom.google.com/c/Nzk1ODg2MDI0OTc4" target="_blank">
                         <img src="https://www.google.com/s2/favicons?domain=google.com&sz=64" alt="Google Logo">
@@ -4075,8 +4211,8 @@ Let’s come together to celebrate and support our school. Don’t wait – cont
                 </li>
                 <li>
                     <a href="https://www.youngpostclub.com/" target="_blank">
-                        <img src="https://www.google.com/s2/favicons?domain=instagram.com&sz=64" alt="Instagram Logo">
-                        Instagram
+                        <img src="https://www.google.com/s2/favicons?domain=scmp.com&sz=64" alt="Young Post Logo">
+                        SCMP Young Post
                     </a>
                 </li>
                 <li>
@@ -4089,6 +4225,7 @@ Let’s come together to celebrate and support our school. Don’t wait – cont
         </div>
     </main>
 
+    <!-- Bottom Navigation Bar with 5 tabs -->
     <nav>
         <a class="nav-btn active" onclick="switchTab('genres', this)">
             <i class="material-icons">menu_book</i>
@@ -4101,6 +4238,10 @@ Let’s come together to celebrate and support our school. Don’t wait – cont
         <a class="nav-btn" onclick="switchTab('vocab', this)">
             <i class="material-icons">spellcheck</i>
             <span>Vocab</span>
+        </a>
+        <a class="nav-btn" onclick="switchTab('error-bank', this)">
+            <i class="material-icons">fact_check</i>
+            <span>Error Bank</span>
         </a>
         <a class="nav-btn" onclick="switchTab('tools', this)">
             <i class="material-icons">build</i>
@@ -4117,20 +4258,23 @@ Let’s come together to celebrate and support our school. Don’t wait – cont
             const buttons = document.querySelectorAll('.nav-btn');
             buttons.forEach(btn => btn.classList.remove('active'));
 
-            document.getElementById(tabId).classList.add('active');
-            clickedBtn.classList.add('active');
+            const targetContent = document.getElementById(tabId);
+            if (targetContent) {
+                targetContent.classList.add('active');
+            }
+            if (clickedBtn) {
+                clickedBtn.classList.add('active');
+            }
             
             window.scrollTo(0, 0);
         }
 
-        // Accordion folding logic (Updated to only toggle the clicked header's immediate card)
-        function toggleCard(headerElement) {
-            // Stop the click event from bubbling up to parent accordions
-            event.stopPropagation(); 
-            
+        // Accordion folding logic (Safe event handling)
+        function toggleCard(event, headerElement) {
+            if (event) {
+                event.stopPropagation(); 
+            }
             const card = headerElement.parentElement;
-            
-            // Toggle the 'expanded' class to show/hide the card-body
             card.classList.toggle('expanded');
         }
     </script>
