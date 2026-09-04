@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>4KS Writing Notes</title>
+    <title>456KS English Notes</title>
     
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
@@ -31,7 +31,7 @@
             line-height: 1.5;
         }
 
-        /* Updated Header */
+        /* Header */
         header {
             background-color: var(--primary-blue);
             color: white;
@@ -126,7 +126,6 @@
             animation: fadeInDown 0.3s;
         }
 
-        /* Child combinator used so nested cards don't open automatically */
         .card.expanded > .card-body {
             display: block;
         }
@@ -231,37 +230,6 @@
             font-style: italic;
             color: #555;
             font-size: 0.95rem;
-        }
-
-        /* Error Bank Specific Styling */
-        .error-comparison {
-            background-color: #fdfdfd;
-            border: 1px solid #e5e5ea;
-            border-radius: 8px;
-            padding: 12px 15px;
-            margin-bottom: 12px;
-        }
-        .wrong-text {
-            color: var(--accent-red);
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            margin-bottom: 4px;
-        }
-        .correct-text {
-            color: #2e7d32;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            margin-bottom: 4px;
-        }
-        .error-tip {
-            font-size: 0.88rem;
-            color: #666;
-            margin-top: 4px;
-            padding-left: 24px;
         }
 
         /* Sample Essay Section */
@@ -418,7 +386,7 @@
             display: block;
         }
 
-        /* Bottom Navigation Bar (Updated to 5 flexible tabs) */
+        /* Bottom Navigation Bar (5 tabs) */
         nav {
             position: fixed;
             bottom: 0;
@@ -476,7 +444,7 @@
 
     <header>
         <img src="https://www.google.com/s2/favicons?domain=plkwcc.edu.hk&sz=64" alt="PLK WCC Logo" class="school-logo">
-        4KS Writing Notes
+        456KS English Notes
     </header>
 
     <!-- TAB 1: GENRES -->
@@ -4043,95 +4011,28 @@ Let’s come together to celebrate and support our school. Don’t wait – cont
         </div>
     </main>
 
-    <!-- TAB 4: ERROR BANK (NEW TAB) -->
+    <!-- TAB 4: ERROR BANK (ONLY Grammar and Vocab) -->
     <main id="error-bank" class="tab-content">
         
         <div class="card" style="border-top-color: var(--accent-red);">
             <div class="accordion-header" onclick="toggleCard(event, this)">
                 <i class="material-icons main-icon icon-error">warning</i> 
-                1. Grammar & Tense Inconsistencies
+                Grammar
                 <i class="material-icons expand-arrow">expand_more</i>
             </div>
             <div class="card-body">
-                <p style="color: #666; font-size: 0.95rem; margin-top: 15px;">Review these frequent tense and subject-verb agreement slips before handing in your essays.</p>
-
-                <div class="error-comparison">
-                    <div class="wrong-text"><i class="material-icons" style="font-size: 1.2rem;">close</i> <strong>Incorrect:</strong> Last week, our school organizes a fair and everyone is excited.</div>
-                    <div class="correct-text"><i class="material-icons" style="font-size: 1.2rem;">check</i> <strong>Correct:</strong> Last week, our school organized a fair and everyone was excited.</div>
-                    <div class="error-tip">💡 <em>Tip: Keep past narrative events in simple past tense; do not jump between present and past arbitrarily.</em></div>
-                </div>
-
-                <div class="error-comparison">
-                    <div class="wrong-text"><i class="material-icons" style="font-size: 1.2rem;">close</i> <strong>Incorrect:</strong> Although he worked hard, but he failed the exam.</div>
-                    <div class="correct-text"><i class="material-icons" style="font-size: 1.2rem;">check</i> <strong>Correct:</strong> Although he worked hard, he failed the exam.</div>
-                    <div class="error-tip">💡 <em>Tip: Never pair "Although / Even though" with "but" in the same complex sentence.</em></div>
-                </div>
-
-                <!-- Ready for your additional examples -->
-                <p style="font-style: italic; color: #888; font-size: 0.85rem; margin-top: 10px;">(More classroom errors will be added here)</p>
+                <p style="font-style: italic; color: #888; font-size: 0.95rem; margin-top: 15px;">Grammar mistakes and corrections will be listed here.</p>
             </div>
         </div>
 
         <div class="card" style="border-top-color: var(--accent-orange);">
             <div class="accordion-header" onclick="toggleCard(event, this)">
                 <i class="material-icons main-icon">translate</i> 
-                2. Collocations & "Chinglish" Traps
+                Vocab
                 <i class="material-icons expand-arrow">expand_more</i>
             </div>
             <div class="card-body">
-                <p style="color: #666; font-size: 0.95rem; margin-top: 15px;">Avoid direct word-for-word Chinese-to-English translations.</p>
-
-                <div class="error-comparison">
-                    <div class="wrong-text"><i class="material-icons" style="font-size: 1.2rem;">close</i> <strong>Chinglish:</strong> I very like this activity because it opens my eye.</div>
-                    <div class="correct-text"><i class="material-icons" style="font-size: 1.2rem;">check</i> <strong>Natural:</strong> I really enjoy this activity because it broadens my horizons.</div>
-                    <div class="error-tip">💡 <em>Tip: Use "really like / enjoy immensely", and use "broaden one's horizons" instead of "open eye".</em></div>
-                </div>
-
-                <div class="error-comparison">
-                    <div class="wrong-text"><i class="material-icons" style="font-size: 1.2rem;">close</i> <strong>Chinglish:</strong> Hong Kong has many cars so the traffic is very crowded.</div>
-                    <div class="correct-text"><i class="material-icons" style="font-size: 1.2rem;">check</i> <strong>Natural:</strong> Hong Kong has a high vehicle density, resulting in severe traffic congestion.</div>
-                    <div class="error-tip">💡 <em>Tip: Traffic is "congested" or "heavy", not "crowded".</em></div>
-                </div>
-
-                <p style="font-style: italic; color: #888; font-size: 0.85rem; margin-top: 10px;">(More classroom errors will be added here)</p>
-            </div>
-        </div>
-
-        <div class="card" style="border-top-color: var(--primary-blue);">
-            <div class="accordion-header" onclick="toggleCard(event, this)">
-                <i class="material-icons main-icon icon-speech">record_voice_over</i> 
-                3. Register & Tone Errors
-                <i class="material-icons expand-arrow">expand_more</i>
-            </div>
-            <div class="card-body">
-                <p style="color: #666; font-size: 0.95rem; margin-top: 15px;">Ensure you match formal vs. informal language requirements for each HKDSE genre.</p>
-
-                <div class="error-comparison">
-                    <div class="wrong-text"><i class="material-icons" style="font-size: 1.2rem;">close</i> <strong>Formal Letter Slip:</strong> Hey editor, I wanna talk about the rubbish issue.</div>
-                    <div class="correct-text"><i class="material-icons" style="font-size: 1.2rem;">check</i> <strong>Formal:</strong> Dear Editor, I am writing to express my grave concern regarding the municipal waste issue.</div>
-                    <div class="error-tip">💡 <em>Tip: Never use slang, contractions ("wanna", "gonna"), or conversational greetings in formal letters.</em></div>
-                </div>
-
-                <p style="font-style: italic; color: #888; font-size: 0.85rem; margin-top: 10px;">(More classroom errors will be added here)</p>
-            </div>
-        </div>
-
-        <div class="card" style="border-top-color: var(--primary-blue);">
-            <div class="accordion-header" onclick="toggleCard(event, this)">
-                <i class="material-icons main-icon">edit</i> 
-                4. Sentence Structure & Punctuation
-                <i class="material-icons expand-arrow">expand_more</i>
-            </div>
-            <div class="card-body">
-                <p style="color: #666; font-size: 0.95rem; margin-top: 15px;">Watch out for run-on sentences, comma splices, and sentence fragments.</p>
-
-                <div class="error-comparison">
-                    <div class="wrong-text"><i class="material-icons" style="font-size: 1.2rem;">close</i> <strong>Comma Splice:</strong> Studying is very stressful, many students cannot sleep well.</div>
-                    <div class="correct-text"><i class="material-icons" style="font-size: 1.2rem;">check</i> <strong>Correct:</strong> Studying is very stressful; consequently, many students cannot sleep well.</div>
-                    <div class="error-tip">💡 <em>Tip: Do not join two independent clauses with just a comma. Use a semicolon, full stop, or coordinating conjunction.</em></div>
-                </div>
-
-                <p style="font-style: italic; color: #888; font-size: 0.85rem; margin-top: 10px;">(More classroom errors will be added here)</p>
+                <p style="font-style: italic; color: #888; font-size: 0.95rem; margin-top: 15px;">Vocabulary and collocation mistakes will be listed here.</p>
             </div>
         </div>
 
@@ -4144,7 +4045,7 @@ Let’s come together to celebrate and support our school. Don’t wait – cont
             <div class="scrolling-text">
                 ⭐ There are no shortcuts to any place worth going. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
                 ⭐ Success is the sum of small efforts, repeated day in and day out. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                ⭐ Preparation for tomorrow is hard work today. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                ⭐ Preparation for tomorrow is hard work today. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
                 ⭐ There are no shortcuts to any place worth going. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
                 ⭐ Success is the sum of small efforts, repeated day in and day out. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
                 ⭐ Preparation for tomorrow is hard work today. 
@@ -4154,11 +4055,11 @@ Let’s come together to celebrate and support our school. Don’t wait – cont
         <div class="card" style="padding: 20px;">
             <h2 style="border-bottom:none; margin-bottom: 15px;"><i class="material-icons" style="color: var(--primary-blue); font-size: 1.8rem; vertical-align: middle;">build</i> Classroom & AI Tools</h2>
             <ul class="tool-list">
-                <!-- Sayo Academy (Added) -->
+                <!-- Sayo AI Link with your specific tracking URL -->
                 <li>
-                    <a href="https://sayo.academy" target="_blank">
-                        <img src="https://www.google.com/s2/favicons?domain=sayo.academy&sz=64" alt="Sayo Academy Logo">
-                        Sayo (Educational AI Platform)
+                    <a href="https://sayo.ai/zh-HK?gad_source=1&gad_campaignid=23537757532&gbraid=0AAAABCfUQf-GjTrDceB-pOMyoTQ__qY_I&gclid=Cj0KCQjwteTUBhD4ARIsAEYjs3p2K5DzpwklrK6pHAn7Paq1hUVx2r8dzIPAmkrOdtdMu3K1g-qV9H4aAtVjEALw_wcB" target="_blank">
+                        <img src="https://www.google.com/s2/favicons?domain=sayo.ai&sz=64" alt="Sayo AI Logo">
+                        Sayo AI
                     </a>
                 </li>
                 <li>
